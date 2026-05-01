@@ -3,8 +3,8 @@
   ![on-pull-request](../../actions/workflows/on-pull-request.yaml/badge.svg)
   ![on-schedule](../../actions/workflows/on-schedule.yaml/badge.svg)
 
-  # Nathan Wolf-Sonkin's Personal Website.
-  
-  Visit **[website url](#)** 🚀
+  # Nathan Wolf-Sonkin's Personal Website
+
+  Visit **[nathanwolfsonkin.github.io/nathan.wolfsonkin.com](https://nathanwolfsonkin.github.io/nathan.wolfsonkin.com)** 🚀
 
   _Built with [Lab Website Template](https://greene-lab.gitbook.io/lab-website-template-docs)_

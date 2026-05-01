@@ -1,5 +1,18 @@
 # DO NOT EDIT, GENERATED AUTOMATICALLY
 
+- title: Investigating the Influence of Mechanical Configuration on Energy Efficiency
+    in Quadrupedal Robots
+  publisher: ASME International Mechanical Engineering Congress and Exposition
+  date: '2026-05-01'
+  orcid: 0009-0002-9789-8592
+  plugin: orcid.py
+  file: orcid.yaml
+- title: Simulation-Based Analysis of Quadrupedal Energetics Through Kinematic and
+    Dynamic Modeling
+  date: '2026-05-01'
+  orcid: 0009-0002-9789-8592
+  plugin: orcid.py
+  file: orcid.yaml
 - id: doi:10.1115/IMECE2025-167556
   title: Investigating the Influence of Mechanical Configuration on Energy Efficiency
     in Quadrupedal Robots
@@ -12,23 +25,6 @@
   link: https://doi.org/hbztb5
   type: paper
   image: images/research/gazebo_trot.png
-  tags:
-  - mobile robotics
-  - locomotion
-  - legged robotics
-  repo: nathanwolfsonkin/quadruped
-  plugin: sources.py
-  file: sources.yaml
-- id: The Cooper Union ProQuest Dissertations & Theses, 2025.32042397
-  title: Simulation-Based Analysis of Quadrupedal Energetics Through Kinematic and
-    Dynamic Modeling
-  type: paper
-  authors:
-  - Nathan Wolf-Sonkin
-  date: '2025-05-15'
-  image: images/research/gazebo_trot.png
-  link: https://www.proquest.com/openview/1cd691684c439bb2930a7ef9aa41fedb/1?pq-origsite=gscholar&cbl=18750&diss=y
-  publisher: ProQuest
   tags:
   - mobile robotics
   - locomotion
