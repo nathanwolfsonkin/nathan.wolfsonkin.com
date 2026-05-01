@@ -1,12 +1,12 @@
 ---
 ---
 
-# About Me
+# Hi, I'm Nathan!
 
-Hi, I'm Nathan! I am a robotics PhD student currently studying in the Temple University Robotics and Artificial Intelligence Lab in Philadelphia, PA. My current research interests in mobile robotics including multi-robot systems and swarm robotics. 
+I am a robotics PhD student studying at the Temple University Robotics and Artificial Intelligence Lab in Philadelphia, PA. My current research interests in mobile robotics including multi-robot systems and swarm robotics. 
 
 {:.center}
-##### I am currently seeking out academic or industry robotics internships for Fall 2026
+##### CURRENTLY SEEKING OUT ACADEMIC OR INDUSTRY ROBOTICS INTERNSHIPS FOR FALL 2026
 
 {% include figure.html 
    image="/images/nathan_wolf-sonkin.jpg" 
