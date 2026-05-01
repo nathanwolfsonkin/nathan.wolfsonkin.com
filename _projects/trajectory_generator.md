@@ -22,7 +22,7 @@ $$
 x_0 = y_0 = \theta_0 = x_f = y_f = \theta_f = constant
 $$
 
-From there, the corresponding velocity and acceleration are:
+We can define the desired positional trajectory as a fifth order polynomial: 
 
 $$ 
 x(t) = c_5 t^5 + c_4 t^4 + c_4 t^3 + c_2 t^2 + c_1 t + c_0 
@@ -46,7 +46,7 @@ $$
 \begin{bmatrix} x_0 \\ \dot{x}_0 \\ \ddot{x}_0 \\ x_f \\ \dot{x}_f \\ \ddot{x}_f \end{bmatrix}
 $$
 
-Here, the output vector contains the coefficients required to generate the smooth polynomial. The exact same process is applied in the $y$-direction. Finally, $\theta$ is computed using the kinematic relationship between linear and angular velocity for the bicycle model:
+Here, the output vector contains the coefficients required to generate the desired positional trajectory polynomial. The exact same process is applied in the $y$-direction. Finally, $\theta$ is computed using the kinematic relationship between linear and angular velocity for the bicycle model:
 
 $$
 \theta = \operatorname{atan2}(\dot{y}, \dot{x})

@@ -41,6 +41,12 @@
 
 
 # CoreSWX Projects
+- title: MoXIE
+  subtitle: Silent, Emmision-Free On-Site Power Supply
+  group: coreswx
+  image: images/coreswx/moxie.jpg
+  link: https://coremoxie.com/moxie-1-information/
+
 - title: AlphaV
   subtitle: Professional-grade 28V camera power supply
   group: coreswx

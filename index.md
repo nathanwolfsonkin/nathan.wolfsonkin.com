@@ -3,7 +3,7 @@
 
 # Hi, I'm Nathan!
 
-I am a robotics PhD student studying at the Temple University Robotics and Artificial Intelligence Lab in Philadelphia, PA. My current research interests in mobile robotics including multi-robot systems and swarm robotics. 
+I am a robotics PhD student studying at the Temple University Robotics and Artificial Intelligence Lab in Philadelphia, PA. My current research interests are in mobile robotics including multi-robot systems and swarm robotics. 
 
 {:.center}
 ##### CURRENTLY SEEKING OUT ACADEMIC OR INDUSTRY ROBOTICS INTERNSHIPS FOR FALL 2026
