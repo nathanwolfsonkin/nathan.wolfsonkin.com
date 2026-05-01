@@ -24,7 +24,7 @@
 
 - id: doi:10.1115/IMECE2025-167556
   type: paper
-  date: 2025-11-19
+  date: 2026-02-23
   image: images/research/gazebo_trot.png
   tags:
     - mobile robotics
@@ -32,12 +32,13 @@
     - legged robotics
   repo: nathanwolfsonkin/quadruped
 
-- id: The Cooper Union ProQuest Dissertations & Theses, 2025.32042397
+- id: The Cooper Union ProQuest Dissertations & Theses, 2025. 32042397
   title: Simulation-Based Analysis of Quadrupedal Energetics Through Kinematic and Dynamic Modeling
   type: paper
   authors:
-    - Nathan Wolf-Sonkin  
-  date: 2025-5-15
+    - Nathan Wolf-Sonkin
+  orcid: 0009-0002-9789-8592
+  date: 2025-05-15
   image: images/research/gazebo_trot.png
   link: https://www.proquest.com/openview/1cd691684c439bb2930a7ef9aa41fedb/1?pq-origsite=gscholar&cbl=18750&diss=y
   publisher: ProQuest
