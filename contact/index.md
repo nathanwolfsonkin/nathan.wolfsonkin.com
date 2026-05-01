@@ -1,77 +1,50 @@
 ---
 title: Contact
 nav:
-  order: 5
-  tooltip: Email, address, and location
+  order: 3
+  tooltip: "Phone and Email"
 ---
 
-# {% include icon.html icon="fa-regular fa-envelope" %}Contact
+# {% include icon.html %}Contact Details
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+<div style="display: flex; flex-direction: column; align-items: center;">
+  <div style="display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-start;">
 
-{%
-  include button.html
-  type="email"
-  text="jane@smith.com"
-  link="jane@smith.com"
-%}
-{%
-  include button.html
-  type="phone"
-  text="(555) 867-5309"
-  link="+1-555-867-5309"
-%}
-{%
-  include button.html
-  type="address"
-  tooltip="Our location on Google Maps for easy navigation"
-  link="https://www.google.com/maps"
-%}
+    {% include button.html
+      type="email"
+      text="nathanwolfsonkin@gmail.com"
+      link="nathanwolfsonkin@gmail.com"
+    %}
 
-{% include section.html %}
+    {% include button.html
+      type="email"
+      text="nathan.wolf-sonkin@temple.edu"
+      link="nathan.wolf-sonkin@temple.edu"
+    %}
 
-{% capture col1 %}
+    {% include button.html
+      type="phone"
+      text="(646) 634-8670"
+      link="tel:+16466348670"
+    %}
 
-{%
-  include figure.html
-  image="images/photo.jpg"
-  caption="Lorem ipsum"
-%}
+    {% include button.html
+      type="linkedin"
+      text="linkedin.com/in/nathan-wolf-sonkin"
+      link="nathan-wolf-sonkin"
+    %}
 
-{% endcapture %}
+    {% include button.html
+      type="github"
+      text="github.com/nathanwolfsonkin"
+      link="nathanwolfsonkin"
+    %}
 
-{% capture col2 %}
+    {% include button.html
+      type="google-scholar"
+      text="Google Scholar"
+      link="XIwHqR8AAAAJ"
+    %}
 
-{%
-  include figure.html
-  image="images/photo.jpg"
-  caption="Lorem ipsum"
-%}
-
-{% endcapture %}
-
-{% include cols.html col1=col1 col2=col2 %}
-
-{% include section.html dark=true %}
-
-{% capture col1 %}
-Lorem ipsum dolor sit amet  
-consectetur adipiscing elit  
-sed do eiusmod tempor
-{% endcapture %}
-
-{% capture col2 %}
-Lorem ipsum dolor sit amet  
-consectetur adipiscing elit  
-sed do eiusmod tempor
-{% endcapture %}
-
-{% capture col3 %}
-Lorem ipsum dolor sit amet  
-consectetur adipiscing elit  
-sed do eiusmod tempor
-{% endcapture %}
-
-{% include cols.html col1=col1 col2=col2 col3=col3 %}
+  </div>
+</div>

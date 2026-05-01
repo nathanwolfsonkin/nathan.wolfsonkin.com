@@ -1,23 +1,48 @@
-- id: doi:10.1371/journal.pcbi.1007128
+# - id: doi:10.1371/journal.pcbi.1007128
+#   type: paper
+#   description: Lorem ipsum _dolor_ **sit amet**, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+#   date: 2020-12-4
+#   image: https://journals.plos.org/ploscompbiol/article/figure/image?size=inline&id=info:doi/10.1371/journal.pcbi.1007128.g001&rev=2
+#   buttons:
+#     - type: manubot
+#       link: https://greenelab.github.io/meta-review/
+#     - type: source
+#       text: Manuscript Source
+#       link: https://github.com/greenelab/meta-review
+#     - type: website
+#       link: http://manubot.org/
+#   tags:
+#     - open science
+#     - collaboration
+#   repo: greenelab/meta-review
+
+# - id: doi:10.1016/j.csbj.2020.05.017
+#   image: https://ars.els-cdn.com/content/image/1-s2.0-S2001037020302804-gr1.jpg
+
+# - id: doi:10.7554/eLife.32822
+#   image: https://iiif.elifesciences.org/lax:32822%2Felife-32822-fig8-v3.tif/full/863,/0/default.webp
+
+- id: doi:10.1115/IMECE2025-167556
   type: paper
-  description: Lorem ipsum _dolor_ **sit amet**, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  date: 2020-12-4
-  image: https://journals.plos.org/ploscompbiol/article/figure/image?size=inline&id=info:doi/10.1371/journal.pcbi.1007128.g001&rev=2
-  buttons:
-    - type: manubot
-      link: https://greenelab.github.io/meta-review/
-    - type: source
-      text: Manuscript Source
-      link: https://github.com/greenelab/meta-review
-    - type: website
-      link: http://manubot.org/
+  date: 2025-11-19
+  image: images/research/gazebo_trot.png
   tags:
-    - open science
-    - collaboration
-  repo: greenelab/meta-review
+    - mobile robotics
+    - locomotion
+    - legged robotics
+  repo: nathanwolfsonkin/quadruped
 
-- id: doi:10.1016/j.csbj.2020.05.017
-  image: https://ars.els-cdn.com/content/image/1-s2.0-S2001037020302804-gr1.jpg
-
-- id: doi:10.7554/eLife.32822
-  image: https://iiif.elifesciences.org/lax:32822%2Felife-32822-fig8-v3.tif/full/863,/0/default.webp
+- id: The Cooper Union ProQuest Dissertations & Theses, 2025.32042397
+  title: Simulation-Based Analysis of Quadrupedal Energetics Through Kinematic and Dynamic Modeling
+  type: paper
+  authors:
+    - Nathan Wolf-Sonkin  
+  date: 2025-5-15
+  image: images/research/gazebo_trot.png
+  link: https://www.proquest.com/openview/1cd691684c439bb2930a7ef9aa41fedb/1?pq-origsite=gscholar&cbl=18750&diss=y
+  publisher: ProQuest
+  tags:
+    - mobile robotics
+    - locomotion
+    - legged robotics
+  repo: nathanwolfsonkin/quadruped

@@ -1,47 +1,102 @@
-- title: Cool Dataset
-  subtitle: a subtitle
+# Featured Projects
+- title: Quadrupedal Energy Analysis
   group: featured
-  image: images/photo.jpg
-  link: https://github.com/
-  description: Lorem ipsum _dolor sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  repo: greenelab/lab-website-template
+  image: images/research/gazebo_trot.png
+  link: projects/quadruped_energy.html
+  description: A parameterizable quadruped simulation for analysis of energy consumption. This work was presented and published at the IMECE 2025 conference in Memphis, TN.
   tags:
-    - resource
-
-- title: Cool Package
-  subtitle: a subtitle
-  group: featured
-  image: images/photo.jpg
-  link: https://github.com/
-  description: Lorem ipsum _dolor sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  repo: greenelab/lab-website-template
-  tags:
-    - resource
-
-- title: Cool Tutorial
-  subtitle: a subtitle
-  image: images/photo.jpg
-  link: https://github.com/
-  description: Lorem ipsum _dolor sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  repo: greenelab/lab-website-template
-  tags:
-    - resource
     - publication
 
-- title: Cool Web App
-  subtitle: a subtitle
+- title: Sarcos Sapien 6M Digital Twin
+  group: featured
   image: images/photo.jpg
-  link: https://github.com/
-  description: Lorem ipsum _dolor sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  repo: greenelab/lab-website-template
-  tags:
-    - software
+  link: projects/sarcos_simulation.html
+  description: A digital twin of the Sarcos Sapien 6M robotic arm I built during an internship at JLG Industries
 
-- title: Cool Web Server
-  subtitle: a subtitle
-  image: images/photo.jpg
-  link: https://github.com/
-  description: Lorem ipsum _dolor sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  repo: greenelab/lab-website-template
-  tags:
-    - software
+
+# Academic Projects
+- title: ROS2 Navigation and Mapping
+  group: personal
+  image: images/personal/ros2-turtlebot/robot_video.png
+  link: projects/ros2-turtlebot.html
+  description: A ROS2 implementation for wall following and mapping an enclosed space on the IRobot Create3 platform
+
+- title: Optimal Control of a 3-Link Robotic Arm
+  group: personal
+  image: images/personal/roboticarm/roboticArmPic.gif
+  link: projects/roboticarm.html
+  description: A dynamic simulation of a robotic arm for comparisons between different control strategies
+
+- title: Turducken Cooking Simulation
+  group: personal
+  image: images/personal/turducken/Turducken2.png
+  link: projects/turducken.html
+  description: Finite element based thermal analysis of cooking a turducken with the objective of simultaneously minimizing cooking time and percentage of burnt meat.
+
+- title: Vehicle Trajectory Generator
+  group: personal
+  image: images/personal/trajgen/trajGen.png
+  link: projects/trajectory_generator.html
+  description: A bicycle model based, feed-forward trajectory generator to smoothy drive from one position to the next.
+
+
+# CoreSWX Projects
+- title: AlphaV
+  subtitle: Professional-grade 28V camera power supply
+  group: coreswx
+  image: images/coreswx/AlphaV.webp
+  link: https://coreswx.com/products/alphav
+
+- title: GT8 Ultra High Speed Charger
+  subtitle: High-performance quad charger
+  group: coreswx
+  image: images/coreswx/GT8.webp
+  link: https://coreswx.com/products/gt8-quad-for-helix-max-series
+
+- title: Renegade
+  subtitle: High-performance block battery
+  group: coreswx
+  image: images/coreswx/Renegade.webp
+  link: https://coreswx.com/products/renegade
+
+- title: Apex
+  subtitle: Battery for high power LED lighting
+  group: coreswx
+  image: images/coreswx/Apex.webp
+  link: https://coreswx.com/products/apex-360-hv
+
+- title: Helix Max
+  subtitle: High Efficency, Dual Voltage battery
+  group: coreswx
+  image: images/coreswx/Helix.webp
+  link: https://coreswx.com/products/helix-max-ultra-400-series
+
+- title: Mach4 Quad Charger
+  subtitle: Capable of charging four batteries simultaneously
+  group: coreswx
+  image: images/coreswx/Mach4.webp
+  link: https://coreswx.com/products/mach4-quad-series
+
+- title: Mach4 Dual Charger
+  subtitle: Capable of charging two batteries simultaneously
+  group: coreswx
+  image: images/coreswx/MachDual.webp
+  link: https://coreswx.com/products/mach-dual-series
+
+- title: PFQ8
+  subtitle: Charger for Renegade
+  group: coreswx
+  image: images/coreswx/PFQ8.webp
+  link: https://coreswx.com/products/charger-for-renegade
+
+- title: Power Station Caddy
+  subtitle: Caddy for the Renegade and Maverick Power Stations
+  group: coreswx
+  image: images/coreswx/RenegadeCaddy.webp
+  link: https://coreswx.com/products/power-station-caddy
+
+- title: PoFleet Q4 Mini Charger
+  subtitle: Compact, Quad-bay Charger
+  group: coreswx
+  image: images/coreswx/FleetMini.webp
+  link: https://coreswx.com/products/fleet-mini-series

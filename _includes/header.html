@@ -45,15 +45,58 @@
       | where_exp: "page", "page.nav"
       | sort: "nav.order"
     %}
+
     {% for page in pages %}
-      {% if page.nav %}
+
+      {%- comment -%}
+      Insert nav_extra items that should appear BEFORE this page
+      {%- endcomment -%}
+      {% for item in site.nav_extra %}
+        {% if item.position == page.nav.order %}
+          <a
+            href="{{ item.url | relative_url | uri_escape }}"
+            {% if item.new_tab %}
+              target="_blank"
+              rel="noopener noreferrer"
+            {% endif %}
+            {% if item.tooltip %}
+              data-tooltip="{{ item.tooltip | xml_escape }}"
+            {% endif %}
+          >
+            {{ item.title }}
+          </a>
+        {% endif %}
+      {% endfor %}
+
+      <!-- Normal page nav item -->
+      <a
+        href="{{ page.url | relative_url | uri_escape }}"
+        data-tooltip="{{ page.nav.tooltip | xml_escape }}"
+      >
+        {{ page.title }}
+      </a>
+
+    {% endfor %}
+
+    {%- comment -%}
+    Insert any nav_extra items with position AFTER all pages
+    (e.g., position: 999 or omitted)
+    {%- endcomment -%}
+    {% for item in site.nav_extra %}
+      {% unless pages | map: "nav.order" contains item.position %}
         <a
-          href="{{ page.dir | relative_url | uri_escape }}"
-          data-tooltip="{{ page.nav.tooltip | xml_escape }}"
+          href="{{ item.url | relative_url | uri_escape }}"
+          {% if item.new_tab %}
+            target="_blank"
+            rel="noopener noreferrer"
+          {% endif %}
+          {% if item.tooltip %}
+            data-tooltip="{{ item.tooltip | xml_escape }}"
+          {% endif %}
         >
-          {{ page.title }}
+          {{ item.title }}
         </a>
-      {% endif %}
+      {% endunless %}
     {% endfor %}
   </nav>
 </header>
