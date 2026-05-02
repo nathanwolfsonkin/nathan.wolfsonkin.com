@@ -21,11 +21,17 @@
   link: projects/ros2-turtlebot.html
   description: A ROS2 implementation for wall following and mapping an enclosed space on the IRobot Create3 platform
 
-- title: Optimal Control of a 3-Link Robotic Arm
+- title: Vehicle Trajectory Generator
   group: personal
-  image: images/personal/roboticarm/roboticArmPic.gif
-  link: projects/roboticarm.html
-  description: A dynamic simulation of a robotic arm for comparisons between different control strategies
+  image: images/personal/trajgen/trajGen.png
+  link: projects/trajectory_generator.html
+  description: A bicycle model based, feed-forward trajectory generator to smoothy drive from one position to the next
+
+- title: Dynamic Simulation of a Planar 5-Bar Linkage
+  group: personal
+  image: images/personal/fivebar/five_bar.png
+  link: projects/five_bar_linkage.html
+  description: Analytic Derivation of the Equations of Motion for a 5-Bar Linkage
 
 - title: Turducken Cooking Simulation
   group: personal
@@ -33,12 +39,11 @@
   link: projects/turducken.html
   description: Finite element based thermal analysis of cooking a turducken with the objective of simultaneously minimizing cooking time and percentage of burnt meat.
 
-- title: Vehicle Trajectory Generator
+- title: Optimal Control of a 3-Link Robotic Arm
   group: personal
-  image: images/personal/trajgen/trajGen.png
-  link: projects/trajectory_generator.html
-  description: A bicycle model based, feed-forward trajectory generator to smoothy drive from one position to the next.
-
+  image: images/personal/roboticarm/roboticArmPic.gif
+  link: projects/roboticarm.html
+  description: A dynamic simulation of a robotic arm for comparisons between different control strategies
 
 # CoreSWX Projects
 - title: MoXIE
