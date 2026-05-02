@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en" data-dark="false">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!--
+  put your analytics (e.g. Google Analytics) tracking code here
+-->
+
+  <!--
+  put your search engine verification (e.g. Google Search Console) tag here
+-->
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>5-Bar Linkage Dynamic Simulation | Nathan Wolf-Sonkin</title>
+
+<link rel="icon" href="/nathan.wolfsonkin.com/images/icon.png">
+
+<meta name="title" content="5-Bar Linkage Dynamic Simulation">
+<meta name="description" content="Robotics PhD Student at Temple University. ">
+
+<meta property="og:title" content="5-Bar Linkage Dynamic Simulation">
+<meta property="og:site_title" content="Nathan Wolf-Sonkin">
+<meta property="og:description" content="Robotics PhD Student at Temple University. ">
+<meta property="og:url" content="https://nathanwolfsonkin.github.io/nathan.wolfsonkin.com">
+<meta property="og:image" content="/nathan.wolfsonkin.com/images/share.jpg">
+<meta property="og:locale" content="en_US">
+
+<meta property="twitter:title" content="5-Bar Linkage Dynamic Simulation">
+<meta property="twitter:description" content="Robotics PhD Student at Temple University. ">
+<meta property="twitter:url" content="https://nathanwolfsonkin.github.io/nathan.wolfsonkin.com">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:image" content="/nathan.wolfsonkin.com/images/share.jpg">
+
+
+  <meta property="og:type" content="website">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "WebSite",
+    
+    "name": "5-Bar Linkage Dynamic Simulation",
+    "description": "Robotics PhD Student at Temple University. ",
+    "headline": "5-Bar Linkage Dynamic Simulation",
+    "publisher": {
+      "@type": "Organization",
+      "logo": { "@type": "ImageObject", "url": "/nathan.wolfsonkin.com/images/icon.png" }
+    },
+    "url": "https://nathanwolfsonkin.github.io/nathan.wolfsonkin.com"
+  }
+</script>
+
+<link rel="alternate" type="application/rss+xml" href="https://nathanwolfsonkin.github.io/nathan.wolfsonkin.com/feed.xml">
+
+  <!-- Google Fonts -->
+<!-- automatically get url from fonts used in theme file -->
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?display=swap&&family=Barlow:ital,wght@0,200;0,400;0,500;0,600;1,200;1,400;1,500;1,600&amp;family=Roboto+Mono:ital,wght@0,200;0,400;0,500;0,600;1,200;1,400;1,500;1,600" rel="stylesheet">
+
+<!-- Font Awesome icons (load asynchronously due to size) -->
+
+<link href="https://use.fontawesome.com/releases/v6.7.0/css/all.css" rel="stylesheet" media="none" onload="this.removeAttribute('media'); this.onload = null;">
+<noscript>
+  <link href="https://use.fontawesome.com/releases/v6.7.0/css/all.css" rel="stylesheet">
+</noscript>
+
+  <!-- third party styles -->
+<!-- https://stylishthemes.github.io/Syntax-Themes/pygments/ -->
+<link href="https://cdn.jsdelivr.net/gh/StylishThemes/Syntax-Themes/pygments/css-github/pygments-tomorrow-night-eighties.css" rel="stylesheet">
+
+<!-- include all sass in styles folder -->
+
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/-theme.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/alert.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/all.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/anchor.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/background.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/body.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/bold.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/button.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/card.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/checkbox.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/citation.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/code.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/cols.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/dark-toggle.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/details.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/feature.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/figure.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/float.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/font.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/footer.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/form.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/grid.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/header.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/heading.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/highlight.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/icon.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/image.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/link.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/list.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/main.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/paragraph.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/portrait.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/post-excerpt.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/post-info.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/post-nav.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/quote.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/rule.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/search-box.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/search-info.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/section.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/table.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/tags.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/textbox.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/tooltip.css" rel="stylesheet">
+  
+
+  
+    <link href="/nathan.wolfsonkin.com/_styles/util.css" rel="stylesheet">
+  
+
+
+<!-- include all css in styles folder -->
+
+
+
+  <!-- third party scripts -->
+<script src="https://unpkg.com/@popperjs/core@2" defer></script>
+<script src="https://unpkg.com/tippy.js@6" defer></script>
+<script src="https://unpkg.com/mark.js@8" defer></script>
+
+<!-- include all js in scripts folder -->
+
+
+  <script src="/nathan.wolfsonkin.com/_scripts/anchors.js"></script>
+
+  <script src="/nathan.wolfsonkin.com/_scripts/dark-mode.js"></script>
+
+  <script src="/nathan.wolfsonkin.com/_scripts/fetch-tags.js"></script>
+
+  <script src="/nathan.wolfsonkin.com/_scripts/search.js"></script>
+
+  <script src="/nathan.wolfsonkin.com/_scripts/site-search.js"></script>
+
+  <script src="/nathan.wolfsonkin.com/_scripts/table-wrap.js"></script>
+
+  <script src="/nathan.wolfsonkin.com/_scripts/tooltip.js"></script>
+
+
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+  <body>
+    
+
+
+
+
+
+
+
+<header class="background" style="--image: url('/nathan.wolfsonkin.com/images/background.jpg')" data-dark="true">
+  <a href="/nathan.wolfsonkin.com/" class="home">
+    
+      <span class="logo">
+        
+          <img src="/nathan.wolfsonkin.com/images/logo.png" alt="logo">
+        
+      </span>
+    
+    
+      <span class="title-text" data-tooltip="Home">
+        
+          <span class="title">Nathan Wolf-Sonkin</span>
+        
+        
+          <span class="subtitle">Robotics PhD Student at Temple University</span>
+        
+      </span>
+    
+  </a>
+
+  <input class="nav-toggle" type="checkbox" aria-label="show/hide nav">
+
+  <nav>
+    
+
+    
+        
+      
+
+      <!-- Normal page nav item -->
+      <a href="/nathan.wolfsonkin.com/research/" data-tooltip="Published works">
+        Research
+      </a>
+
+    
+        
+      
+
+      <!-- Normal page nav item -->
+      <a href="/nathan.wolfsonkin.com/projects/" data-tooltip="Personal and Professional Projects">
+        Projects
+      </a>
+
+    
+        
+          <a href="/nathan.wolfsonkin.com/resume.pdf" target="_blank" rel="noopener noreferrer">
+            Resume
+          </a>
+        
+      
+
+      <!-- Normal page nav item -->
+      <a href="/nathan.wolfsonkin.com/contact/" data-tooltip="Phone and Email">
+        Contact
+      </a>
+
+    
+      
+    
+  </nav>
+</header>
+
+    <main>
+      <!--
+  modify main content of page:
+  - add section breaks
+  - attach section properties
+  - filter out blank sections
+-->
+
+
+
+
+
+
+  
+  
+  
+
+  <section class="background" data-size="1">
+    <!--
+  <background></background>
+  <dark></dark>
+  <size>1</size>
+-->
+
+
+<h1 class="center">5-Bar Linkage Dynamic Simulation</h1>
+<div class="center" style="margin-top: 1rem; margin-bottom: 2rem;">
+    
+    <div style="font-weight: 600; margin-bottom: 0.5rem;">
+      Tools &amp; Technologies
+    </div>
+
+    <div style="
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    "><span style="
+          padding: 0.4rem 0.8rem;
+          border-radius: 999px;
+          background: rgba(0,0,0,0.08);
+          font-size: 0.9rem;
+          white-space: nowrap;
+        ">
+          MATLAB
+        </span></div>
+
+  </div>
+  </section>
+
+  
+  
+  
+
+  <section class="background" data-size="page">
+    <!--
+  <background></background>
+  <dark></dark>
+  <size></size>
+-->
+
+
+<figure class="figure">
+  <a class="figure-image" aria-label="figure link">
+    <img src="/nathan.wolfsonkin.com/images/personal/fivebar/torqueFiveBarAnimation.gif" style="
+        width: 40%;
+        max-height: unset;
+      " alt="figure image" loading="lazy" onerror="this.src = '/nathan.wolfsonkin.com/images/fallback.svg'; this.onerror = null;">
+  </a>
+  
+</figure>
+  </section>
+
+  
+  
+  
+
+  <section class="background" data-size="page">
+    <!--
+  <background></background>
+  <dark></dark>
+  <size></size>
+-->
+
+<p>The equations of motion were derived using an extension of the projection-based derivation of the equations of motion outline <a href="https://asmedigitalcollection.asme.org/IMECE/proceedings-abstract/IMECE2021/85659/V009T09A005/1132989">here</a>. The basic method in the paper is as follows. Suppose that the equations of motion for a kinematically connected rigid mody can be written as.</p>
+
+<p>$$M\ddot{X}+DM\dot{X}=G+G^{c}$$</p>
+
+<p>Where $M$ is a diagonal matrix containing inertial values for each element the states, $X$ is the state vector, $D$ is a matrix containing centrifugal terms for each state element, $G$ is a vector containing the applied external forces, and $G^c$ is a vector containing the constraint forces due to kinematic constraints. Note that all values except for the constraint forces can be derived using only knowledge of the physical parameters of each rigid body.</p>
+
+<p>Recognizing the relationship between the jacobian, $B$, and the applied independent coordinates vector, $q$</p>
+
+<p>$$\dot{X} = B\dot{q}$$</p>
+
+<p>We can then take the equations of motion and write them in terms of $q$</p>
+
+<p>$$M(B\ddot{q} + \dot{B}\dot{q}) + DMB\dot{q} = G + G^c$$</p>
+
+<p>The difficulty here is that the constraint forces are unknown. The method of projections solves this by multiplying the equations of motion by the transpose of the jacobian. This projects the constraint forces down to the zero vector. This is because, by definition, constraint forces cannot do work since they act orthogonally to the direction of motion. Therefore out equations of motion become</p>
+
+<p>$$B^TMB\ddot{q} + (B^TM\dot{B}+B^TDMB)\dot{q} = B^TG$$</p>
+
+<p>Now consider the five bar linkage:</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="figure link">
+    <img src="/nathan.wolfsonkin.com/images/personal/fivebar/kinematic_diagram.png" style="
+        width: 70%;
+        max-height: unset;
+      " alt="figure image" loading="lazy" onerror="this.src = '/nathan.wolfsonkin.com/images/fallback.svg'; this.onerror = null;">
+  </a>
+  
+</figure>
+
+<p>As with any problem, we must first define the state vector:</p>
+
+<p>$$X = \begin{bmatrix} X_1 \\ X_2 \\ X_3 \\ X_4 \end{bmatrix}$$</p>
+
+<p>Where</p>
+
+<p>$$X_i = \begin{bmatrix} x_i \\ y_i \\ \theta_i \end{bmatrix}$$</p>
+
+<p>Here, $x_i$ and $y_i$ represent the x and y position of the center of mass with respect to the origin. $\theta_i$ represent the angle of the bar with respect to the horizontal (equivilant to $q_i$).</p>
+
+<p>In order to apply method of projections to derive the dynamics of the five bar linkage, we must first recognize that while there are four angles, there are only two independent coordinates. This can be verified using Grübler’s formula for computation of degrees of freedom. Since $L_5$ is the ground link in this case, we know that $q_1$ and $q_2$ can be used to fully define $q_3$ and $q_4$. Put more simply</p>
+
+<p>$$q_3(q_1, q_2), q_4(q_1, q_2)$$</p>
+
+<p>And our independent coordinates vector becomes:</p>
+
+<p>$$q = \begin{bmatrix} q_1 \\ q_2 \end{bmatrix}$$</p>
+
+<p>Then we can define the following submatricies:</p>
+
+<p>$$\dot{X}_1 = B_1\dot{q}$$ $$\dot{X}_2 = B_2\dot{q}$$ $$ \dot{X}_3 = B_3\dot{q}$$ $$ \dot{X}_4 = B_4\dot{q} $$</p>
+
+<p>The full jacobian can be written as a 12 x 2 matrix as such:</p>
+
+<p>$$B = \begin{bmatrix} B_1 \\ B_2 \\ B_3 \\ B_4 \end{bmatrix}$$</p>
+
+<p>With the jacobian defined, we can then compute the equations of motion for the as described above:</p>
+
+<p>$$B^TMB\ddot{q} + (B^TM\dot{B}+B^TDMB)\dot{q} = B^TG$$</p>
+
+<p>The actual implementation of this derivation was done symbolically in MATLAB. It required about 15 minutes running on 2019 Intel I7 processor. The derived equations of motion were stored in a separate file and simulations were conducted separatley. To validate the derivation, energy fluctuations were monitored under zero input, zero friction conditions. The figure below shoes that the total energy remained constant. This gives credence to the idea that the implementation was correct.</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="figure link">
+    <img src="/nathan.wolfsonkin.com/images/personal/fivebar/energy_conserved.png" style="
+        width: 70%;
+        max-height: unset;
+      " alt="figure image" loading="lazy" onerror="this.src = '/nathan.wolfsonkin.com/images/fallback.svg'; this.onerror = null;">
+  </a>
+  
+</figure>
+  </section>
+
+  
+  
+  
+
+  <section class="background" data-size="page">
+    <!--
+  <background></background>
+  <dark></dark>
+  <size></size>
+-->
+  </section>
+
+
+    </main>
+    
+
+
+<footer class="background" style="--image: url('/nathan.wolfsonkin.com/images/background.jpg')" data-dark="true" data-size="wide">
+  <!--
+    <div>
+      Extra details like contact info or address
+    </div>
+  -->
+
+  <div>
+    
+      
+      
+      
+
+
+
+  <div class="button-wrapper">
+    <a class="button" href="mailto:nathanwolfsonkin@gmail.com" data-tooltip="Email" data-style="bare" aria-label="Email">
+      <i class="icon fa-solid fa-envelope"></i>
+      
+    </a>
+  </div>
+
+
+    
+      
+      
+      
+
+
+
+  <div class="button-wrapper">
+    <a class="button" href="https://orcid.org/0009-0002-9789-8592" data-tooltip="ORCID" data-style="bare" aria-label="ORCID">
+      <i class="icon fa-brands fa-orcid"></i>
+      
+    </a>
+  </div>
+
+
+    
+      
+      
+      
+
+
+
+  <div class="button-wrapper">
+    <a class="button" href="https://www.linkedin.com/in/nathan-wolf-sonkin" data-tooltip="LinkedIn" data-style="bare" aria-label="LinkedIn">
+      <i class="icon fa-brands fa-linkedin"></i>
+      
+    </a>
+  </div>
+
+
+    
+      
+      
+      
+
+
+
+  <div class="button-wrapper">
+    <a class="button" href="https://scholar.google.com/citations?user=XIwHqR8AAAAJ" data-tooltip="Google Scholar" data-style="bare" aria-label="Google Scholar">
+      <i class="icon fa-brands fa-google"></i>
+      
+    </a>
+  </div>
+
+
+    
+      
+      
+      
+
+
+
+  <div class="button-wrapper">
+    <a class="button" href="https://github.com/nathanwolfsonkin" data-tooltip="GitHub" data-style="bare" aria-label="GitHub">
+      <i class="icon fa-brands fa-github"></i>
+      
+    </a>
+  </div>
+
+
+    
+  </div>
+
+  <div>
+    © 2026
+    Nathan Wolf-Sonkin
+      |   Built with
+    <a href="https://github.com/greenelab/lab-website-template">
+      Lab Website Template
+    </a>
+  </div>
+
+  <input type="checkbox" class="dark-toggle" data-tooltip="Dark mode" aria-label="toggle dark mode" oninput="onDarkToggleChange(event)">
+</footer>
+
+  </body>
+</html>
