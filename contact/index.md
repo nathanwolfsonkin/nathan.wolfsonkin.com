@@ -17,13 +17,6 @@ nav:
     %}
 
     {% include button.html
-      type="email"
-      text="nathan.wolf-sonkin@temple.edu"
-      link="nathan.wolf-sonkin@temple.edu"
-      tooltip=""
-    %}
-
-    {% include button.html
       type="phone"
       text="(646) 634-8670"
       link="tel:+16466348670"
