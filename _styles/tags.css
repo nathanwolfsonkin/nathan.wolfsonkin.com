@@ -22,10 +22,6 @@
   transition: background var(--transition), color var(--transition);
 }
 
-.tag:hover {
-  background: var(--light-gray);
-}
-
 .tag[data-active] {
   background: var(--light-gray);
 }
