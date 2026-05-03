@@ -1,41 +1,47 @@
 ---
 ---
 
-# Hi, I'm Nathan!
-
-I am a robotics PhD student studying at the Temple University Robotics and Artificial Intelligence Lab in Philadelphia, PA. My current research interests are in mobile robotics including multi-robot systems and swarm robotics. 
+{% capture left %}
+{:.center}
+<div style="
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(0, 0, 0, 0.92);
+  font-family: var(--title);
+">
+  NATHAN WOLF-SONKIN
+</div>
 
 {:.center}
-##### CURRENTLY SEEKING OUT ACADEMIC OR INDUSTRY ROBOTICS INTERNSHIPS FOR FALL 2026
+<div style="
+  margin-top: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgba(30, 30, 30, 0.65);
+">
+  Doctoral Student at the Temple University Robotics and AI Lab
+</div>
 
-{% include figure.html 
-   image="/images/nathan_wolf-sonkin.jpg" 
-   width="50%" %}
 
+<div style="margin-top: 1.25rem;">
+  {% include button.html
+    text="Resume"
+    link="resume.pdf"
+    new_tab=true
+  %}
+</div>
 
-#### Background
+{% endcapture %}
 
-I completed my Master’s degree in Mechanical Engineering at The Cooper Union in New York City, and my undergraduate at New York Institute of Technology. During my undergraduate studies, I designed mechanical components for CoreSWX, a company specializing in power systems for the film industry. In 2024, I interned at JLG Industries on the Future Technologies Team, where I worked on robotics simulation and applications for next-generation systems.
-
-{% include section.html %}
-
-{% include button.html
-  text="Research"
-  link="research"
+{% capture right %}
+{% include figure.html
+   image="/images/nathan_wolf-sonkin.jpg"
+   width="80%"
 %}
+{% endcapture %}
 
-{% include button.html
-  text="Projects"
-  link="projects"
-%}
-
-{% include button.html
-  text="Resume"
-  link="resume.pdf"
-  new_tab=true
-%}
-
-{% include button.html
-  text="Contact"
-  link="contact"
+{% include cols.html
+   col1=left
+   col2=right
 %}
