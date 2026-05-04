@@ -31,6 +31,7 @@ nav:
       link="nathan-wolf-sonkin"
       tooltip=""
       style="bare"
+      new_tab=true
     %}
 
     {% include button.html
@@ -39,6 +40,7 @@ nav:
       link="nathanwolfsonkin"
       tooltip=""
       style="bare"
+      new_tab=true
     %}
 
     {% include button.html
@@ -47,6 +49,7 @@ nav:
       link="XIwHqR8AAAAJ"
       tooltip=""
       style="bare"
+      new_tab=true
     %}
 
   </div>
