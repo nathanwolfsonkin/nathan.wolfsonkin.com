@@ -14,6 +14,7 @@ nav:
       text="nathanwolfsonkin@gmail.com"
       link="nathanwolfsonkin@gmail.com"
       tooltip=""
+      style="bare"
     %}
 
     {% include button.html
@@ -21,6 +22,7 @@ nav:
       text="(646) 634-8670"
       link="tel:+16466348670"
       tooltip=""
+      style="bare"
     %}
 
     {% include button.html
@@ -28,6 +30,7 @@ nav:
       text="linkedin.com/in/nathan-wolf-sonkin"
       link="nathan-wolf-sonkin"
       tooltip=""
+      style="bare"
     %}
 
     {% include button.html
@@ -35,6 +38,7 @@ nav:
       text="github.com/nathanwolfsonkin"
       link="nathanwolfsonkin"
       tooltip=""
+      style="bare"
     %}
 
     {% include button.html
@@ -42,6 +46,7 @@ nav:
       text="Google Scholar"
       link="XIwHqR8AAAAJ"
       tooltip=""
+      style="bare"
     %}
 
   </div>

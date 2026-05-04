@@ -9,7 +9,7 @@ proofer: false
 # site social media and other links
 links:
   email: nathanwolfsonkin@gmail.com
-  orcid: 0009-0002-9789-8592
+  # orcid: 0009-0002-9789-8592
   linkedin: nathan-wolf-sonkin
   google-scholar: XIwHqR8AAAAJ
 
