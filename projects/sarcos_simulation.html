@@ -466,10 +466,33 @@
 -->
 
 
-<p>I developed a digital twin of the Sarcos Sapien 6M robotic manipulator. Frames were generated using Denavit–Hartenberg conventions. Controllers were generated for analytical inverse kinematics as well as numerical inverse kinematics. The algorithms were tested on a Sarcos Sapien 6M and the robot was able to successfully perform a tool change as commanded in the simulation.</p>
+<p>During my Summer 2024 internship at <a href="https://www.jlg.com" target="_blank">JLG Industries</a>, I developed a digital twin of the Sarcos Sapien 6M robotic manipulator to support simulation, algorithm development, and real-world deployment. Using access to the system’s CAD models, I derived the kinematic frame relationships between the manipulator’s rigid bodies and constructed the robot model using Denavit–Hartenberg conventions.</p>
 
+<p>The project had two primary objectives: first, to create a high-fidelity simulation environment for testing robotic algorithms, and second, to validate those algorithms on the physical robot. The initial application focused on autonomous tool-changing operations. Over the course of a 10-week internship, I designed and implemented both analytical and numerical inverse kinematics controllers, integrating them into the simulation and deployment pipeline.</p>
+
+<p>The developed algorithms were successfully tested on a physical Sarcos Sapien 6M platform, where the robot completed tool-change operations that had first been validated in simulation. This work represented an early technical milestone in the broader robotics initiative at <a href="https://www.jlg.com" target="_blank">JLG Industries</a>, which later contributed to a system that received a CES Innovation Awards recognition in 2026 for the <a href="https://www.ces.tech/ces-innovation-awards/2026/oshkosh-jlg-boom-lift-with-robotic-end-effector" target="_blank">Oshkosh JLG Boom Lift with Robotic End Effector</a>.</p>
+
+<div class="cols" style="--cols: 2; align-items: center;">
+  
+    
+    <div>
 <div style="display:flex; justify-content:center; margin:2rem 0;">
-  <div style="width: 30%; max-width: 900px;">
+  <div style="width: 100%; max-width: 900px;">
+    
+    
+      <video controls="" style="width:100%; height:auto;">
+        <source src="/images/jlg/gazebo_tool_change.mp4" type="video/mp4"></source>
+      </video>
+    
+
+  </div>
+</div>
+</div>
+  
+    
+    <div>
+<div style="display:flex; justify-content:center; margin:2rem 0;">
+  <div style="width: 60%; max-width: 900px;">
     
     
       <video controls="" style="width:100%; height:auto;">
@@ -479,18 +502,9 @@
 
   </div>
 </div>
-  </section>
-
+</div>
   
-  
-  
-
-  <section class="background" data-size="page">
-    <!--
-  <background></background>
-  <dark></dark>
-  <size></size>
--->
+</div>
   </section>
 
 
