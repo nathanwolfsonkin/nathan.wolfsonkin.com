@@ -9,8 +9,6 @@ repo: nathanwolfsonkin/Vehicle-Trajectory-Generation
    src="/images/personal/trajgen/trajGen.gif" 
    width="80%" %}
 
-{% include section.html %}
-
 This project was an exercise in trajectory generation. Given a starting and ending state, the model generates a fifth-order polynomial to smoothly drive from start to finish. 
 
 The vehicle was designed to begin and end in a stopped state. Additionally, the beginning and ending poses are user-defined. Therefore, it is known a priori that

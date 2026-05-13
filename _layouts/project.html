@@ -39,9 +39,8 @@ layout: default
 
 {{ content }}
 
-{% include section.html %}
+{%- if page.repo -%}  
 
-{%- if page.repo -%}
   {%- assign repo_url = "https://github.com/" | append: page.repo -%}
 
   <div class="center" style="margin: 2rem 0;">

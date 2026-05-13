@@ -9,9 +9,7 @@ skills:
    width="40%"
 %}
 
-{% include section.html %}
-
-The equations of motion were derived using an extension of the projection-based derivation of the equations of motion outline [here](https://asmedigitalcollection.asme.org/IMECE/proceedings-abstract/IMECE2021/85659/V009T09A005/1132989). The basic method in the paper is as follows. Suppose that the equations of motion for a kinematically connected rigid mody can be written as.
+The equations of motion were derived using an extension of the projection-based derivation of the equations of motion outline [here](https://asmedigitalcollection.asme.org/IMECE/proceedings-abstract/IMECE2021/85659/V009T09A005/1132989){:target="_blank"}. The basic method in the paper is as follows. Suppose that the equations of motion for a kinematically connected rigid mody can be written as.
 
 $$M\ddot{X}+DM\dot{X}=G+G^{c}$$
 
