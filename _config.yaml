@@ -32,7 +32,7 @@ defaults:
       type: "posts"
     values:
       layout: post
-  # markdown files in /_members
+  # markdown files in /_projects
   - scope:
       type: "projects"
     values:
@@ -42,7 +42,7 @@ nav_extra:
   - title: Resume
     url: /resume.pdf
     new_tab: true
-    position: 3
+    position: 4
     external: true
 
 
