@@ -36,10 +36,10 @@
         include post-info.html
         author=post.author
         published=post.date
-        updated=post.last_modified_at
         tags=post.tags
       %}
 
+      {% comment %}
       {% assign excerpt = post.content
         | default: ""
         | regex_scan: "<!-- excerpt start -->(.*)<!-- excerpt end -->", true
@@ -55,6 +55,7 @@
       <p data-search="{{ search }}">
         {{ excerpt }}
       </p>
+      {% endcomment %}
     </div>
   </div>
 </div>

@@ -1,12 +1,11 @@
 ---
-title: Blog Objective
+title: So what's the point of this blog anyway?
 tags:
   - Self Improvement
 ---
 
-# So what's the point of this blog anyway?
-
 I am currently a PhD student. Now that I am done with my requisite classes, my time is largely unstructured. I choose when to work, what to work on, how long to work. Most people would consider that a blessing, which I do in certain ways, but I also recognize that I require some level of structure in my week. Without it, I find myself fluctuating between two extremes. Either I want to be hyper productive all the time, ultimately leading to burning myself out, or I find myself wanting to scroll Youtube or (lately) play Slay the Spire 2 for longer than I probably should. With that said, the objective of this blog is to accomplish a few goals:
+
 1. Create structure in my weekly schedule
 2. Track what I am learning
 3. Recall and process learning material
