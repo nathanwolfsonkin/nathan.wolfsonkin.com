@@ -1,4 +1,64 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://nathan.wolfsonkin.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nathan.wolfsonkin.com/" rel="alternate" type="text/html" /><updated>2026-06-10T14:27:18+00:00</updated><id>https://nathan.wolfsonkin.com/feed.xml</id><title type="html">Nathan Wolf-Sonkin</title><entry><title type="html">So what’s the point of this blog anyway?</title><link href="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html" rel="alternate" type="text/html" title="So what’s the point of this blog anyway?" /><published>2026-06-09T00:00:00+00:00</published><updated>2026-06-10T14:26:23+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/09/blog-objective</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html"><![CDATA[<p>I am currently a PhD student. Now that I am done with my requisite classes, my time is largely unstructured. I choose when to work, what to work on, how long to work. Most people would consider that a blessing, which I do in certain ways, but I also recognize that I require some level of structure in my week. Without it, I find myself fluctuating between two extremes. Either I want to be hyper productive all the time, ultimately leading to burning myself out, or I find myself wanting to scroll Youtube or (lately) play Slay the Spire 2 for longer than I probably should. With that said, the objective of this blog is to accomplish a few goals:</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://nathan.wolfsonkin.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nathan.wolfsonkin.com/" rel="alternate" type="text/html" /><updated>2026-06-12T13:37:49+00:00</updated><id>https://nathan.wolfsonkin.com/feed.xml</id><title type="html">Nathan Wolf-Sonkin</title><entry><title type="html">Bees, ants, and more general swarms</title><link href="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html" rel="alternate" type="text/html" title="Bees, ants, and more general swarms" /><published>2026-06-12T00:00:00+00:00</published><updated>2026-06-12T13:37:00+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html"><![CDATA[<p>I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by
+<a href="https://jasonfantl.com/posts/Bee-Swarm/">Jason Fantl</a> where talks about bio-inspired swarming algorithms that could roughly emulate the behavior of bee hive reproduction.</p>
+
+<h2 id="bee-hive-distributed-behaviors">Bee Hive Distributed Behaviors</h2>
+
+<p>This isn’t necessarily directly related to robotics applications, but I think it’s important to learn about efficient distributed systems without nessecarily having an application in mind.</p>
+
+<h3 id="splitting">Splitting</h3>
+<p>In the springtime, honey bee colonies reproduce by splitting in two. Around two thirds of the worker bees and the old queen venture off to form a new hive while the other half stay in the existing hive. The interesting thing here is that this happens in an entirely distributed manner. There is no managerial class of bees deciding who goes where to ensure an even split. The process is so efficient that the splitting process itself only takes around 20 minutes [1].</p>
+
+<h3 id="nest-selection">Nest Selection</h3>
+<p>Once the hive has been split, the leaving group must select a new hive location. The mechanism here is that scout bees will venture out to potential new locations. Upon returning to the hive, the scout will dance a particular pattern to vote for that hive location. An interesting note here is that it is unlikely that a single bee actually visits more than one location. The bees are not shopping around to see the best option. Instead a bee will dance for a longer period of time correlated with the quality of the proposed new nest location. Simultaneously, bees have a chance of being recruited by a particular dance. The output behavior is that a high quality nest site is reliably chosen in a purely distributed manner. [4, 5]</p>
+
+<p>An interesting note is that since a single bee is unlikely to visit more than one location, the implication is that scout bees have some sort of instinct for judging potential hive sites objectively. Perhaps ‘objectively’ is the wrong word, but whatever scale they are using, it must be similar to the scale that is shared by the other scout bees to ensure assessments of hive quality are similar.</p>
+
+<h2 id="ants-and-the-internet">Ants and the Internet</h2>
+<p>Also inspired by a <a href="https://jasonfantl.com/posts/Ants-Internet/">Jason Fantl post</a>.</p>
+
+<p>Many ant species use pheromone trails to communicate two things: first that food is available and second where to find it. Forager ants (Pogonomyrmex barbatus) eat mostly scattered seeds which can be collected by a single ant. In this context, spatial information is not required so they do not use pheromone trails. While spatial information is not required, whether or not food exists at all is still information that is needed to regulate whether ants should be foraging or not. The question is then as follows: “How do forager ants determine whether or not they should be out foraging for food at all?” [6]</p>
+
+<p>The mechanism is actually quite simple. When forager ants pass each other in the colony, they contact antennas. This brief moment is enough to tell whether an ant is currently holding food or not. If the ant passes many ants that are returning with food, it is likely that food is available and that ant will in turn begin foraging. If the ant passes few ants with food, the implication is that food is hard to come (perhaps no food around or predators) and the and will not go out foraging. [6]</p>
+
+<p>This discrete feedback mechanism is actually seen in many biological and engineered systems. It is used to regulate the size of bacterial cells, neuron connections in brain development, and Transmission Control Protocol in networking [2]. The basic idea is that some optimal value (cell size, data rate, food foraging rate, etc. ) is unknown, but exists. To reach this optimal value, a task is attempted. If the measurement results in a success, the task is attempted more. In the TCP context, this means if a packet is successfully received, the data rate should be increased. If a packet is not received, the data rate should be reduced [2].</p>
+
+<h2 id="other-interesting-swarm-stuff">Other Interesting Swarm Stuff</h2>
+<p>My friend and colleague, <a href="https://alkeshks.com/">Alkesh Srivastava</a>, sent me a paper he is currently attempting to publish [3] on a theory of information propagation in multi-robot systems. The paper proposes that information propagation in a swarm can be likened to collisions in kinetic theory.</p>
+
+<p>The theory poses that information exchange in distributed multi robot systems is fundamentally limited by three factors:</p>
+<ol>
+  <li>Access Limit
+    <ul>
+      <li>Information is limited to the robots that directly sense it</li>
+    </ul>
+  </li>
+  <li>Staleness Limit
+    <ul>
+      <li>Information is propagated, but loses value as the target moves</li>
+    </ul>
+  </li>
+  <li>Geometry Limit
+    <ul>
+      <li>Target motion outpaces information propagations</li>
+    </ul>
+  </li>
+</ol>
+
+<p>These limits are evaluated in the context of a tracking problem. It is shown empirically that improvements in tracking error diminish if any of the above factors are restricted.</p>
+
+<h2 id="citations">Citations</h2>
+
+<p>[1] P. Rangel, “Colony Fissioning In Honey Bees: How Is Swarm Departure Triggered And What Determines Who Leaves?,” Apr. 2010, Accessed: Jun. 11, 2026. [Online]. Available: https://hdl.handle.net/1813/14898</p>
+
+<p>[2] J. Y. Suen and S. Navlakha, “A feedback control principle common to several biological and engineered systems,” J R Soc Interface, vol. 19, no. 188, p. 20210711, Mar. 2022, doi: 10.1098/rsif.2021.0711.</p>
+
+<p>[3] A. K. Srivastava and P. Dames, “A Kinetic Theory of Encounter-Based Information Propagation in Multi-Robot Systems”. (Not published yet)</p>
+
+<p>[4] M. R. Myerscough, “Dancing for a decision: a matrix model for nest–site choice by honeybees,” Proc. R. Soc. Lond. B, vol. 270, no. 1515, pp. 577–582, Mar. 2003, doi: 10.1098/rspb.2002.2293.</p>
+
+<p>[5] N. F. Britton, N. R. Franks, S. C. Pratt, and T. D. Seeley, “Deciding on a new home: how do honeybees agree?,” Proc. R. Soc. Lond. B, vol. 269, no. 1498, pp. 1383–1388, Jul. 2002, doi: 10.1098/rspb.2002.2001.</p>
+
+<p>[6] B. Prabhakar, K. N. Dektar, and D. M. Gordon, “The Regulation of Ant Colony Foraging Activity without Spatial Information,” PLOS Computational Biology, vol. 8, no. 8, p. e1002670, Aug. 2012, doi: 10.1371/journal.pcbi.1002670.</p>]]></content><author><name></name></author><category term="Multi-Robot-Systems" /><category term="Swarms" /><category term="Bio-inspiration" /><summary type="html"><![CDATA[I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by Jason Fantl where talks about bio-inspired swarming algorithms that could roughly emulate the behavior of bee hive reproduction.]]></summary></entry><entry><title type="html">So what’s the point of this blog anyway?</title><link href="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html" rel="alternate" type="text/html" title="So what’s the point of this blog anyway?" /><published>2026-06-09T00:00:00+00:00</published><updated>2026-06-12T13:37:00+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/09/blog-objective</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html"><![CDATA[<p>I am currently a PhD student. Now that I am done with my requisite classes, my time is largely unstructured. I choose when to work, what to work on, how long to work. Most people would consider that a blessing, which I do in certain ways, but I also recognize that I require some level of structure in my week. Without it, I find myself fluctuating between two extremes. Either I want to be hyper productive all the time, ultimately leading to burning myself out, or I find myself wanting to scroll Youtube or (lately) play Slay the Spire 2 for longer than I probably should. With that said, the objective of this blog is to accomplish a few goals:</p>
 
 <ol>
   <li>Create structure in my weekly schedule</li>
