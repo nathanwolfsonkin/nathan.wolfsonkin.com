@@ -1,4 +1,154 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://nathan.wolfsonkin.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nathan.wolfsonkin.com/" rel="alternate" type="text/html" /><updated>2026-06-12T13:37:49+00:00</updated><id>https://nathan.wolfsonkin.com/feed.xml</id><title type="html">Nathan Wolf-Sonkin</title><entry><title type="html">Bees, ants, and more general swarms</title><link href="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html" rel="alternate" type="text/html" title="Bees, ants, and more general swarms" /><published>2026-06-12T00:00:00+00:00</published><updated>2026-06-12T13:37:00+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html"><![CDATA[<p>I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://nathan.wolfsonkin.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nathan.wolfsonkin.com/" rel="alternate" type="text/html" /><updated>2026-06-19T17:16:41+00:00</updated><id>https://nathan.wolfsonkin.com/feed.xml</id><title type="html">Nathan Wolf-Sonkin</title><entry><title type="html">Dimensional Analysis and Measurement</title><link href="https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement.html" rel="alternate" type="text/html" title="Dimensional Analysis and Measurement" /><published>2026-06-19T00:00:00+00:00</published><updated>2026-06-19T17:15:52+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement.html"><![CDATA[<p>A few years ago, my lab produced a paper titled “Towards Predicting Collective Performance in Multi-Robot Teams” [1]. I read the paper when I first started my PhD and was immediately impressed. The paper is fundamentally about developing metrics for analysis for multi-robot teams. I have a similar project I am trying to pursue so I figured it would be important to start from the fundamental works in measurement science. This week, I began reading P. W. Bridgman’s work on dimensional analysis [2]. Here are some concepts I have been thinking about in relation to measurements and dimensional analysis.</p>
+
+<h2 id="arbitrary-dimensions">Arbitrary Dimensions</h2>
+<p>Assume I want to compare the weights between myself and my wife. We could go to scales and measure ourselves to find the numerical quantity associated with our weight in a particular unit system. For example, I weigh 180 pounds while my wife weighs 120. The actual number here is somewhat arbitrary. If we chose instead to measure in metric units, we would instead say that I weigh 81 kilograms while my wife weighs 54 kilograms. The important idea here is not the numerical quantity, but rather the relationship between the quantities. We can choose whatever reference point we desire as a unit of weight. But no matter what reference point is chosen, I will still weigh 1.5x my wife’s weight. That ratio between our weights is the reality that will exist in any measurement system.</p>
+
+<h2 id="primary-and-secondary-units">Primary and Secondary Units</h2>
+<p>P.W. Bridgman outlines in [2] that physical units exist in two distinct categories, namely primary and secondary dimensions. Primary dimensions are those who are defined with reference to themselves. They are axiomatic in a sense. In total the national institute of standards and technology recognizes seven primary units:</p>
+<ul>
+  <li>Time</li>
+  <li>Length</li>
+  <li>Mass</li>
+  <li>Electrical Current</li>
+  <li>Thermodynamic Temperature</li>
+  <li>Amount of Substance</li>
+  <li>Luminous Intensity</li>
+</ul>
+
+<p>From these seven primary units, all other units can be derived as secondary units. P.W. Bridgman argues that these are somewhat arbitrary. If we decided, for example, to use a different set of primary dimensions, that is perfectly acceptable provided that the selected units are also measurable in terms of themselves. Meaning that the relationship between different quantities of a unit can be measured with reference to other measurable quantities of that unit. For example, I can define my own weight in terms of my wife’s weight and these are directly measurable quantities.</p>
+
+<p>Imagine that we used force as defined in newtons as a primary dimension. We know from empirical measurements and Euler’s first law that:
+$$F=ma$$</p>
+
+<p>The usual system of dimensions defines that one newton is equal to one kilogram-meter per second squared:
+$$1 N = 1 \frac{Kg*m}{s^2}$$</p>
+
+<p>But if we redefined which dimensions are considered primary, we could come up with a different system. Perhaps in our new unit system, mass is considered a secondary dimension, defined based on $m=\frac{F}{a}$. In this context, we would instead say that the secondary unit known as the kilogram is defined as such:</p>
+
+<p>$$1 Kg = 1 \frac{N*s^2}{m}$$</p>
+
+<p>We can define this because in our new system of measurement, time, distance, and force are considered primary dimensions while mass is considered secondary. The same logic can be applied to, for example, velocity but not viscosity. This is because “it is not at once obvious whether a physical procedure could be set up by which two viscosities could be compared directly with each other without measuring other kinds of quantity.” [Bridgman, 1922, p. 20].</p>
+
+<h2 id="metric-generation">Metric Generation</h2>
+<p>One of the tasks of measurement science is to generate metrics. To understand the utility of this endeavor, let’s look at an example. Imagine a school locker. If a student claims they want the “best” locker, what does that mean? Well, what is the purpose of a locker? One possible answer is “to effectively store items.” We will define the effectiveness of a locker at storing items as the locker’s quality and denote it as $Q$. How do we measure locker quality? A naive solution might be to maximize the internal volume.</p>
+
+<p>$$Q := whd$$</p>
+
+<p>Here, $w$ is the width, $d$ is the depth, and $h$ is the height. The problem here is that this metric only tells us how much space exists within the locker and not the effectiveness of that space for holding items. Take the lockers in the image below:</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="source: reddit.com u Ceaseless watcher224">
+    <img src="/images/blog/2026-06-19/locker.jpeg" style="
+        width: 30%;
+        max-height: unset;
+      " alt="source: reddit.com u Ceaseless watcher224" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;" />
+  </a>
+  
+    <figcaption class="figure-caption">
+      source: reddit.com/u/Ceaseless_watcher224
+
+    </figcaption>
+  
+</figure>
+
+<p>It might be possible that the tall locker has a greater total volume than the shorter ones, but it likely doesn’t store items as effectively due to its limited width. To develop a suitable metric for locker quality, we need to define some properties. To simplify the problem, let us assume a depth that is reasonable for item storage, $d \gg 0$. We want quality to decrease when height or width approach zero, since that limits a locker’s ability to effectively store items. More formally we can write:</p>
+
+<p>$$\lim_{w \rightarrow 0}Q = - \infty$$
+$$\lim_{h \rightarrow 0}Q = - \infty$$</p>
+
+<p>If we had an infinitely large locker, we could store infinite items. Therefore locker quality should approach infinity as the width or height approach infinity. More formally:</p>
+
+<p>$$\lim_{w \rightarrow \infty}Q = \infty$$
+$$\lim_{h \rightarrow \infty}Q = \infty$$</p>
+
+<p>We should also place some physical constraints on our system. Neither width nor height can be negative. In realistic cases, both of these values will be greater than zero:</p>
+
+<p>$$w &gt; 0$$
+$$h &gt; 0$$</p>
+
+<p>Under these constraints, a suitable metric might look like this:</p>
+
+<p>$$Q := log(wh)$$</p>
+
+<p>Now $Q$ satisfies all of our constraints.</p>
+
+<p>This is a somewhat silly example, but it highlights an important concept in measurement science. There exists a disconnect between what we want to know (how well a locker stores items) and what we can physically measure (width, height, etc.). Part of the job of measurement science is to develop the metrics which bridge that gap.</p>
+
+<h2 id="dimensional-analysis-sample-problem">Dimensional Analysis Sample Problem</h2>
+
+<p>There is a lot of information that can be revealed by knowing about units. P. W. Bridgman goes through some simple examples of dimensional analysis in [2] and it is really enlightening to see just how much information can be attained knowing only the dimensions of the involved quantities. For example assume we want to determine the period of swing of a simple pendulum. The quantities involved are listed as follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name of Quantity</th>
+      <th>Symbol</th>
+      <th>Dimensions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Time of swing (period)</td>
+      <td>$t$</td>
+      <td>$T$</td>
+    </tr>
+    <tr>
+      <td>Length of pendulum</td>
+      <td>$l$</td>
+      <td>$L$</td>
+    </tr>
+    <tr>
+      <td>Mass of pendulum</td>
+      <td>$m$</td>
+      <td>$M$</td>
+    </tr>
+    <tr>
+      <td>Acceleration due to gravity</td>
+      <td>$g$</td>
+      <td>$LT^{-2}$</td>
+    </tr>
+    <tr>
+      <td>Angular amplitude of swing</td>
+      <td>$\theta$</td>
+      <td>No dimensions</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The objective is to find some function $f$ which computes the swing time using the other quantities. More formally we want to find:</p>
+
+<p>$$t = f(l, m, g, \theta)$$</p>
+
+<p>There are two pieces of fundamental intuition here:</p>
+
+<ol>
+  <li>We know that the output numerical values must be independent of the units that we use to measure. Meaning that if we were to measure in inches and feet instead of meters, the numerical value that we compute for time should not change. The same applies to all other units. If we decided to use slugs instead of kilograms for measuring mass, the computed number for time should not change, provided that time is still measured in seconds.</li>
+  <li>The output of $f$ must be in units of time</li>
+</ol>
+
+<p>Using the second rule we can deduce that $f$ must be independent of mass since its units are unique and cannot cancel out with any other quantities. Therefore:</p>
+
+<p>$$t=f(l,g,\theta)$$</p>
+
+<p>Similarly, $l$ and $g$ must enter the function together such that the dimensions cancel. A solution to this is to divide $l$ and $g$ such that the output units are in time.</p>
+
+<p>$$t=f\left(\frac{l}{g},\theta\right)$$</p>
+
+<p>Of course this results in units of $T^2$ so the function must use a square root to ensure the output is in units of $T$. The result is that using only knowledge of dimensions and input parameters we can get as close as</p>
+
+<p>$$t = \phi(\theta) \sqrt{\frac{l}{g}}$$</p>
+
+<p>Where $\phi$ is some function which operates on $\theta$ and outputs a dimensionless value. We can compare this to the solution which can be attained from first principles:</p>
+
+<p>$$t = \frac{1}{2\pi}\sqrt{\frac{l}{g}}$$</p>
+
+<p>The result is that using only knowledge of the involved parameters and their dimensions, we can determine almost the entire structure of the resultant relationship. <strong>The real problem here is determining which parameters should be included to compute this relationship.</strong> For certain simple problems, this is somewhat trivial. P.W. Bridgman explains that for more complex settings, such as fluid or thermal relationships, it is not so simple to deduce.</p>
+
+<h2 id="citations">Citations</h2>
+
+<p>[1] P. Xin, Z. Xie, and P. Dames, “Towards Predicting Collective Performance in Multi-Robot Teams,” IEEE Trans. Robot., vol. 41, pp. 5229–5245, 2025, doi: 10.1109/TRO.2025.3600164.</p>
+
+<p>[2] P. W. Bridgman, Dimensional Analysis. Yale University Press, 1922.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[A few years ago, my lab produced a paper titled “Towards Predicting Collective Performance in Multi-Robot Teams” [1]. I read the paper when I first started my PhD and was immediately impressed. The paper is fundamentally about developing metrics for analysis for multi-robot teams. I have a similar project I am trying to pursue so I figured it would be important to start from the fundamental works in measurement science. This week, I began reading P. W. Bridgman’s work on dimensional analysis [2]. Here are some concepts I have been thinking about in relation to measurements and dimensional analysis.]]></summary></entry><entry><title type="html">Bees, ants, and more general swarms</title><link href="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html" rel="alternate" type="text/html" title="Bees, ants, and more general swarms" /><published>2026-06-12T00:00:00+00:00</published><updated>2026-06-19T17:15:52+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html"><![CDATA[<p>I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by
 <a href="https://jasonfantl.com/posts/Bee-Swarm/">Jason Fantl</a> where talks about bio-inspired swarming algorithms that could roughly emulate the behavior of bee hive reproduction.</p>
 
 <h2 id="bee-hive-distributed-behaviors">Bee Hive Distributed Behaviors</h2>
@@ -58,7 +208,7 @@
 
 <p>[5] N. F. Britton, N. R. Franks, S. C. Pratt, and T. D. Seeley, “Deciding on a new home: how do honeybees agree?,” Proc. R. Soc. Lond. B, vol. 269, no. 1498, pp. 1383–1388, Jul. 2002, doi: 10.1098/rspb.2002.2001.</p>
 
-<p>[6] B. Prabhakar, K. N. Dektar, and D. M. Gordon, “The Regulation of Ant Colony Foraging Activity without Spatial Information,” PLOS Computational Biology, vol. 8, no. 8, p. e1002670, Aug. 2012, doi: 10.1371/journal.pcbi.1002670.</p>]]></content><author><name></name></author><category term="Multi-Robot-Systems" /><category term="Swarms" /><category term="Bio-inspiration" /><summary type="html"><![CDATA[I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by Jason Fantl where talks about bio-inspired swarming algorithms that could roughly emulate the behavior of bee hive reproduction.]]></summary></entry><entry><title type="html">So what’s the point of this blog anyway?</title><link href="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html" rel="alternate" type="text/html" title="So what’s the point of this blog anyway?" /><published>2026-06-09T00:00:00+00:00</published><updated>2026-06-12T13:37:00+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/09/blog-objective</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html"><![CDATA[<p>I am currently a PhD student. Now that I am done with my requisite classes, my time is largely unstructured. I choose when to work, what to work on, how long to work. Most people would consider that a blessing, which I do in certain ways, but I also recognize that I require some level of structure in my week. Without it, I find myself fluctuating between two extremes. Either I want to be hyper productive all the time, ultimately leading to burning myself out, or I find myself wanting to scroll Youtube or (lately) play Slay the Spire 2 for longer than I probably should. With that said, the objective of this blog is to accomplish a few goals:</p>
+<p>[6] B. Prabhakar, K. N. Dektar, and D. M. Gordon, “The Regulation of Ant Colony Foraging Activity without Spatial Information,” PLOS Computational Biology, vol. 8, no. 8, p. e1002670, Aug. 2012, doi: 10.1371/journal.pcbi.1002670.</p>]]></content><author><name></name></author><category term="Multi-Robot-Systems" /><category term="Swarms" /><category term="Bio-inspiration" /><summary type="html"><![CDATA[I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by Jason Fantl where talks about bio-inspired swarming algorithms that could roughly emulate the behavior of bee hive reproduction.]]></summary></entry><entry><title type="html">So what’s the point of this blog anyway?</title><link href="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html" rel="alternate" type="text/html" title="So what’s the point of this blog anyway?" /><published>2026-06-09T00:00:00+00:00</published><updated>2026-06-19T17:15:52+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/09/blog-objective</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html"><![CDATA[<p>I am currently a PhD student. Now that I am done with my requisite classes, my time is largely unstructured. I choose when to work, what to work on, how long to work. Most people would consider that a blessing, which I do in certain ways, but I also recognize that I require some level of structure in my week. Without it, I find myself fluctuating between two extremes. Either I want to be hyper productive all the time, ultimately leading to burning myself out, or I find myself wanting to scroll Youtube or (lately) play Slay the Spire 2 for longer than I probably should. With that said, the objective of this blog is to accomplish a few goals:</p>
 
 <ol>
   <li>Create structure in my weekly schedule</li>
