@@ -43,21 +43,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Blog | Nathan Wolf-Sonkin</title>
+<title>Dimensionless Variable Discovery | Nathan Wolf-Sonkin</title>
 
 <link rel="icon" href="/images/icon.png">
 
-<meta name="title" content="Blog">
+<meta name="title" content="Dimensionless Variable Discovery">
 <meta name="description" content="">
 
-<meta property="og:title" content="Blog">
+<meta property="og:title" content="Dimensionless Variable Discovery">
 <meta property="og:site_title" content="Nathan Wolf-Sonkin">
 <meta property="og:description" content="">
 <meta property="og:url" content="https://nathan.wolfsonkin.com">
 <meta property="og:image" content="/images/share.jpg">
 <meta property="og:locale" content="en_US">
 
-<meta property="twitter:title" content="Blog">
+<meta property="twitter:title" content="Dimensionless Variable Discovery">
 <meta property="twitter:description" content="">
 <meta property="twitter:url" content="https://nathan.wolfsonkin.com">
 <meta property="twitter:card" content="summary_large_image">
@@ -73,9 +73,9 @@
     
       "@type": "WebSite",
     
-    "name": "Blog",
+    "name": "Dimensionless Variable Discovery",
     "description": "",
-    "headline": "Blog",
+    "headline": "Dimensionless Variable Discovery",
     "publisher": {
       "@type": "Organization",
       "logo": { "@type": "ImageObject", "url": "/images/icon.png" }
@@ -286,60 +286,6 @@
     <link href="/_styles/util.css" rel="stylesheet">
   
 
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
 
 <!-- include all css in styles folder -->
 
@@ -368,6 +314,7 @@
   <script src="/_scripts/tooltip.js"></script>
 
 
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
   <body>
@@ -466,25 +413,17 @@
   
   
 
-  <section class="background" data-size="page">
-    <h1 id="blog">Blog</h1>
+  <section class="background" data-size="1">
+    <!--
+  <background></background>
+  <dark></dark>
+  <size>1</size>
+-->
 
-<p class="center">This is where I write about topics and ideas that I think are interesting. Some are technical and related to my research. Others are just thoughts and ideas I want to develop by writing them down. The intent is that these posts help me organize my thoughts. These are rough, low-polish posts so some information might not be entirely accurate. Updates weekly on Friday.</p>
 
-<div class="search-info"></div>
+<h1 class="center">Dimensionless Variable Discovery</h1>
 
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/26/dimensionless-variable-discovery.html">Dimensionless Variable Discovery</a>
-
-      <div class="post-info">
+<div class="post-info">
   
 
   
@@ -511,166 +450,169 @@
       </a>
     
   </div>
+  </section>
+
+  
+  
+  
+
+  <section class="background" data-size="page">
+    <!--
+  <background></background>
+  <dark></dark>
+  <size></size>
+-->
+
+
+<p>I was reading more about dimensional analysis this week. Enjoy.</p>
+
+<h2 id="buckingham-pi-theorem">Buckingham-Pi Theorem</h2>
+
+<p>Buckingham-Pi theorem [1] is fundamentally a process by which the complete set of dimensionless variables can be identified given a set of input parameters which the dimensionless variable depends on. The basic process works as follows:</p>
+
+<ol>
+  <li>List out all parameters of interest as well as their units</li>
+  <li>Define a matrix, $D$, containing all of the relevant parameters and their exponents</li>
+  <li>Compute the null space of $D$</li>
+  <li>The vectors spanning the null space represent the set of possible dimensionless variables</li>
+</ol>
+
+<h3 id="locomotion-example">Locomotion Example</h3>
+
+<p>In locomotion there is a metric called cost of transport. The value of this metric is that it can be used to compare energy efficiency across length scales, weight scales, and modes of locomotion. For example it could be used to compare the energetic efficiency of a hummingbird flying to an elephant walking. Cost of transport, $c$, which is defined as:</p>
+
+<p>$$c = \frac{e}{mgd}$$</p>
+
+<p>Where $e$ represents energy consumed, $mg$ is weight, and $d$ is distance traveled. We can apply Buckingham-Pi theorem to find all possible sets of dimensionless variables for this problem. First we need to list out all parameters of interest along with their units</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Symbol</th>
+      <th>Dimensions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Mass</td>
+      <td>$m$</td>
+      <td>$M$</td>
+    </tr>
+    <tr>
+      <td>Energy Consumed</td>
+      <td>$e$</td>
+      <td>$ML^{2}T^{-2}$</td>
+    </tr>
+    <tr>
+      <td>Acceleration due to Gravity</td>
+      <td>$g$</td>
+      <td>$LT^{-2}$</td>
+    </tr>
+    <tr>
+      <td>Distance Traveled</td>
+      <td>$d$</td>
+      <td>$L$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The objective of Buckingham-Pi is to compute all possible sets of exponents ($\alpha$, $\beta$, $\gamma$, $\delta$) such that the result contains no units:</p>
+
+<p>$$m^\alpha e^\beta g^\gamma d^\delta$$</p>
+
+<p>Now we can set up the $D$ matrix:</p>
+
+<p>$$D=\begin{bmatrix} 0 &amp; 2 &amp; 1 &amp; 1 \\ 1 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; -2 &amp; -2 &amp; 0 \end{bmatrix} $$</p>
+
+<p>$D$ is defined such that each row represents a dimension and each column a parameter. The elements represent the exponent applied to the dimensions of each parameter.</p>
+
+<p>$$ \begin{array}{c | c c c c}    &amp; m &amp; e &amp; g &amp; d \\ \hline L &amp; 0 &amp; 2 &amp; 1 &amp; 1 \\ M &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\ T &amp; 0 &amp; -2 &amp; -2 &amp; 0 \end{array} $$</p>
+
+<p>Since each element represents an exponent applied to a parameter, the null space of this matrix represents the linear combination of exponents which results in all exponents resulting in zero. This will reveal the dimensionless variables. The null space for this example is:</p>
+
+<p>$$null(D) = \begin{bmatrix} -1 \\ 1 \\ -1 \\ -1 \end{bmatrix}$$</p>
+
+<p>For this simple example the null space is a single dimension, but that is not the case for all possible cases. In this case, $D$ was constructed such that the order of parameters was $\begin{bmatrix}m &amp; e &amp; g &amp; d\end{bmatrix}$. We can read our null space vector in the same order. This means that $m^{-1}e^{1}g^{-1}d^{-1}$ will result in a dimensionless variable.</p>
+
+<p>$$m^{-1}e^{1}g^{-1}d^{-1} = \frac{e}{mgd} = c$$</p>
+
+<p>We can compare our result to first principles to see that the result truly contains no units. Writing out the units of $c$ it is clear that our result in dimensionless:</p>
+
+<p>$$ c = \frac{e}{mgd} \frac{ML^2T^{-2}}{MLT^{-2}L}$$</p>
+
+<p>Based on our analysis, there is no particular reason to use this version of cost of transport other than convention and simplicity. The same Buckingham-Pi analysis can result in infinite other dimensionless variables provided that they exist on the span as the null space of $D$. Here are a few examples</p>
+
+<p>$$m^{1}e^{-1}g^{1}d^{1} = \frac{mgd}{e} = c^{-1}$$</p>
+
+<p>$$m^{-2}e^{2}g^{-2}d^{-2} = \frac{e^2}{m^2g^2d^2} = c^{2}$$</p>
+
+<p>$$m^{-\pi}e^{\pi}g^{-\pi}d^{\pi} = \frac{e^\pi}{m^\pi g^\pi d^\pi} = c^{\pi}$$</p>
+
+<p>I can’t imagine a scenario where it would be useful or practical to represent our dimensionless variable in terms of a $\pi$ exponent, but it’s perfectly valid to do so.</p>
+
+<h2 id="more-on-measurement-theory">More on Measurement Theory</h2>
+
+<p>I read a great document that better explains some of the measurement theory ideas I was writing about last week. Bridgman [2] explained measuring units with respect to itself, Sonin [3] explained this concept more rigorously. He defined that any acceptable primary unit must be capable of performing two physical operations:</p>
+
+<ol>
+  <li>Equality $\textbf{A} = \textbf{B}$</li>
+  <li>Addition $\textbf{C} = \textbf{A} + \textbf{B}$</li>
+</ol>
+
+<p>Using these purely physical operations, we can define:</p>
+
+<ol>
+  <li>Comparisons of magnitude
+    <ul>
+      <li>If $\textbf{A} + \textbf{B} = \textbf{C}$, then $\textbf{C} &gt; \textbf{A}$</li>
+    </ul>
+  </li>
+  <li>Subtraction
+    <ul>
+      <li>If $\textbf{A} + \textbf{B} = \textbf{C}$, then $\textbf{A} = \textbf{C} - \textbf{B}$</li>
+    </ul>
+  </li>
+  <li>Multiplication by numbers (not other quantities)
+    <ul>
+      <li>If $\textbf{B} = \textbf{A} + \textbf{A}  + \textbf{A}$, then $\textbf{B} = 3\textbf{A}$</li>
+    </ul>
+  </li>
+  <li>Division by numbers (not other quantities)
+    <ul>
+      <li>If $\textbf{A} = \textbf{B} + \textbf{B}  + \textbf{B}$, then $\textbf{A} = \frac{\textbf{B}}{3}$</li>
+    </ul>
+  </li>
+</ol>
+
+<p>By these rules, properties such as mass, velocity, force, area, time, and length are viable candidates for primary units. Simultaneously, properties such as color and shape are not possible to quantify in the same way. How does one add a square to a circle?</p>
+
+<h2 id="next-week">Next week</h2>
+
+<p>I’ll be on vacation next week so no post. My next post will be on Friday, July 9th.</p>
+
+<h2 id="citations">Citations</h2>
+
+<p>[1] E. Buckingham, “On Physically Similar Systems; Illustrations of the Use of Dimensional Equations,” Phys. Rev., vol. 4, no. 4, pp. 345–376, Oct. 1914, doi: 10.1103/PhysRev.4.345.</p>
+
+<p>[2] P. W. Bridgman, Dimensional Analysis. Yale University Press, 1922.</p>
+
+<p>[3] A. A. Sonin, “Department of Mechanical Engineering MIT Cambridge, MA 02139”.</p>
 
 
 
-
-
-      
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
+<div class="post-nav">
+  <span>
     
-    
-    
-
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/19/dimensional-analysis-and-measurement.html">Dimensional Analysis and Measurement</a>
-
-      <div class="post-info">
-  
-
-  
-  
-
-  
-    <span data-tooltip="">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>June 19, 2026</span>
-    </span>
-  
-  
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a class="tag">
-        dimensional-analysis
+      <i class="icon fa-solid fa-angle-left"></i> Previous post<br>
+      <a href="/2026/06/19/dimensional-analysis-and-measurement.html">
+        Dimensional Analysis and Measurement
       </a>
     
-  </div>
-
-
-
-
-
-      
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
+  </span>
+  <span>
     
-    
-    
-
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/12/bees-ants-and-more-general-swarms.html">Bees, ants, and more general swarms</a>
-
-      <div class="post-info">
-  
-
-  
-  
-
-  
-    <span data-tooltip="">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>June 12, 2026</span>
-    </span>
-  
-  
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a class="tag">
-        multi-robot-systems
-      </a>
-    
-      <a class="tag">
-        swarms
-      </a>
-    
-      <a class="tag">
-        bio-inspiration
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/09/blog-objective.html">So what's the point of this blog anyway?</a>
-
-      <div class="post-info">
-  
-
-  
-  
-
-  
-    <span data-tooltip="">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>June 09, 2026</span>
-    </span>
-  
-  
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a class="tag">
-        self-improvement
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-    </div>
-  </div>
+  </span>
 </div>
   </section>
 

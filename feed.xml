@@ -1,4 +1,137 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://nathan.wolfsonkin.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nathan.wolfsonkin.com/" rel="alternate" type="text/html" /><updated>2026-06-19T17:16:41+00:00</updated><id>https://nathan.wolfsonkin.com/feed.xml</id><title type="html">Nathan Wolf-Sonkin</title><entry><title type="html">Dimensional Analysis and Measurement</title><link href="https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement.html" rel="alternate" type="text/html" title="Dimensional Analysis and Measurement" /><published>2026-06-19T00:00:00+00:00</published><updated>2026-06-19T17:15:52+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement.html"><![CDATA[<p>A few years ago, my lab produced a paper titled “Towards Predicting Collective Performance in Multi-Robot Teams” [1]. I read the paper when I first started my PhD and was immediately impressed. The paper is fundamentally about developing metrics for analysis for multi-robot teams. I have a similar project I am trying to pursue so I figured it would be important to start from the fundamental works in measurement science. This week, I began reading P. W. Bridgman’s work on dimensional analysis [2]. Here are some concepts I have been thinking about in relation to measurements and dimensional analysis.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://nathan.wolfsonkin.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nathan.wolfsonkin.com/" rel="alternate" type="text/html" /><updated>2026-06-26T14:09:07+00:00</updated><id>https://nathan.wolfsonkin.com/feed.xml</id><title type="html">Nathan Wolf-Sonkin</title><entry><title type="html">Dimensionless Variable Discovery</title><link href="https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery.html" rel="alternate" type="text/html" title="Dimensionless Variable Discovery" /><published>2026-06-26T00:00:00+00:00</published><updated>2026-06-26T14:08:29+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery.html"><![CDATA[<p>I was reading more about dimensional analysis this week. Enjoy.</p>
+
+<h2 id="buckingham-pi-theorem">Buckingham-Pi Theorem</h2>
+
+<p>Buckingham-Pi theorem [1] is fundamentally a process by which the complete set of dimensionless variables can be identified given a set of input parameters which the dimensionless variable depends on. The basic process works as follows:</p>
+
+<ol>
+  <li>List out all parameters of interest as well as their units</li>
+  <li>Define a matrix, $D$, containing all of the relevant parameters and their exponents</li>
+  <li>Compute the null space of $D$</li>
+  <li>The vectors spanning the null space represent the set of possible dimensionless variables</li>
+</ol>
+
+<h3 id="locomotion-example">Locomotion Example</h3>
+
+<p>In locomotion there is a metric called cost of transport. The value of this metric is that it can be used to compare energy efficiency across length scales, weight scales, and modes of locomotion. For example it could be used to compare the energetic efficiency of a hummingbird flying to an elephant walking. Cost of transport, $c$, which is defined as:</p>
+
+<p>$$c = \frac{e}{mgd}$$</p>
+
+<p>Where $e$ represents energy consumed, $mg$ is weight, and $d$ is distance traveled. We can apply Buckingham-Pi theorem to find all possible sets of dimensionless variables for this problem. First we need to list out all parameters of interest along with their units</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Symbol</th>
+      <th>Dimensions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Mass</td>
+      <td>$m$</td>
+      <td>$M$</td>
+    </tr>
+    <tr>
+      <td>Energy Consumed</td>
+      <td>$e$</td>
+      <td>$ML^{2}T^{-2}$</td>
+    </tr>
+    <tr>
+      <td>Acceleration due to Gravity</td>
+      <td>$g$</td>
+      <td>$LT^{-2}$</td>
+    </tr>
+    <tr>
+      <td>Distance Traveled</td>
+      <td>$d$</td>
+      <td>$L$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The objective of Buckingham-Pi is to compute all possible sets of exponents ($\alpha$, $\beta$, $\gamma$, $\delta$) such that the result contains no units:</p>
+
+<p>$$m^\alpha e^\beta g^\gamma d^\delta$$</p>
+
+<p>Now we can set up the $D$ matrix:</p>
+
+<p>$$D=\begin{bmatrix} 0 &amp; 2 &amp; 1 &amp; 1 \\ 1 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; -2 &amp; -2 &amp; 0 \end{bmatrix} $$</p>
+
+<p>$D$ is defined such that each row represents a dimension and each column a parameter. The elements represent the exponent applied to the dimensions of each parameter.</p>
+
+<p>$$ \begin{array}{c | c c c c}    &amp; m &amp; e &amp; g &amp; d \\ \hline L &amp; 0 &amp; 2 &amp; 1 &amp; 1 \\ M &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\ T &amp; 0 &amp; -2 &amp; -2 &amp; 0 \end{array} $$</p>
+
+<p>Since each element represents an exponent applied to a parameter, the null space of this matrix represents the linear combination of exponents which results in all exponents resulting in zero. This will reveal the dimensionless variables. The null space for this example is:</p>
+
+<p>$$null(D) = \begin{bmatrix} -1 \\ 1 \\ -1 \\ -1 \end{bmatrix}$$</p>
+
+<p>For this simple example the null space is a single dimension, but that is not the case for all possible cases. In this case, $D$ was constructed such that the order of parameters was $\begin{bmatrix}m &amp; e &amp; g &amp; d\end{bmatrix}$. We can read our null space vector in the same order. This means that $m^{-1}e^{1}g^{-1}d^{-1}$ will result in a dimensionless variable.</p>
+
+<p>$$m^{-1}e^{1}g^{-1}d^{-1} = \frac{e}{mgd} = c$$</p>
+
+<p>We can compare our result to first principles to see that the result truly contains no units. Writing out the units of $c$ it is clear that our result in dimensionless:</p>
+
+<p>$$ c = \frac{e}{mgd} \frac{ML^2T^{-2}}{MLT^{-2}L}$$</p>
+
+<p>Based on our analysis, there is no particular reason to use this version of cost of transport other than convention and simplicity. The same Buckingham-Pi analysis can result in infinite other dimensionless variables provided that they exist on the span as the null space of $D$. Here are a few examples</p>
+
+<p>$$m^{1}e^{-1}g^{1}d^{1} = \frac{mgd}{e} = c^{-1}$$</p>
+
+<p>$$m^{-2}e^{2}g^{-2}d^{-2} = \frac{e^2}{m^2g^2d^2} = c^{2}$$</p>
+
+<p>$$m^{-\pi}e^{\pi}g^{-\pi}d^{\pi} = \frac{e^\pi}{m^\pi g^\pi d^\pi} = c^{\pi}$$</p>
+
+<p>I can’t imagine a scenario where it would be useful or practical to represent our dimensionless variable in terms of a $\pi$ exponent, but it’s perfectly valid to do so.</p>
+
+<h2 id="more-on-measurement-theory">More on Measurement Theory</h2>
+
+<p>I read a great document that better explains some of the measurement theory ideas I was writing about last week. Bridgman [2] explained measuring units with respect to itself, Sonin [3] explained this concept more rigorously. He defined that any acceptable primary unit must be capable of performing two physical operations:</p>
+
+<ol>
+  <li>Equality $\textbf{A} = \textbf{B}$</li>
+  <li>Addition $\textbf{C} = \textbf{A} + \textbf{B}$</li>
+</ol>
+
+<p>Using these purely physical operations, we can define:</p>
+
+<ol>
+  <li>Comparisons of magnitude
+    <ul>
+      <li>If $\textbf{A} + \textbf{B} = \textbf{C}$, then $\textbf{C} &gt; \textbf{A}$</li>
+    </ul>
+  </li>
+  <li>Subtraction
+    <ul>
+      <li>If $\textbf{A} + \textbf{B} = \textbf{C}$, then $\textbf{A} = \textbf{C} - \textbf{B}$</li>
+    </ul>
+  </li>
+  <li>Multiplication by numbers (not other quantities)
+    <ul>
+      <li>If $\textbf{B} = \textbf{A} + \textbf{A}  + \textbf{A}$, then $\textbf{B} = 3\textbf{A}$</li>
+    </ul>
+  </li>
+  <li>Division by numbers (not other quantities)
+    <ul>
+      <li>If $\textbf{A} = \textbf{B} + \textbf{B}  + \textbf{B}$, then $\textbf{A} = \frac{\textbf{B}}{3}$</li>
+    </ul>
+  </li>
+</ol>
+
+<p>By these rules, properties such as mass, velocity, force, area, time, and length are viable candidates for primary units. Simultaneously, properties such as color and shape are not possible to quantify in the same way. How does one add a square to a circle?</p>
+
+<h2 id="next-week">Next week</h2>
+
+<p>I’ll be on vacation next week so no post. My next post will be on Friday, July 9th.</p>
+
+<h2 id="citations">Citations</h2>
+
+<p>[1] E. Buckingham, “On Physically Similar Systems; Illustrations of the Use of Dimensional Equations,” Phys. Rev., vol. 4, no. 4, pp. 345–376, Oct. 1914, doi: 10.1103/PhysRev.4.345.</p>
+
+<p>[2] P. W. Bridgman, Dimensional Analysis. Yale University Press, 1922.</p>
+
+<p>[3] A. A. Sonin, “Department of Mechanical Engineering MIT Cambridge, MA 02139”.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[I was reading more about dimensional analysis this week. Enjoy.]]></summary></entry><entry><title type="html">Dimensional Analysis and Measurement</title><link href="https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement.html" rel="alternate" type="text/html" title="Dimensional Analysis and Measurement" /><published>2026-06-19T00:00:00+00:00</published><updated>2026-06-26T14:08:29+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement.html"><![CDATA[<p>A few years ago, my lab produced a paper titled “Towards Predicting Collective Performance in Multi-Robot Teams” [1]. I read the paper when I first started my PhD and was immediately impressed. The paper is fundamentally about developing metrics for analysis for multi-robot teams. I have a similar project I am trying to pursue so I figured it would be important to start from the fundamental works in measurement science. This week, I began reading P. W. Bridgman’s work on dimensional analysis [2]. Here are some concepts I have been thinking about in relation to measurements and dimensional analysis.</p>
 
 <h2 id="arbitrary-dimensions">Arbitrary Dimensions</h2>
 <p>Assume I want to compare the weights between myself and my wife. We could go to scales and measure ourselves to find the numerical quantity associated with our weight in a particular unit system. For example, I weigh 180 pounds while my wife weighs 120. The actual number here is somewhat arbitrary. If we chose instead to measure in metric units, we would instead say that I weigh 81 kilograms while my wife weighs 54 kilograms. The important idea here is not the numerical quantity, but rather the relationship between the quantities. We can choose whatever reference point we desire as a unit of weight. But no matter what reference point is chosen, I will still weigh 1.5x my wife’s weight. That ratio between our weights is the reality that will exist in any measurement system.</p>
@@ -148,7 +281,7 @@ $$h &gt; 0$$</p>
 
 <p>[1] P. Xin, Z. Xie, and P. Dames, “Towards Predicting Collective Performance in Multi-Robot Teams,” IEEE Trans. Robot., vol. 41, pp. 5229–5245, 2025, doi: 10.1109/TRO.2025.3600164.</p>
 
-<p>[2] P. W. Bridgman, Dimensional Analysis. Yale University Press, 1922.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[A few years ago, my lab produced a paper titled “Towards Predicting Collective Performance in Multi-Robot Teams” [1]. I read the paper when I first started my PhD and was immediately impressed. The paper is fundamentally about developing metrics for analysis for multi-robot teams. I have a similar project I am trying to pursue so I figured it would be important to start from the fundamental works in measurement science. This week, I began reading P. W. Bridgman’s work on dimensional analysis [2]. Here are some concepts I have been thinking about in relation to measurements and dimensional analysis.]]></summary></entry><entry><title type="html">Bees, ants, and more general swarms</title><link href="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html" rel="alternate" type="text/html" title="Bees, ants, and more general swarms" /><published>2026-06-12T00:00:00+00:00</published><updated>2026-06-19T17:15:52+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html"><![CDATA[<p>I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by
+<p>[2] P. W. Bridgman, Dimensional Analysis. Yale University Press, 1922.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[A few years ago, my lab produced a paper titled “Towards Predicting Collective Performance in Multi-Robot Teams” [1]. I read the paper when I first started my PhD and was immediately impressed. The paper is fundamentally about developing metrics for analysis for multi-robot teams. I have a similar project I am trying to pursue so I figured it would be important to start from the fundamental works in measurement science. This week, I began reading P. W. Bridgman’s work on dimensional analysis [2]. Here are some concepts I have been thinking about in relation to measurements and dimensional analysis.]]></summary></entry><entry><title type="html">Bees, ants, and more general swarms</title><link href="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html" rel="alternate" type="text/html" title="Bees, ants, and more general swarms" /><published>2026-06-12T00:00:00+00:00</published><updated>2026-06-26T14:08:29+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html"><![CDATA[<p>I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by
 <a href="https://jasonfantl.com/posts/Bee-Swarm/">Jason Fantl</a> where talks about bio-inspired swarming algorithms that could roughly emulate the behavior of bee hive reproduction.</p>
 
 <h2 id="bee-hive-distributed-behaviors">Bee Hive Distributed Behaviors</h2>
@@ -208,7 +341,7 @@ $$h &gt; 0$$</p>
 
 <p>[5] N. F. Britton, N. R. Franks, S. C. Pratt, and T. D. Seeley, “Deciding on a new home: how do honeybees agree?,” Proc. R. Soc. Lond. B, vol. 269, no. 1498, pp. 1383–1388, Jul. 2002, doi: 10.1098/rspb.2002.2001.</p>
 
-<p>[6] B. Prabhakar, K. N. Dektar, and D. M. Gordon, “The Regulation of Ant Colony Foraging Activity without Spatial Information,” PLOS Computational Biology, vol. 8, no. 8, p. e1002670, Aug. 2012, doi: 10.1371/journal.pcbi.1002670.</p>]]></content><author><name></name></author><category term="Multi-Robot-Systems" /><category term="Swarms" /><category term="Bio-inspiration" /><summary type="html"><![CDATA[I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by Jason Fantl where talks about bio-inspired swarming algorithms that could roughly emulate the behavior of bee hive reproduction.]]></summary></entry><entry><title type="html">So what’s the point of this blog anyway?</title><link href="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html" rel="alternate" type="text/html" title="So what’s the point of this blog anyway?" /><published>2026-06-09T00:00:00+00:00</published><updated>2026-06-19T17:15:52+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/09/blog-objective</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html"><![CDATA[<p>I am currently a PhD student. Now that I am done with my requisite classes, my time is largely unstructured. I choose when to work, what to work on, how long to work. Most people would consider that a blessing, which I do in certain ways, but I also recognize that I require some level of structure in my week. Without it, I find myself fluctuating between two extremes. Either I want to be hyper productive all the time, ultimately leading to burning myself out, or I find myself wanting to scroll Youtube or (lately) play Slay the Spire 2 for longer than I probably should. With that said, the objective of this blog is to accomplish a few goals:</p>
+<p>[6] B. Prabhakar, K. N. Dektar, and D. M. Gordon, “The Regulation of Ant Colony Foraging Activity without Spatial Information,” PLOS Computational Biology, vol. 8, no. 8, p. e1002670, Aug. 2012, doi: 10.1371/journal.pcbi.1002670.</p>]]></content><author><name></name></author><category term="Multi-Robot-Systems" /><category term="Swarms" /><category term="Bio-inspiration" /><summary type="html"><![CDATA[I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by Jason Fantl where talks about bio-inspired swarming algorithms that could roughly emulate the behavior of bee hive reproduction.]]></summary></entry><entry><title type="html">So what’s the point of this blog anyway?</title><link href="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html" rel="alternate" type="text/html" title="So what’s the point of this blog anyway?" /><published>2026-06-09T00:00:00+00:00</published><updated>2026-06-26T14:08:29+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/09/blog-objective</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html"><![CDATA[<p>I am currently a PhD student. Now that I am done with my requisite classes, my time is largely unstructured. I choose when to work, what to work on, how long to work. Most people would consider that a blessing, which I do in certain ways, but I also recognize that I require some level of structure in my week. Without it, I find myself fluctuating between two extremes. Either I want to be hyper productive all the time, ultimately leading to burning myself out, or I find myself wanting to scroll Youtube or (lately) play Slay the Spire 2 for longer than I probably should. With that said, the objective of this blog is to accomplish a few goals:</p>
 
 <ol>
   <li>Create structure in my weekly schedule</li>
