@@ -1,4 +1,213 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://nathan.wolfsonkin.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nathan.wolfsonkin.com/" rel="alternate" type="text/html" /><updated>2026-06-26T14:09:07+00:00</updated><id>https://nathan.wolfsonkin.com/feed.xml</id><title type="html">Nathan Wolf-Sonkin</title><entry><title type="html">Dimensionless Variable Discovery</title><link href="https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery.html" rel="alternate" type="text/html" title="Dimensionless Variable Discovery" /><published>2026-06-26T00:00:00+00:00</published><updated>2026-06-26T14:08:29+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery.html"><![CDATA[<p>I was reading more about dimensional analysis this week. Enjoy.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://nathan.wolfsonkin.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nathan.wolfsonkin.com/" rel="alternate" type="text/html" /><updated>2026-07-12T00:26:10+00:00</updated><id>https://nathan.wolfsonkin.com/feed.xml</id><title type="html">Nathan Wolf-Sonkin</title><entry><title type="html">Dimensionless Analysis for Sports Analytics</title><link href="https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics.html" rel="alternate" type="text/html" title="Dimensionless Analysis for Sports Analytics" /><published>2026-07-10T00:00:00+00:00</published><updated>2026-07-12T00:24:07+00:00</updated><id>https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics.html"><![CDATA[<p>The world cup is going on right here in Philadelphia. I figured it would be fun to see how some of the ideas in dimensional analysis that I have been learning about recently are applied in the world of sports analytics. This post is more or less a review of a paper in that space.</p>
+
+<p>Julien Blondeau’s work [1] attempts to identify how number of scored goals in field and goal based sports such as soccer and hockey correlate with various parameters of interest. He identifies them as follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Symbol</th>
+      <th>Dimensions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Game Duration</td>
+      <td>$t_g$</td>
+      <td>$T$</td>
+    </tr>
+    <tr>
+      <td>Field Length</td>
+      <td>$l_f$</td>
+      <td>$L$</td>
+    </tr>
+    <tr>
+      <td>Field Width</td>
+      <td>$w_f$</td>
+      <td>$L$</td>
+    </tr>
+    <tr>
+      <td>Goal Width</td>
+      <td>$w_g$</td>
+      <td>$L$</td>
+    </tr>
+    <tr>
+      <td>Goal Height</td>
+      <td>$h_g$</td>
+      <td>$L$</td>
+    </tr>
+    <tr>
+      <td>Player Velocity</td>
+      <td>$v_p$</td>
+      <td>$LT^{-1}$</td>
+    </tr>
+    <tr>
+      <td>Ball Velocity</td>
+      <td>$v_b$</td>
+      <td>$LT^{-1}$</td>
+    </tr>
+    <tr>
+      <td>Number of Players</td>
+      <td>$n_p$</td>
+      <td>$-$</td>
+    </tr>
+    <tr>
+      <td>Player Radius of Action</td>
+      <td>$r_p$</td>
+      <td>$L$</td>
+    </tr>
+    <tr>
+      <td>Number of Goals</td>
+      <td>$N_g$</td>
+      <td>$-$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>From here the dimensions matrix can be constructed</p>
+
+<p>$$D = \begin{bmatrix} 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; -1 &amp; -1 &amp; 0 &amp; 0 &amp; 0 \end{bmatrix}$$</p>
+
+<p>Computing the null space of our dimensional matrix reveals the sets of dimensionless variables. Since our $D$ matrix is $2 \times 9$, we are left with $7$ total dimensionless parameters:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Symbol</th>
+      <th>Formula</th>
+      <th>Interpretation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>$t_g^*$</td>
+      <td>$\frac{t_gv_p}{l_f}$</td>
+      <td>Ratio between field length and average distance players will cross in a game</td>
+    </tr>
+    <tr>
+      <td>$\alpha_f$</td>
+      <td>$\frac{w_f}{l_f}$</td>
+      <td>Ratio between field length and field width</td>
+    </tr>
+    <tr>
+      <td>$w_g^*$</td>
+      <td>$\frac{w_g}{l_f}$</td>
+      <td>Ratio between goal width and field length</td>
+    </tr>
+    <tr>
+      <td>$\alpha_g^*$</td>
+      <td>$\frac{h_g}{w_g}$</td>
+      <td>Ratio between goal width and goal height</td>
+    </tr>
+    <tr>
+      <td>$v_b^*$</td>
+      <td>$\frac{v_b}{v_p}$</td>
+      <td>Ratio between player velocity and ball velocity</td>
+    </tr>
+    <tr>
+      <td>$r_p^*$</td>
+      <td>$\frac{r_p}{l_f}$</td>
+      <td>Ratio between player radius of action and field length</td>
+    </tr>
+    <tr>
+      <td>$n_p$</td>
+      <td>$n_p$</td>
+      <td>Number of players</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Blondeau proposes a dimensionless number, $B_k$ which is intended to predict how changing out parameters will alter the number of goals in a game. In the interest of simplicity, I am brushing past some of the math, but please refer to [1] if you’re interested. $B_k$ is defined as a ratio between the duration of the game and the time needed to cross the midfield at the representative field veloity, $v_f$. Here, $v_f$ is something approximating a weighted average of player velocity and ball velocity.</p>
+
+<p>Formally, $B_k$ is defined as:</p>
+
+<p>$$B_k = t_g^* \frac{l_f}{l_{mf}} \frac{v_f}{v_p}$$</p>
+
+<p>Supporting equations are as follows:</p>
+
+<p>$$\frac{l_{mf}}{l_f} = 1 - \frac{1}{2} v_b^* w_g^* \sqrt{1+\alpha_g^*}$$</p>
+
+<p>$$\frac{v_f}{v_p} = ( 1 + v_b^* ) \frac{\rho_p}{ 2 v_b^* } (1-\kappa \frac{\rho_p}{v_b^*})$$</p>
+
+<p>$$\rho_p=(n_p-2)\frac{\pi {r_p^*}^2}{\alpha_f} $$</p>
+
+<p>Here, $\kappa$ is a tuning parameter. The important part to recognize here is not the nuances of all of these equations, but rather that we can write $B_k$ purley as a function of the non-dimensional parameters discovered using Buckingham-Pi:</p>
+
+<p>$$B_k = f(t_g^* , \alpha_f, w_g^* , \alpha_g^* , v_b^* , r_p^* , n_p)$$</p>
+
+<h2 id="data--results">Data &amp; Results</h2>
+
+<p>Here is the data used for the dimensional parameters (Lengths and times are measured in meters and seconds respectivley):</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sport</th>
+      <th>$l_f$</th>
+      <th>$w_f$</th>
+      <th>$w_g$</th>
+      <th>$h_g$</th>
+      <th>$v_p$</th>
+      <th>$v_b$</th>
+      <th>$t_g$</th>
+      <th>$n_p$</th>
+      <th>$r_p$</th>
+      <th>$N_g$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ice Hockey</td>
+      <td>52</td>
+      <td>27.5</td>
+      <td>1.83</td>
+      <td>1.22</td>
+      <td>7.56</td>
+      <td>44.7</td>
+      <td>3600</td>
+      <td>12</td>
+      <td>1.5</td>
+      <td>6.4</td>
+    </tr>
+    <tr>
+      <td>Soccer</td>
+      <td>105</td>
+      <td>69.5</td>
+      <td>7.32</td>
+      <td>2.44</td>
+      <td>3.79</td>
+      <td>24.7</td>
+      <td>5400</td>
+      <td>22</td>
+      <td>1</td>
+      <td>2.6</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Based on these numbers, the tuning parameter was altered to maximize the correlation between number of goals, $N_g$, and $B_k$. The best linear correlation found used $\kappa = 99$ and resulted in</p>
+
+<p>$$N_g = 2.04 B_k$$</p>
+
+<p>This is the most important part of the entire paper. The utility of this function is that now proposed ruleset changes could be made to attempt to make the game more exciting. For example, in 2022, the FIFA World Cup had average of $2.69$ goals per game. If the FIFA administration decided that games would be more exciting with one more goal per game, this model tells us that that result can be achieved by reducing field length to just under 90 meters.</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="source: 1">
+    <img src="/images/blog/2026-07-10/goals-vs-field-length.png" style="
+        width: 50%;
+        max-height: unset;
+      " alt="source: 1" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;" />
+  </a>
+  
+    <figcaption class="figure-caption">
+      source: [1]
+
+    </figcaption>
+  
+</figure>
+
+<h2 id="citations">Citations</h2>
+<p>[1] J. Blondeau, “The influence of field size, goal size and number of players on the average number of goals scored per game in variants of football and hockey: the Pi-theorem applied to team sports,” Journal of Quantitative Analysis in Sports, vol. 17, no. 2, pp. 145–154, Jun. 2021, doi: 10.1515/jqas-2020-0009.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[The world cup is going on right here in Philadelphia. I figured it would be fun to see how some of the ideas in dimensional analysis that I have been learning about recently are applied in the world of sports analytics. This post is more or less a review of a paper in that space.]]></summary></entry><entry><title type="html">Dimensionless Variable Discovery</title><link href="https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery.html" rel="alternate" type="text/html" title="Dimensionless Variable Discovery" /><published>2026-06-26T00:00:00+00:00</published><updated>2026-07-12T00:24:07+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery.html"><![CDATA[<p>I was reading more about dimensional analysis this week. Enjoy.</p>
 
 <h2 id="buckingham-pi-theorem">Buckingham-Pi Theorem</h2>
 
@@ -131,7 +340,7 @@
 
 <p>[2] P. W. Bridgman, Dimensional Analysis. Yale University Press, 1922.</p>
 
-<p>[3] A. A. Sonin, “Department of Mechanical Engineering MIT Cambridge, MA 02139”.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[I was reading more about dimensional analysis this week. Enjoy.]]></summary></entry><entry><title type="html">Dimensional Analysis and Measurement</title><link href="https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement.html" rel="alternate" type="text/html" title="Dimensional Analysis and Measurement" /><published>2026-06-19T00:00:00+00:00</published><updated>2026-06-26T14:08:29+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement.html"><![CDATA[<p>A few years ago, my lab produced a paper titled “Towards Predicting Collective Performance in Multi-Robot Teams” [1]. I read the paper when I first started my PhD and was immediately impressed. The paper is fundamentally about developing metrics for analysis for multi-robot teams. I have a similar project I am trying to pursue so I figured it would be important to start from the fundamental works in measurement science. This week, I began reading P. W. Bridgman’s work on dimensional analysis [2]. Here are some concepts I have been thinking about in relation to measurements and dimensional analysis.</p>
+<p>[3] A. A. Sonin, “Department of Mechanical Engineering MIT Cambridge, MA 02139”.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[I was reading more about dimensional analysis this week. Enjoy.]]></summary></entry><entry><title type="html">Dimensional Analysis and Measurement</title><link href="https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement.html" rel="alternate" type="text/html" title="Dimensional Analysis and Measurement" /><published>2026-06-19T00:00:00+00:00</published><updated>2026-07-12T00:24:07+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement.html"><![CDATA[<p>A few years ago, my lab produced a paper titled “Towards Predicting Collective Performance in Multi-Robot Teams” [1]. I read the paper when I first started my PhD and was immediately impressed. The paper is fundamentally about developing metrics for analysis for multi-robot teams. I have a similar project I am trying to pursue so I figured it would be important to start from the fundamental works in measurement science. This week, I began reading P. W. Bridgman’s work on dimensional analysis [2]. Here are some concepts I have been thinking about in relation to measurements and dimensional analysis.</p>
 
 <h2 id="arbitrary-dimensions">Arbitrary Dimensions</h2>
 <p>Assume I want to compare the weights between myself and my wife. We could go to scales and measure ourselves to find the numerical quantity associated with our weight in a particular unit system. For example, I weigh 180 pounds while my wife weighs 120. The actual number here is somewhat arbitrary. If we chose instead to measure in metric units, we would instead say that I weigh 81 kilograms while my wife weighs 54 kilograms. The important idea here is not the numerical quantity, but rather the relationship between the quantities. We can choose whatever reference point we desire as a unit of weight. But no matter what reference point is chosen, I will still weigh 1.5x my wife’s weight. That ratio between our weights is the reality that will exist in any measurement system.</p>
@@ -281,7 +490,7 @@ $$h &gt; 0$$</p>
 
 <p>[1] P. Xin, Z. Xie, and P. Dames, “Towards Predicting Collective Performance in Multi-Robot Teams,” IEEE Trans. Robot., vol. 41, pp. 5229–5245, 2025, doi: 10.1109/TRO.2025.3600164.</p>
 
-<p>[2] P. W. Bridgman, Dimensional Analysis. Yale University Press, 1922.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[A few years ago, my lab produced a paper titled “Towards Predicting Collective Performance in Multi-Robot Teams” [1]. I read the paper when I first started my PhD and was immediately impressed. The paper is fundamentally about developing metrics for analysis for multi-robot teams. I have a similar project I am trying to pursue so I figured it would be important to start from the fundamental works in measurement science. This week, I began reading P. W. Bridgman’s work on dimensional analysis [2]. Here are some concepts I have been thinking about in relation to measurements and dimensional analysis.]]></summary></entry><entry><title type="html">Bees, ants, and more general swarms</title><link href="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html" rel="alternate" type="text/html" title="Bees, ants, and more general swarms" /><published>2026-06-12T00:00:00+00:00</published><updated>2026-06-26T14:08:29+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html"><![CDATA[<p>I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by
+<p>[2] P. W. Bridgman, Dimensional Analysis. Yale University Press, 1922.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[A few years ago, my lab produced a paper titled “Towards Predicting Collective Performance in Multi-Robot Teams” [1]. I read the paper when I first started my PhD and was immediately impressed. The paper is fundamentally about developing metrics for analysis for multi-robot teams. I have a similar project I am trying to pursue so I figured it would be important to start from the fundamental works in measurement science. This week, I began reading P. W. Bridgman’s work on dimensional analysis [2]. Here are some concepts I have been thinking about in relation to measurements and dimensional analysis.]]></summary></entry><entry><title type="html">Bees, ants, and more general swarms</title><link href="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html" rel="alternate" type="text/html" title="Bees, ants, and more general swarms" /><published>2026-06-12T00:00:00+00:00</published><updated>2026-07-12T00:24:07+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html"><![CDATA[<p>I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by
 <a href="https://jasonfantl.com/posts/Bee-Swarm/">Jason Fantl</a> where talks about bio-inspired swarming algorithms that could roughly emulate the behavior of bee hive reproduction.</p>
 
 <h2 id="bee-hive-distributed-behaviors">Bee Hive Distributed Behaviors</h2>
@@ -341,7 +550,7 @@ $$h &gt; 0$$</p>
 
 <p>[5] N. F. Britton, N. R. Franks, S. C. Pratt, and T. D. Seeley, “Deciding on a new home: how do honeybees agree?,” Proc. R. Soc. Lond. B, vol. 269, no. 1498, pp. 1383–1388, Jul. 2002, doi: 10.1098/rspb.2002.2001.</p>
 
-<p>[6] B. Prabhakar, K. N. Dektar, and D. M. Gordon, “The Regulation of Ant Colony Foraging Activity without Spatial Information,” PLOS Computational Biology, vol. 8, no. 8, p. e1002670, Aug. 2012, doi: 10.1371/journal.pcbi.1002670.</p>]]></content><author><name></name></author><category term="Multi-Robot-Systems" /><category term="Swarms" /><category term="Bio-inspiration" /><summary type="html"><![CDATA[I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by Jason Fantl where talks about bio-inspired swarming algorithms that could roughly emulate the behavior of bee hive reproduction.]]></summary></entry><entry><title type="html">So what’s the point of this blog anyway?</title><link href="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html" rel="alternate" type="text/html" title="So what’s the point of this blog anyway?" /><published>2026-06-09T00:00:00+00:00</published><updated>2026-06-26T14:08:29+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/09/blog-objective</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html"><![CDATA[<p>I am currently a PhD student. Now that I am done with my requisite classes, my time is largely unstructured. I choose when to work, what to work on, how long to work. Most people would consider that a blessing, which I do in certain ways, but I also recognize that I require some level of structure in my week. Without it, I find myself fluctuating between two extremes. Either I want to be hyper productive all the time, ultimately leading to burning myself out, or I find myself wanting to scroll Youtube or (lately) play Slay the Spire 2 for longer than I probably should. With that said, the objective of this blog is to accomplish a few goals:</p>
+<p>[6] B. Prabhakar, K. N. Dektar, and D. M. Gordon, “The Regulation of Ant Colony Foraging Activity without Spatial Information,” PLOS Computational Biology, vol. 8, no. 8, p. e1002670, Aug. 2012, doi: 10.1371/journal.pcbi.1002670.</p>]]></content><author><name></name></author><category term="Multi-Robot-Systems" /><category term="Swarms" /><category term="Bio-inspiration" /><summary type="html"><![CDATA[I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by Jason Fantl where talks about bio-inspired swarming algorithms that could roughly emulate the behavior of bee hive reproduction.]]></summary></entry><entry><title type="html">So what’s the point of this blog anyway?</title><link href="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html" rel="alternate" type="text/html" title="So what’s the point of this blog anyway?" /><published>2026-06-09T00:00:00+00:00</published><updated>2026-07-12T00:24:07+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/09/blog-objective</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html"><![CDATA[<p>I am currently a PhD student. Now that I am done with my requisite classes, my time is largely unstructured. I choose when to work, what to work on, how long to work. Most people would consider that a blessing, which I do in certain ways, but I also recognize that I require some level of structure in my week. Without it, I find myself fluctuating between two extremes. Either I want to be hyper productive all the time, ultimately leading to burning myself out, or I find myself wanting to scroll Youtube or (lately) play Slay the Spire 2 for longer than I probably should. With that said, the objective of this blog is to accomplish a few goals:</p>
 
 <ol>
   <li>Create structure in my weekly schedule</li>

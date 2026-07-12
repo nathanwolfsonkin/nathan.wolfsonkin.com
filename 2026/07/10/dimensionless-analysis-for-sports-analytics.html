@@ -43,21 +43,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Sarcos Sapien 6M Digital Twin | Nathan Wolf-Sonkin</title>
+<title>Dimensionless Analysis for Sports Analytics | Nathan Wolf-Sonkin</title>
 
 <link rel="icon" href="/images/icon.png">
 
-<meta name="title" content="Sarcos Sapien 6M Digital Twin">
+<meta name="title" content="Dimensionless Analysis for Sports Analytics">
 <meta name="description" content="">
 
-<meta property="og:title" content="Sarcos Sapien 6M Digital Twin">
+<meta property="og:title" content="Dimensionless Analysis for Sports Analytics">
 <meta property="og:site_title" content="Nathan Wolf-Sonkin">
 <meta property="og:description" content="">
 <meta property="og:url" content="https://nathan.wolfsonkin.com">
 <meta property="og:image" content="/images/share.jpg">
 <meta property="og:locale" content="en_US">
 
-<meta property="twitter:title" content="Sarcos Sapien 6M Digital Twin">
+<meta property="twitter:title" content="Dimensionless Analysis for Sports Analytics">
 <meta property="twitter:description" content="">
 <meta property="twitter:url" content="https://nathan.wolfsonkin.com">
 <meta property="twitter:card" content="summary_large_image">
@@ -73,9 +73,9 @@
     
       "@type": "WebSite",
     
-    "name": "Sarcos Sapien 6M Digital Twin",
+    "name": "Dimensionless Analysis for Sports Analytics",
     "description": "",
-    "headline": "Sarcos Sapien 6M Digital Twin",
+    "headline": "Dimensionless Analysis for Sports Analytics",
     "publisher": {
       "@type": "Organization",
       "logo": { "@type": "ImageObject", "url": "/images/icon.png" }
@@ -314,6 +314,7 @@
   <script src="/_scripts/tooltip.js"></script>
 
 
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
   <body>
@@ -420,46 +421,34 @@
 -->
 
 
-<h1 class="center">Sarcos Sapien 6M Digital Twin</h1>
-<div class="center" style="margin-top: 1rem; margin-bottom: 2rem;">
-    
-    <div style="font-weight: 600; margin-bottom: 0.5rem;">
-      Tools &amp; Technologies
-    </div>
+<h1 class="center">Dimensionless Analysis for Sports Analytics</h1>
 
-    <div style="
-      display: inline-flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.5rem;
-    ">
-<span style="
-          padding: 0.4rem 0.8rem;
-          border-radius: 999px;
-          background: rgba(0,0,0,0.08);
-          font-size: 0.9rem;
-          white-space: nowrap;
-        ">
-          Gazebo
-        </span><span style="
-          padding: 0.4rem 0.8rem;
-          border-radius: 999px;
-          background: rgba(0,0,0,0.08);
-          font-size: 0.9rem;
-          white-space: nowrap;
-        ">
-          ROS2
-        </span><span style="
-          padding: 0.4rem 0.8rem;
-          border-radius: 999px;
-          background: rgba(0,0,0,0.08);
-          font-size: 0.9rem;
-          white-space: nowrap;
-        ">
-          Python
-        </span>
+<div class="post-info">
+  
+
+  
+  
+
+  
+    <span data-tooltip="">
+      <i class="icon fa-regular fa-calendar"></i>
+      <span>July 10, 2026</span>
+    </span>
+  
+  
+  
 </div>
 
+
+  
+
+
+  <div class="tags">
+    
+      <a class="tag">
+        dimensional-analysis
+      </a>
+    
   </div>
   </section>
 
@@ -475,44 +464,231 @@
 -->
 
 
-<p>During my Summer 2024 internship at <a href="https://www.jlg.com" target="_blank">JLG Industries</a>, I developed a digital twin of the Sarcos Sapien 6M robotic manipulator to support simulation, algorithm development, and real-world deployment. Using access to the system’s CAD models, I derived the kinematic frame relationships between the manipulator’s rigid bodies and constructed the robot model using Denavit–Hartenberg conventions.</p>
+<p>The world cup is going on right here in Philadelphia. I figured it would be fun to see how some of the ideas in dimensional analysis that I have been learning about recently are applied in the world of sports analytics. This post is more or less a review of a paper in that space.</p>
 
-<p>The project had two primary objectives: first, to create a high-fidelity simulation environment for testing robotic algorithms, and second, to validate those algorithms on the physical robot. The initial application focused on autonomous tool-changing operations. Over the course of a 10-week internship, I designed and implemented both analytical and numerical inverse kinematics controllers, integrating them into the simulation and deployment pipeline.</p>
+<p>Julien Blondeau’s work [1] attempts to identify how number of scored goals in field and goal based sports such as soccer and hockey correlate with various parameters of interest. He identifies them as follows:</p>
 
-<p>The developed algorithms were successfully tested on a physical Sarcos Sapien 6M platform, where the robot completed tool-change operations that had first been validated in simulation. This work represented an early technical milestone in the broader robotics initiative at <a href="https://www.jlg.com" target="_blank">JLG Industries</a>. My work on this project was an early step towards the <a href="https://www.ces.tech/ces-innovation-awards/2026/oshkosh-jlg-boom-lift-with-robotic-end-effector" target="_blank">Oshkosh JLG Boom Lift with Robotic End Effector</a> project, which later received a 2026 CES Innovation Award.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Symbol</th>
+      <th>Dimensions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Game Duration</td>
+      <td>$t_g$</td>
+      <td>$T$</td>
+    </tr>
+    <tr>
+      <td>Field Length</td>
+      <td>$l_f$</td>
+      <td>$L$</td>
+    </tr>
+    <tr>
+      <td>Field Width</td>
+      <td>$w_f$</td>
+      <td>$L$</td>
+    </tr>
+    <tr>
+      <td>Goal Width</td>
+      <td>$w_g$</td>
+      <td>$L$</td>
+    </tr>
+    <tr>
+      <td>Goal Height</td>
+      <td>$h_g$</td>
+      <td>$L$</td>
+    </tr>
+    <tr>
+      <td>Player Velocity</td>
+      <td>$v_p$</td>
+      <td>$LT^{-1}$</td>
+    </tr>
+    <tr>
+      <td>Ball Velocity</td>
+      <td>$v_b$</td>
+      <td>$LT^{-1}$</td>
+    </tr>
+    <tr>
+      <td>Number of Players</td>
+      <td>$n_p$</td>
+      <td>$-$</td>
+    </tr>
+    <tr>
+      <td>Player Radius of Action</td>
+      <td>$r_p$</td>
+      <td>$L$</td>
+    </tr>
+    <tr>
+      <td>Number of Goals</td>
+      <td>$N_g$</td>
+      <td>$-$</td>
+    </tr>
+  </tbody>
+</table>
 
-<div class="cols" style="--cols: 2; align-items: center;">
+<p>From here the dimensions matrix can be constructed</p>
+
+<p>$$D = \begin{bmatrix} 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; -1 &amp; -1 &amp; 0 &amp; 0 &amp; 0 \end{bmatrix}$$</p>
+
+<p>Computing the null space of our dimensional matrix reveals the sets of dimensionless variables. Since our $D$ matrix is $2 \times 9$, we are left with $7$ total dimensionless parameters:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Symbol</th>
+      <th>Formula</th>
+      <th>Interpretation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>$t_g^*$</td>
+      <td>$\frac{t_gv_p}{l_f}$</td>
+      <td>Ratio between field length and average distance players will cross in a game</td>
+    </tr>
+    <tr>
+      <td>$\alpha_f$</td>
+      <td>$\frac{w_f}{l_f}$</td>
+      <td>Ratio between field length and field width</td>
+    </tr>
+    <tr>
+      <td>$w_g^*$</td>
+      <td>$\frac{w_g}{l_f}$</td>
+      <td>Ratio between goal width and field length</td>
+    </tr>
+    <tr>
+      <td>$\alpha_g^*$</td>
+      <td>$\frac{h_g}{w_g}$</td>
+      <td>Ratio between goal width and goal height</td>
+    </tr>
+    <tr>
+      <td>$v_b^*$</td>
+      <td>$\frac{v_b}{v_p}$</td>
+      <td>Ratio between player velocity and ball velocity</td>
+    </tr>
+    <tr>
+      <td>$r_p^*$</td>
+      <td>$\frac{r_p}{l_f}$</td>
+      <td>Ratio between player radius of action and field length</td>
+    </tr>
+    <tr>
+      <td>$n_p$</td>
+      <td>$n_p$</td>
+      <td>Number of players</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Blondeau proposes a dimensionless number, $B_k$ which is intended to predict how changing out parameters will alter the number of goals in a game. In the interest of simplicity, I am brushing past some of the math, but please refer to [1] if you’re interested. $B_k$ is defined as a ratio between the duration of the game and the time needed to cross the midfield at the representative field veloity, $v_f$. Here, $v_f$ is something approximating a weighted average of player velocity and ball velocity.</p>
+
+<p>Formally, $B_k$ is defined as:</p>
+
+<p>$$B_k = t_g^* \frac{l_f}{l_{mf}} \frac{v_f}{v_p}$$</p>
+
+<p>Supporting equations are as follows:</p>
+
+<p>$$\frac{l_{mf}}{l_f} = 1 - \frac{1}{2} v_b^* w_g^* \sqrt{1+\alpha_g^*}$$</p>
+
+<p>$$\frac{v_f}{v_p} = ( 1 + v_b^* ) \frac{\rho_p}{ 2 v_b^* } (1-\kappa \frac{\rho_p}{v_b^*})$$</p>
+
+<p>$$\rho_p=(n_p-2)\frac{\pi {r_p^*}^2}{\alpha_f} $$</p>
+
+<p>Here, $\kappa$ is a tuning parameter. The important part to recognize here is not the nuances of all of these equations, but rather that we can write $B_k$ purley as a function of the non-dimensional parameters discovered using Buckingham-Pi:</p>
+
+<p>$$B_k = f(t_g^* , \alpha_f, w_g^* , \alpha_g^* , v_b^* , r_p^* , n_p)$$</p>
+
+<h2 id="data--results">Data &amp; Results</h2>
+
+<p>Here is the data used for the dimensional parameters (Lengths and times are measured in meters and seconds respectivley):</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sport</th>
+      <th>$l_f$</th>
+      <th>$w_f$</th>
+      <th>$w_g$</th>
+      <th>$h_g$</th>
+      <th>$v_p$</th>
+      <th>$v_b$</th>
+      <th>$t_g$</th>
+      <th>$n_p$</th>
+      <th>$r_p$</th>
+      <th>$N_g$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ice Hockey</td>
+      <td>52</td>
+      <td>27.5</td>
+      <td>1.83</td>
+      <td>1.22</td>
+      <td>7.56</td>
+      <td>44.7</td>
+      <td>3600</td>
+      <td>12</td>
+      <td>1.5</td>
+      <td>6.4</td>
+    </tr>
+    <tr>
+      <td>Soccer</td>
+      <td>105</td>
+      <td>69.5</td>
+      <td>7.32</td>
+      <td>2.44</td>
+      <td>3.79</td>
+      <td>24.7</td>
+      <td>5400</td>
+      <td>22</td>
+      <td>1</td>
+      <td>2.6</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Based on these numbers, the tuning parameter was altered to maximize the correlation between number of goals, $N_g$, and $B_k$. The best linear correlation found used $\kappa = 99$ and resulted in</p>
+
+<p>$$N_g = 2.04 B_k$$</p>
+
+<p>This is the most important part of the entire paper. The utility of this function is that now proposed ruleset changes could be made to attempt to make the game more exciting. For example, in 2022, the FIFA World Cup had average of $2.69$ goals per game. If the FIFA administration decided that games would be more exciting with one more goal per game, this model tells us that that result can be achieved by reducing field length to just under 90 meters.</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="source: 1">
+    <img src="/images/blog/2026-07-10/goals-vs-field-length.png" style="
+        width: 50%;
+        max-height: unset;
+      " alt="source: 1" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+  </a>
   
-    
-    <div>
-<div style="display:flex; justify-content:center; margin:2rem 0;">
-  <div style="width: 100%; max-width: 900px;">
-    
-    
-      <video controls="" style="width:100%; height:auto;">
-        <source src="/images/jlg/gazebo_tool_change.mp4" type="video/mp4"></source>
-      </video>
-    
+    <figcaption class="figure-caption">
+      source: [1]
 
-  </div>
-</div>
-</div>
+    </figcaption>
   
-    
-    <div>
-<div style="display:flex; justify-content:center; margin:2rem 0;">
-  <div style="width: 60%; max-width: 900px;">
-    
-    
-      <video controls="" style="width:100%; height:auto;">
-        <source src="/images/jlg/cropped_live_video.MOV" type="video/mp4"></source>
-      </video>
-    
+</figure>
 
-  </div>
-</div>
-</div>
-  
+<h2 id="citations">Citations</h2>
+<p>[1] J. Blondeau, “The influence of field size, goal size and number of players on the average number of goals scored per game in variants of football and hockey: the Pi-theorem applied to team sports,” Journal of Quantitative Analysis in Sports, vol. 17, no. 2, pp. 145–154, Jun. 2021, doi: 10.1515/jqas-2020-0009.</p>
+
+
+
+<div class="post-nav">
+  <span>
+    
+      <i class="icon fa-solid fa-angle-left"></i> Previous post<br>
+      <a href="/2026/06/26/dimensionless-variable-discovery.html">
+        Dimensionless Variable Discovery
+      </a>
+    
+  </span>
+  <span>
+    
+  </span>
 </div>
   </section>
 
