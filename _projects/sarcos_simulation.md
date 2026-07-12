@@ -10,7 +10,7 @@ During my Summer 2024 internship at [JLG Industries](https://www.jlg.com){:targe
 
 The project had two primary objectives: first, to create a high-fidelity simulation environment for testing robotic algorithms, and second, to validate those algorithms on the physical robot. The initial application focused on autonomous tool-changing operations. Over the course of a 10-week internship, I designed and implemented both analytical and numerical inverse kinematics controllers, integrating them into the simulation and deployment pipeline.
 
-The developed algorithms were successfully tested on a physical Sarcos Sapien 6M platform, where the robot completed tool-change operations that had first been validated in simulation. This work represented an early technical milestone in the broader robotics initiative at [JLG Industries](https://www.jlg.com){:target="_blank"}, which later contributed to a system that received a CES Innovation Awards recognition in 2026 for the [Oshkosh JLG Boom Lift with Robotic End Effector](https://www.ces.tech/ces-innovation-awards/2026/oshkosh-jlg-boom-lift-with-robotic-end-effector){:target="_blank"}.
+The developed algorithms were successfully tested on a physical Sarcos Sapien 6M platform, where the robot completed tool-change operations that had first been validated in simulation. This work represented an early technical milestone in the broader robotics initiative at [JLG Industries](https://www.jlg.com){:target="_blank"}. My work on this project was an early step towards the [Oshkosh JLG Boom Lift with Robotic End Effector](https://www.ces.tech/ces-innovation-awards/2026/oshkosh-jlg-boom-lift-with-robotic-end-effector){:target="_blank"} project, which later received a 2026 CES Innovation Award.
 
 
 {% capture left %}
