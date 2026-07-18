@@ -1,4 +1,187 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://nathan.wolfsonkin.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nathan.wolfsonkin.com/" rel="alternate" type="text/html" /><updated>2026-07-12T00:26:10+00:00</updated><id>https://nathan.wolfsonkin.com/feed.xml</id><title type="html">Nathan Wolf-Sonkin</title><entry><title type="html">Dimensionless Analysis for Sports Analytics</title><link href="https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics.html" rel="alternate" type="text/html" title="Dimensionless Analysis for Sports Analytics" /><published>2026-07-10T00:00:00+00:00</published><updated>2026-07-12T00:24:07+00:00</updated><id>https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics.html"><![CDATA[<p>The world cup is going on right here in Philadelphia. I figured it would be fun to see how some of the ideas in dimensional analysis that I have been learning about recently are applied in the world of sports analytics. This post is more or less a review of a paper in that space.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://nathan.wolfsonkin.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nathan.wolfsonkin.com/" rel="alternate" type="text/html" /><updated>2026-07-18T20:35:09+00:00</updated><id>https://nathan.wolfsonkin.com/feed.xml</id><title type="html">Nathan Wolf-Sonkin</title><entry><title type="html">Modular Robotics and Metrics</title><link href="https://nathan.wolfsonkin.com/2026/07/17/modular-robotics-and-metrics.html" rel="alternate" type="text/html" title="Modular Robotics and Metrics" /><published>2026-07-17T00:00:00+00:00</published><updated>2026-07-18T20:34:26+00:00</updated><id>https://nathan.wolfsonkin.com/2026/07/17/modular-robotics-and-metrics</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/07/17/modular-robotics-and-metrics.html"><![CDATA[<p>Modular robotics is a exciting field. The idea is that instead of having a single robot built for a single purpose, we can instead use a team of modular robots. These modular robots would be able to work together, connecting and building off of each other to achieve unparalleled adaptability. This is actually a common approach in biology. Cells can be thought of as modular biological entities which form together to perform actions beyond the capability of any individual cell.</p>
+
+<p>A particular part of modular robotics that I have found interesting as of late is the self-reconfiguring modular robot. The idea here is that a team of modular robots could change and adapt to accomplish whatever task they are currently pursuing. This is a concept that is not new in science fiction. While I am sure there are older examples, my favorite is from the Pixar movie Big Hero 6. Here, modular robots called microbots are invented. These microbots can work together to form massive structures.</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="Microbots reconfiguring source: Gifer https: gifer.com en V24E">
+    <img src="/images/blog/2026-07-17/microbots.gif" style="
+        width: 40%;
+        max-height: unset;
+      " alt="Microbots reconfiguring source: Gifer https: gifer.com en V24E" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;" />
+  </a>
+  
+    <figcaption class="figure-caption">
+      Microbots reconfiguring (source: <a href="https://gifer.com/en/V24E">Gifer</a>)
+
+    </figcaption>
+  
+</figure>
+
+<p>Self-reconfiguring modular robots have a particular set of advantageous characteristics that set them apart from traditional teams of mobile robots. While implementation is still somewhat crude, the ultimate goal is that self-reconfiguring modular robotics will be more versatile, robust, and cheaper than traditional robots [1].</p>
+<ol>
+  <li>Versatility
+    <ul>
+      <li>Self-reconfigurable systems will allow for more potential tasks than a regular robot. Imagine a locomotion context. If there is rugged terrain, the modular system might configure itself into a legged robot. If there are roads, perhaps a wheeled system will be energetically superior.</li>
+    </ul>
+  </li>
+  <li>Robustness
+    <ul>
+      <li>Self-reconfigurable systems will be able to handle failures by working around the faulty module. If a single module fails, the remainder of the modules can simply disconnect it and continue on with the objective.</li>
+    </ul>
+  </li>
+  <li>Low Cost
+    <ul>
+      <li>Self-reconfigurable robots will be lower cost because mass production of a single robot thousands, millions, or billions of times will allow for economies of scale to optimize the manufacturing process.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="a-bit-of-history-and-the-need-for-metrology">A Bit of History and the Need for Metrology</h2>
+
+<p>Work on modular robotic systems is traced back to the cellular robotic system (CEBOT) [2] which published in 1989. Most work since then has focused on various mechanical implementations. The taxonomy used across the field is somewhat consistent [3], but looking back thirty-six years it seems that this is a fairly fractured field. There are no real quantitative measures for traits shared by every system. Ideas like reconfigurability and adaptability are the motivating ideas behind the entire field, yet we still lack any real way of quantifying them. Instead, qualitative comparisons are used in survey papers to differentiate self-reconfigurable modular robots [3].</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="Taxonomy of Self-Reconfigurable Modular Robots 3">
+    <img src="/images/blog/2026-07-17/taxonomy.png" style="
+        width: 50%;
+        max-height: unset;
+      " alt="Taxonomy of Self-Reconfigurable Modular Robots 3" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;" />
+  </a>
+  
+    <figcaption class="figure-caption">
+      Taxonomy of Self-Reconfigurable Modular Robots [3]
+
+    </figcaption>
+  
+</figure>
+
+<p>A survey paper from 2023 [5] states the functional requirements for homogenous modular self-configurable robot as follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Functional Requirement</th>
+      <th>Expectation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Size</td>
+      <td>As small as possible</td>
+    </tr>
+    <tr>
+      <td>Mechanical strength</td>
+      <td>Safety and reliability</td>
+    </tr>
+    <tr>
+      <td>Load capacity to module weight</td>
+      <td>As high as possible</td>
+    </tr>
+    <tr>
+      <td>Information sharing</td>
+      <td>Ability to transmit</td>
+    </tr>
+    <tr>
+      <td>Power sharing</td>
+      <td>Ability to transmit</td>
+    </tr>
+    <tr>
+      <td>Reversibility and repeatability</td>
+      <td>Should be reversible and repeatable</td>
+    </tr>
+    <tr>
+      <td>Docking/undocking speed</td>
+      <td>As fast as possible in both procedures</td>
+    </tr>
+    <tr>
+      <td>Tolerance to misalignment</td>
+      <td>Should be high</td>
+    </tr>
+    <tr>
+      <td>Power consumption</td>
+      <td>As little as possible to no power consumption</td>
+    </tr>
+    <tr>
+      <td>Gender and orientation</td>
+      <td>Should be genderless and orientation-invariant</td>
+    </tr>
+    <tr>
+      <td>One-sided connection</td>
+      <td>Ability to create connection from one side</td>
+    </tr>
+    <tr>
+      <td>Cost</td>
+      <td>As low as possible</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>It is important to note that there are no quantitative measurements. Everything in this field is described qualitatively. The closest thing to quantitative analysis of the state of this field came from the same survey paper [5] when it compared different docking mechanisms:</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="Docking Function Requirements 5">
+    <img src="/images/blog/2026-07-17/docking-table.png" style="
+        width: 100%;
+        max-height: unset;
+      " alt="Docking Function Requirements 5" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;" />
+  </a>
+  
+    <figcaption class="figure-caption">
+      Docking Function Requirements [5]
+
+    </figcaption>
+  
+</figure>
+
+<p>Even here the comparisons are fairly surface level. Yes I can see which one has better mechanical strength or load capacity to module weight ratio. But the question arises: which of these connection mechanisms allows for better reconfigurability? Which allows for better adaptability?</p>
+
+<p>Self-configuring modular robotics is a field which is in dire need of unification. Metrology is the key. Identification and establishment of metrics will finally allow for quantitative comparisons across the field. There have been attempts at this endeavor. Liu et al. proposed the evolutionary cobweb evaluation model of autonomy [6]. The problem with a system like this is it is somewhat contrived. It does prescribe a number to the autonomy of each modular robotic system, but the number is fabricated. It is influenced by weights that the author arbitrarily assigned to different systems. For example, one of the characteristics to describe model autonomy is the “module motion attribute” which ranks modules on a scale as follows:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>mobile</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>rotation</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>translation</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>manipulation</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>fly</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>It is not clear to me that the ability of a module to fly implies that it is five times more autonomous than a mobile module. The point here is that while defining process to measure autonomy is important, it is just as important that the process is rigorous.</p>
+
+<p>More developed fields of study, like fluid mechanics, have worked on this. Reynolds number, for example, is a dimensionless number based on the ratio of inertial to viscous forces in a flow. Importantly, Reynolds number predicts whether a flow is laminar or turbulent. Modular robotics needs our own Reynolds number. A latent variable to be discovered which can be used to define and identify the reconfigurability, robustness, or autonomy of a modular robotic system.</p>
+
+<h2 id="citations">Citations</h2>
+<p>[1] M. Yim et al., “Modular Self-Reconfigurable Robot Systems [Grand Challenges of Robotics],” Robotics &amp; Automation Magazine, IEEE, vol. 14, pp. 43–52, Apr. 2007, doi: 10.1109/MRA.2007.339623.</p>
+
+<p>[2] Fukuda T, Nakagawa S, Kawauchi Y, Buss M. 1989. Structure decision method for self organising robots  based on cell structures-CEBOT. In 1989 IEEE International Conference on Robotics and Automation, Vol. 2, pp. 695–700. New York: IEEE</p>
+
+<p>[3] L. A. T. Vu, Z. Bi, D. Mueller, and N. Younis, “Modular Self-Configurable Robots—The State of the Art,” Actuators, vol. 12, no. 9, p. 361, Sep. 2023, doi: 10.3390/act12090361.</p>
+
+<p>[4] “Self-Reconfiguring Modular Robot.” [Online]. Available: https://en.wikipedia.org/wiki/Self-reconfiguring_modular_robot</p>
+
+<p>[5] L. A. T. Vu, Z. Bi, D. Mueller, and N. Younis, “Modular Self-Configurable Robots—The State of the Art,” Actuators, vol. 12, no. 9, p. 361, Sep. 2023, doi: 10.3390/act12090361.</p>
+
+<p>[6] J. Liu, X. Zhang, and G. Hao, “Survey on research and development of reconfigurable modular robots,” Advances in Mechanical Engineering, vol. 8, no. 8, p. 1687814016659597, Aug. 2016, doi: 10.1177/1687814016659597.</p>]]></content><author><name></name></author><category term="Multi-Robot Systems" /><category term="Dimensional Analysis" /><category term="Modular Robotics" /><summary type="html"><![CDATA[Modular robotics is a exciting field. The idea is that instead of having a single robot built for a single purpose, we can instead use a team of modular robots. These modular robots would be able to work together, connecting and building off of each other to achieve unparalleled adaptability. This is actually a common approach in biology. Cells can be thought of as modular biological entities which form together to perform actions beyond the capability of any individual cell.]]></summary></entry><entry><title type="html">Dimensionless Analysis for Sports Analytics</title><link href="https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics.html" rel="alternate" type="text/html" title="Dimensionless Analysis for Sports Analytics" /><published>2026-07-10T00:00:00+00:00</published><updated>2026-07-18T20:34:26+00:00</updated><id>https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics.html"><![CDATA[<p>The world cup is going on right here in Philadelphia. I figured it would be fun to see how some of the ideas in dimensional analysis that I have been learning about recently are applied in the world of sports analytics. This post is more or less a review of a paper in that space.</p>
 
 <p>Julien Blondeau’s work [1] attempts to identify how number of scored goals in field and goal based sports such as soccer and hockey correlate with various parameters of interest. He identifies them as follows:</p>
 
@@ -207,7 +390,7 @@
 </figure>
 
 <h2 id="citations">Citations</h2>
-<p>[1] J. Blondeau, “The influence of field size, goal size and number of players on the average number of goals scored per game in variants of football and hockey: the Pi-theorem applied to team sports,” Journal of Quantitative Analysis in Sports, vol. 17, no. 2, pp. 145–154, Jun. 2021, doi: 10.1515/jqas-2020-0009.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[The world cup is going on right here in Philadelphia. I figured it would be fun to see how some of the ideas in dimensional analysis that I have been learning about recently are applied in the world of sports analytics. This post is more or less a review of a paper in that space.]]></summary></entry><entry><title type="html">Dimensionless Variable Discovery</title><link href="https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery.html" rel="alternate" type="text/html" title="Dimensionless Variable Discovery" /><published>2026-06-26T00:00:00+00:00</published><updated>2026-07-12T00:24:07+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery.html"><![CDATA[<p>I was reading more about dimensional analysis this week. Enjoy.</p>
+<p>[1] J. Blondeau, “The influence of field size, goal size and number of players on the average number of goals scored per game in variants of football and hockey: the Pi-theorem applied to team sports,” Journal of Quantitative Analysis in Sports, vol. 17, no. 2, pp. 145–154, Jun. 2021, doi: 10.1515/jqas-2020-0009.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[The world cup is going on right here in Philadelphia. I figured it would be fun to see how some of the ideas in dimensional analysis that I have been learning about recently are applied in the world of sports analytics. This post is more or less a review of a paper in that space.]]></summary></entry><entry><title type="html">Dimensionless Variable Discovery</title><link href="https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery.html" rel="alternate" type="text/html" title="Dimensionless Variable Discovery" /><published>2026-06-26T00:00:00+00:00</published><updated>2026-07-18T20:34:26+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery.html"><![CDATA[<p>I was reading more about dimensional analysis this week. Enjoy.</p>
 
 <h2 id="buckingham-pi-theorem">Buckingham-Pi Theorem</h2>
 
@@ -340,7 +523,7 @@
 
 <p>[2] P. W. Bridgman, Dimensional Analysis. Yale University Press, 1922.</p>
 
-<p>[3] A. A. Sonin, “Department of Mechanical Engineering MIT Cambridge, MA 02139”.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[I was reading more about dimensional analysis this week. Enjoy.]]></summary></entry><entry><title type="html">Dimensional Analysis and Measurement</title><link href="https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement.html" rel="alternate" type="text/html" title="Dimensional Analysis and Measurement" /><published>2026-06-19T00:00:00+00:00</published><updated>2026-07-12T00:24:07+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement.html"><![CDATA[<p>A few years ago, my lab produced a paper titled “Towards Predicting Collective Performance in Multi-Robot Teams” [1]. I read the paper when I first started my PhD and was immediately impressed. The paper is fundamentally about developing metrics for analysis for multi-robot teams. I have a similar project I am trying to pursue so I figured it would be important to start from the fundamental works in measurement science. This week, I began reading P. W. Bridgman’s work on dimensional analysis [2]. Here are some concepts I have been thinking about in relation to measurements and dimensional analysis.</p>
+<p>[3] A. A. Sonin, “Department of Mechanical Engineering MIT Cambridge, MA 02139”.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[I was reading more about dimensional analysis this week. Enjoy.]]></summary></entry><entry><title type="html">Dimensional Analysis and Measurement</title><link href="https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement.html" rel="alternate" type="text/html" title="Dimensional Analysis and Measurement" /><published>2026-06-19T00:00:00+00:00</published><updated>2026-07-18T20:34:26+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement.html"><![CDATA[<p>A few years ago, my lab produced a paper titled “Towards Predicting Collective Performance in Multi-Robot Teams” [1]. I read the paper when I first started my PhD and was immediately impressed. The paper is fundamentally about developing metrics for analysis for multi-robot teams. I have a similar project I am trying to pursue so I figured it would be important to start from the fundamental works in measurement science. This week, I began reading P. W. Bridgman’s work on dimensional analysis [2]. Here are some concepts I have been thinking about in relation to measurements and dimensional analysis.</p>
 
 <h2 id="arbitrary-dimensions">Arbitrary Dimensions</h2>
 <p>Assume I want to compare the weights between myself and my wife. We could go to scales and measure ourselves to find the numerical quantity associated with our weight in a particular unit system. For example, I weigh 180 pounds while my wife weighs 120. The actual number here is somewhat arbitrary. If we chose instead to measure in metric units, we would instead say that I weigh 81 kilograms while my wife weighs 54 kilograms. The important idea here is not the numerical quantity, but rather the relationship between the quantities. We can choose whatever reference point we desire as a unit of weight. But no matter what reference point is chosen, I will still weigh 1.5x my wife’s weight. That ratio between our weights is the reality that will exist in any measurement system.</p>
@@ -490,7 +673,7 @@ $$h &gt; 0$$</p>
 
 <p>[1] P. Xin, Z. Xie, and P. Dames, “Towards Predicting Collective Performance in Multi-Robot Teams,” IEEE Trans. Robot., vol. 41, pp. 5229–5245, 2025, doi: 10.1109/TRO.2025.3600164.</p>
 
-<p>[2] P. W. Bridgman, Dimensional Analysis. Yale University Press, 1922.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[A few years ago, my lab produced a paper titled “Towards Predicting Collective Performance in Multi-Robot Teams” [1]. I read the paper when I first started my PhD and was immediately impressed. The paper is fundamentally about developing metrics for analysis for multi-robot teams. I have a similar project I am trying to pursue so I figured it would be important to start from the fundamental works in measurement science. This week, I began reading P. W. Bridgman’s work on dimensional analysis [2]. Here are some concepts I have been thinking about in relation to measurements and dimensional analysis.]]></summary></entry><entry><title type="html">Bees, ants, and more general swarms</title><link href="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html" rel="alternate" type="text/html" title="Bees, ants, and more general swarms" /><published>2026-06-12T00:00:00+00:00</published><updated>2026-07-12T00:24:07+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html"><![CDATA[<p>I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by
+<p>[2] P. W. Bridgman, Dimensional Analysis. Yale University Press, 1922.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[A few years ago, my lab produced a paper titled “Towards Predicting Collective Performance in Multi-Robot Teams” [1]. I read the paper when I first started my PhD and was immediately impressed. The paper is fundamentally about developing metrics for analysis for multi-robot teams. I have a similar project I am trying to pursue so I figured it would be important to start from the fundamental works in measurement science. This week, I began reading P. W. Bridgman’s work on dimensional analysis [2]. Here are some concepts I have been thinking about in relation to measurements and dimensional analysis.]]></summary></entry><entry><title type="html">Bees, ants, and more general swarms</title><link href="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html" rel="alternate" type="text/html" title="Bees, ants, and more general swarms" /><published>2026-06-12T00:00:00+00:00</published><updated>2026-07-18T20:34:26+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html"><![CDATA[<p>I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by
 <a href="https://jasonfantl.com/posts/Bee-Swarm/">Jason Fantl</a> where talks about bio-inspired swarming algorithms that could roughly emulate the behavior of bee hive reproduction.</p>
 
 <h2 id="bee-hive-distributed-behaviors">Bee Hive Distributed Behaviors</h2>
@@ -550,7 +733,7 @@ $$h &gt; 0$$</p>
 
 <p>[5] N. F. Britton, N. R. Franks, S. C. Pratt, and T. D. Seeley, “Deciding on a new home: how do honeybees agree?,” Proc. R. Soc. Lond. B, vol. 269, no. 1498, pp. 1383–1388, Jul. 2002, doi: 10.1098/rspb.2002.2001.</p>
 
-<p>[6] B. Prabhakar, K. N. Dektar, and D. M. Gordon, “The Regulation of Ant Colony Foraging Activity without Spatial Information,” PLOS Computational Biology, vol. 8, no. 8, p. e1002670, Aug. 2012, doi: 10.1371/journal.pcbi.1002670.</p>]]></content><author><name></name></author><category term="Multi-Robot-Systems" /><category term="Swarms" /><category term="Bio-inspiration" /><summary type="html"><![CDATA[I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by Jason Fantl where talks about bio-inspired swarming algorithms that could roughly emulate the behavior of bee hive reproduction.]]></summary></entry><entry><title type="html">So what’s the point of this blog anyway?</title><link href="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html" rel="alternate" type="text/html" title="So what’s the point of this blog anyway?" /><published>2026-06-09T00:00:00+00:00</published><updated>2026-07-12T00:24:07+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/09/blog-objective</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html"><![CDATA[<p>I am currently a PhD student. Now that I am done with my requisite classes, my time is largely unstructured. I choose when to work, what to work on, how long to work. Most people would consider that a blessing, which I do in certain ways, but I also recognize that I require some level of structure in my week. Without it, I find myself fluctuating between two extremes. Either I want to be hyper productive all the time, ultimately leading to burning myself out, or I find myself wanting to scroll Youtube or (lately) play Slay the Spire 2 for longer than I probably should. With that said, the objective of this blog is to accomplish a few goals:</p>
+<p>[6] B. Prabhakar, K. N. Dektar, and D. M. Gordon, “The Regulation of Ant Colony Foraging Activity without Spatial Information,” PLOS Computational Biology, vol. 8, no. 8, p. e1002670, Aug. 2012, doi: 10.1371/journal.pcbi.1002670.</p>]]></content><author><name></name></author><category term="Multi-Robot-Systems" /><category term="Swarms" /><category term="Bio-inspiration" /><summary type="html"><![CDATA[I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by Jason Fantl where talks about bio-inspired swarming algorithms that could roughly emulate the behavior of bee hive reproduction.]]></summary></entry><entry><title type="html">So what’s the point of this blog anyway?</title><link href="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html" rel="alternate" type="text/html" title="So what’s the point of this blog anyway?" /><published>2026-06-09T00:00:00+00:00</published><updated>2026-07-18T20:34:26+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/09/blog-objective</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html"><![CDATA[<p>I am currently a PhD student. Now that I am done with my requisite classes, my time is largely unstructured. I choose when to work, what to work on, how long to work. Most people would consider that a blessing, which I do in certain ways, but I also recognize that I require some level of structure in my week. Without it, I find myself fluctuating between two extremes. Either I want to be hyper productive all the time, ultimately leading to burning myself out, or I find myself wanting to scroll Youtube or (lately) play Slay the Spire 2 for longer than I probably should. With that said, the objective of this blog is to accomplish a few goals:</p>
 
 <ol>
   <li>Create structure in my weekly schedule</li>
