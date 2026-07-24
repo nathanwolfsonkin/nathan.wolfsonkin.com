@@ -1,4 +1,256 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://nathan.wolfsonkin.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nathan.wolfsonkin.com/" rel="alternate" type="text/html" /><updated>2026-07-18T20:35:09+00:00</updated><id>https://nathan.wolfsonkin.com/feed.xml</id><title type="html">Nathan Wolf-Sonkin</title><entry><title type="html">Modular Robotics and Metrics</title><link href="https://nathan.wolfsonkin.com/2026/07/17/modular-robotics-and-metrics.html" rel="alternate" type="text/html" title="Modular Robotics and Metrics" /><published>2026-07-17T00:00:00+00:00</published><updated>2026-07-18T20:34:26+00:00</updated><id>https://nathan.wolfsonkin.com/2026/07/17/modular-robotics-and-metrics</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/07/17/modular-robotics-and-metrics.html"><![CDATA[<p>Modular robotics is a exciting field. The idea is that instead of having a single robot built for a single purpose, we can instead use a team of modular robots. These modular robots would be able to work together, connecting and building off of each other to achieve unparalleled adaptability. This is actually a common approach in biology. Cells can be thought of as modular biological entities which form together to perform actions beyond the capability of any individual cell.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://nathan.wolfsonkin.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nathan.wolfsonkin.com/" rel="alternate" type="text/html" /><updated>2026-07-24T19:49:31+00:00</updated><id>https://nathan.wolfsonkin.com/feed.xml</id><title type="html">Nathan Wolf-Sonkin</title><entry><title type="html">Basics of Graph Theory</title><link href="https://nathan.wolfsonkin.com/2026/07/24/basics-of-graph-theory.html" rel="alternate" type="text/html" title="Basics of Graph Theory" /><published>2026-07-24T00:00:00+00:00</published><updated>2026-07-24T19:48:44+00:00</updated><id>https://nathan.wolfsonkin.com/2026/07/24/basics-of-graph-theory</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/07/24/basics-of-graph-theory.html"><![CDATA[<p>Currently, I hold two degrees. A bachelor’s degree in mechanical engineering from New York Institute of Technology and a master’s degree in mechanical engineering from The Cooper Union. Now I am pursuing my PhD in mechanical engineering at Temple University. I am not sure if this is common among other people who hold degrees solely in mechanical engineering, but I somehow never formally learned any graph theory. I am familiar with lots of other disciplines in math: linear algebra, differential equations, probability, etc. I have used graphs to a certain extent, but never formally studied the basics.</p>
+
+<p>Currently I am pursuing a project relating to metric development for modular robotics and I believe that the right level of abstraction for analysis of the set of modular robotic teams may be using a graph representation. To further my goal of unifying the modular robotics field with metrology, I have decided to learn the fundamentals of graph theory so I may be better equipped to tackle this problem. This post is just a review of basic graph theory as I understand it right now. All images and references are attributed to Robert J. Wilson’s Introduction to Graph Theory [1].</p>
+
+<h2 id="graph-theory">Graph Theory</h2>
+
+<p>Graph theory is a field of mathematics centering around points, called vertices, connected to each other via lines, called edges. This general formulation of vertices connected by edges can represent lots of things including, but not limited to, electrical networks, roads, and molecules. Importantly, it is also a very intuitive representation for teams of modular robots. Each robot and connection between robots can be represented as vertices and edges respectively.</p>
+
+<h2 id="basics">Basics</h2>
+
+<p>Graphs are fundamentally defined by two sets: the vertex-set $V(G)$ and the edge-set $E(G)$. $V(G)$ contains all of the vertices of $G$. $E(G)$ contains all of the edges connecting those vertices. The figure below shows a simple graph and a general graph. A simple graph is defined as a graph which contains no loops or multiple edges. A loop is an edge which connects a vertex to itself. Multiple edges are edges which connect the same vertices in the same graph.</p>
+
+<div class="cols" style="--cols: 2; align-items: center;">
+  
+    
+    <div>
+<figure class="figure">
+  <a class="figure-image" aria-label="A simple graph">
+    <img src="/images/blog/2026-07-24/simple-graph.png" style="
+        width: 100%;
+        max-height: unset;
+      " alt="A simple graph" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;" />
+  </a>
+  
+    <figcaption class="figure-caption">
+      A simple graph
+
+    </figcaption>
+  
+</figure>
+
+</div>
+  
+    
+    <div>
+<figure class="figure">
+  <a class="figure-image" aria-label="A general graph">
+    <img src="/images/blog/2026-07-24/general-graph.png" style="
+        width: 100%;
+        max-height: unset;
+      " alt="A general graph" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;" />
+  </a>
+  
+    <figcaption class="figure-caption">
+      A general graph
+
+    </figcaption>
+  
+</figure>
+
+</div>
+  
+</div>
+
+<h3 id="isomorphism">Isomorphism</h3>
+
+<p>While graphs are commonly expressed as points connected by lines on a 2D plane, this is a representation of convenience. Unless explicitly stated, vertices have no position, nor relation to any other vertices besides the connection via an edge. For this reason multiple graphs can be said to be isomorphic if they could represent the same graph. The figure below shows two seemingly different graphs. The vertices of these graphs could be labeled such that all of the edges connect the same vertices, therefore the graphs are isomorphic.</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="Isomorphic graphs">
+    <img src="/images/blog/2026-07-24/isomorphic.png" style="
+        width: 100%;
+        max-height: unset;
+      " alt="Isomorphic graphs" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;" />
+  </a>
+  
+    <figcaption class="figure-caption">
+      Isomorphic graphs
+
+    </figcaption>
+  
+</figure>
+
+<h3 id="adjacency-and-degrees">Adjacency and Degrees</h3>
+
+<p>The degree of a vertex, $\delta(V)$, is the number of edges incident with $V$. Two vertices are said to be adjacent if they are connected by an edge. Two edges are said to be adjacent if they are incident with the same vertex.</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="figure link">
+    <img src="/images/blog/2026-07-24/adjacent.png" style="
+        width: 50%;
+        max-height: unset;
+      " alt="figure image" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;" />
+  </a>
+  
+    <figcaption class="figure-caption">
+      
+
+    </figcaption>
+  
+</figure>
+
+<h3 id="matrix-representations">Matrix Representations</h3>
+
+<p>It is sometimes convenient to be able to represent a graph as a matrix. The adjacency matrix and the incidence matrix are two examples of such. Assume a graph has $n$ labeled vertices and $m$ labeled edges.</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="figure link">
+    <img src="/images/blog/2026-07-24/matrix-rep.png" style="
+        width: 30%;
+        max-height: unset;
+      " alt="figure image" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;" />
+  </a>
+  
+    <figcaption class="figure-caption">
+      
+
+    </figcaption>
+  
+</figure>
+
+<p>The adjacency matrix, $A$, is an $n \times n$ matrix where the $ijth$ column represents the number of connections between vertices $i$ and $j$. The adjacency matrix for the example matrix above is expressed as:</p>
+
+<p>$$A = \begin{bmatrix}0 &amp; 1 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 1 &amp; 2 \\ 0 &amp; 1 &amp; 0 &amp; 1 \\ 1 &amp; 2 &amp; 1 &amp; 0 \end{bmatrix}$$</p>
+
+<p>The incidence matrix, $M$, is an $n \times m$ matrix  where the $ijth$ entry is a binary entry expressing if edge $m$ is connected to vertex $i$ or not. Each column, $j$, of $M$ represents an edge. The rows in an individual column represent the vertices that the edge is connecting. The incidence matrix for the example matrix above is expressed as:</p>
+
+<p>$$M = \begin{bmatrix}1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\ 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \end{bmatrix}$$</p>
+
+<h2 id="connectivity">Connectivity</h2>
+
+<p>One of the big questions in modular robotics that I am interested in tackling is defining reconfigurability. I think it is possible that the connectivity of the representative graph may be critical for creating this definition. There are a few different types of connectivity most of which are based on the idea of a walk.</p>
+
+<h3 id="types-of-walks">Types of Walks</h3>
+
+<p>A walk is a sequence of edges where any two consecutive edges are adjacent or identical. One particular walk for the graph below can be denoted as such:</p>
+
+<p>$$v \rightarrow w \rightarrow x \rightarrow y \rightarrow z \rightarrow z \rightarrow y \rightarrow w $$</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="Example graph">
+    <img src="/images/blog/2026-07-24/walk.png" style="
+        width: 50%;
+        max-height: unset;
+      " alt="Example graph" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;" />
+  </a>
+  
+    <figcaption class="figure-caption">
+      Example graph
+
+    </figcaption>
+  
+</figure>
+
+<p>There are many different classes of walks based on if edges can be repeated, if vertices can be repeated, and if the starting and ending vertices are the same. The table below outlines these classifications</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Required to be closed? (Final vertex = initial vertex)</th>
+      <th>Allows repeated edges?</th>
+      <th>Allows repeated vertices? (excluding first and last)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Walk</td>
+      <td>$\times$</td>
+      <td>$\checkmark$</td>
+      <td>$\checkmark$</td>
+    </tr>
+    <tr>
+      <td>Trail</td>
+      <td>$\times$</td>
+      <td>$\times$</td>
+      <td>$\checkmark$</td>
+    </tr>
+    <tr>
+      <td>Path</td>
+      <td>$\times$</td>
+      <td>$\times$</td>
+      <td>$\times$</td>
+    </tr>
+    <tr>
+      <td>Cycle</td>
+      <td>$\checkmark$</td>
+      <td>$\times$</td>
+      <td>$\times$</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="length">Length</h3>
+
+<p>The length of a walk is the magnitude associated with the walk. If the graph is weighted, each edge adds the value of its weight. In the case of an unweighted graph, the walk length is equal to the number of edges.</p>
+
+<h3 id="connectivity-1">Connectivity</h3>
+
+<p>The “connectedness” of a graph can be measured by the number of edges required to be removed to disconnect the graph. Any set of edges that disconnects a graph is called a disconnecting set. A minimal disconnecting set that contains no proper subset that is also a disconnecting set is a cutset. Take the example graph below:</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="figure link">
+    <img src="/images/blog/2026-07-24/disconnecting-set.png" style="
+        width: 50%;
+        max-height: unset;
+      " alt="figure image" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;" />
+  </a>
+  
+    <figcaption class="figure-caption">
+      
+
+    </figcaption>
+  
+</figure>
+
+<p>Some disconnecting sets of this graph include:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>$ { e_1, e_2 } $</td>
+      <td>Cutset</td>
+    </tr>
+    <tr>
+      <td>$ { e_3,e_6,e_7,e_8 } $</td>
+      <td>Cutset</td>
+    </tr>
+    <tr>
+      <td>$ { e_1,e_2,e_5 } $</td>
+      <td>Disconnecting Set</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Similarly we can define a separating set as a set of vertices whose removal disconnects the graph. Some examples of separating sets in this graph include:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>$ { w, x } $</td>
+      <td>Separating Set</td>
+    </tr>
+    <tr>
+      <td>$ { w, x, y } $</td>
+      <td>Separating Set</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="connectivity-2">Connectivity</h3>
+
+<p>The edge connectivity of a graph, $\lambda(G)$, is defined as the size of the smallest cutset. The edge connectivity of the example graph above is $\lambda(G)=2$. It can also be said that G is 2-edge-connected.</p>
+
+<p>Similarly, vertex connectivity, $\kappa(G)$, is defined as the smallest separating set. The vertex connectivity of the example graph above is $\kappa(G)=2$. It can also be said to be 2-vertex-connected.</p>
+
+<p>For any connected graph:</p>
+
+<p>$$\kappa(G) \leq \lambda(G) \leq \delta(G) $$</p>
+
+<h2 id="citations">Citations</h2>
+
+<p>[1] R. J. Wilson, Introduction to graph theory. 5th Edition</p>]]></content><author><name></name></author><category term="graph theory" /><summary type="html"><![CDATA[Currently, I hold two degrees. A bachelor’s degree in mechanical engineering from New York Institute of Technology and a master’s degree in mechanical engineering from The Cooper Union. Now I am pursuing my PhD in mechanical engineering at Temple University. I am not sure if this is common among other people who hold degrees solely in mechanical engineering, but I somehow never formally learned any graph theory. I am familiar with lots of other disciplines in math: linear algebra, differential equations, probability, etc. I have used graphs to a certain extent, but never formally studied the basics.]]></summary></entry><entry><title type="html">Modular Robotics and Metrics</title><link href="https://nathan.wolfsonkin.com/2026/07/17/modular-robotics-and-metrics.html" rel="alternate" type="text/html" title="Modular Robotics and Metrics" /><published>2026-07-17T00:00:00+00:00</published><updated>2026-07-24T19:48:44+00:00</updated><id>https://nathan.wolfsonkin.com/2026/07/17/modular-robotics-and-metrics</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/07/17/modular-robotics-and-metrics.html"><![CDATA[<p>Modular robotics is a exciting field. The idea is that instead of having a single robot built for a single purpose, we can instead use a team of modular robots. These modular robots would be able to work together, connecting and building off of each other to achieve unparalleled adaptability. This is actually a common approach in biology. Cells can be thought of as modular biological entities which form together to perform actions beyond the capability of any individual cell.</p>
 
 <p>A particular part of modular robotics that I have found interesting as of late is the self-reconfiguring modular robot. The idea here is that a team of modular robots could change and adapt to accomplish whatever task they are currently pursuing. This is a concept that is not new in science fiction. While I am sure there are older examples, my favorite is from the Pixar movie Big Hero 6. Here, modular robots called microbots are invented. These microbots can work together to form massive structures.</p>
 
@@ -181,7 +433,7 @@
 
 <p>[5] L. A. T. Vu, Z. Bi, D. Mueller, and N. Younis, “Modular Self-Configurable Robots—The State of the Art,” Actuators, vol. 12, no. 9, p. 361, Sep. 2023, doi: 10.3390/act12090361.</p>
 
-<p>[6] J. Liu, X. Zhang, and G. Hao, “Survey on research and development of reconfigurable modular robots,” Advances in Mechanical Engineering, vol. 8, no. 8, p. 1687814016659597, Aug. 2016, doi: 10.1177/1687814016659597.</p>]]></content><author><name></name></author><category term="Multi-Robot Systems" /><category term="Dimensional Analysis" /><category term="Modular Robotics" /><summary type="html"><![CDATA[Modular robotics is a exciting field. The idea is that instead of having a single robot built for a single purpose, we can instead use a team of modular robots. These modular robots would be able to work together, connecting and building off of each other to achieve unparalleled adaptability. This is actually a common approach in biology. Cells can be thought of as modular biological entities which form together to perform actions beyond the capability of any individual cell.]]></summary></entry><entry><title type="html">Dimensionless Analysis for Sports Analytics</title><link href="https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics.html" rel="alternate" type="text/html" title="Dimensionless Analysis for Sports Analytics" /><published>2026-07-10T00:00:00+00:00</published><updated>2026-07-18T20:34:26+00:00</updated><id>https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics.html"><![CDATA[<p>The world cup is going on right here in Philadelphia. I figured it would be fun to see how some of the ideas in dimensional analysis that I have been learning about recently are applied in the world of sports analytics. This post is more or less a review of a paper in that space.</p>
+<p>[6] J. Liu, X. Zhang, and G. Hao, “Survey on research and development of reconfigurable modular robots,” Advances in Mechanical Engineering, vol. 8, no. 8, p. 1687814016659597, Aug. 2016, doi: 10.1177/1687814016659597.</p>]]></content><author><name></name></author><category term="Multi-Robot Systems" /><category term="Dimensional Analysis" /><category term="Modular Robotics" /><summary type="html"><![CDATA[Modular robotics is a exciting field. The idea is that instead of having a single robot built for a single purpose, we can instead use a team of modular robots. These modular robots would be able to work together, connecting and building off of each other to achieve unparalleled adaptability. This is actually a common approach in biology. Cells can be thought of as modular biological entities which form together to perform actions beyond the capability of any individual cell.]]></summary></entry><entry><title type="html">Dimensionless Analysis for Sports Analytics</title><link href="https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics.html" rel="alternate" type="text/html" title="Dimensionless Analysis for Sports Analytics" /><published>2026-07-10T00:00:00+00:00</published><updated>2026-07-24T19:48:44+00:00</updated><id>https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics.html"><![CDATA[<p>The world cup is going on right here in Philadelphia. I figured it would be fun to see how some of the ideas in dimensional analysis that I have been learning about recently are applied in the world of sports analytics. This post is more or less a review of a paper in that space.</p>
 
 <p>Julien Blondeau’s work [1] attempts to identify how number of scored goals in field and goal based sports such as soccer and hockey correlate with various parameters of interest. He identifies them as follows:</p>
 
@@ -390,7 +642,7 @@
 </figure>
 
 <h2 id="citations">Citations</h2>
-<p>[1] J. Blondeau, “The influence of field size, goal size and number of players on the average number of goals scored per game in variants of football and hockey: the Pi-theorem applied to team sports,” Journal of Quantitative Analysis in Sports, vol. 17, no. 2, pp. 145–154, Jun. 2021, doi: 10.1515/jqas-2020-0009.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[The world cup is going on right here in Philadelphia. I figured it would be fun to see how some of the ideas in dimensional analysis that I have been learning about recently are applied in the world of sports analytics. This post is more or less a review of a paper in that space.]]></summary></entry><entry><title type="html">Dimensionless Variable Discovery</title><link href="https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery.html" rel="alternate" type="text/html" title="Dimensionless Variable Discovery" /><published>2026-06-26T00:00:00+00:00</published><updated>2026-07-18T20:34:26+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery.html"><![CDATA[<p>I was reading more about dimensional analysis this week. Enjoy.</p>
+<p>[1] J. Blondeau, “The influence of field size, goal size and number of players on the average number of goals scored per game in variants of football and hockey: the Pi-theorem applied to team sports,” Journal of Quantitative Analysis in Sports, vol. 17, no. 2, pp. 145–154, Jun. 2021, doi: 10.1515/jqas-2020-0009.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[The world cup is going on right here in Philadelphia. I figured it would be fun to see how some of the ideas in dimensional analysis that I have been learning about recently are applied in the world of sports analytics. This post is more or less a review of a paper in that space.]]></summary></entry><entry><title type="html">Dimensionless Variable Discovery</title><link href="https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery.html" rel="alternate" type="text/html" title="Dimensionless Variable Discovery" /><published>2026-06-26T00:00:00+00:00</published><updated>2026-07-24T19:48:44+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery.html"><![CDATA[<p>I was reading more about dimensional analysis this week. Enjoy.</p>
 
 <h2 id="buckingham-pi-theorem">Buckingham-Pi Theorem</h2>
 
@@ -523,7 +775,7 @@
 
 <p>[2] P. W. Bridgman, Dimensional Analysis. Yale University Press, 1922.</p>
 
-<p>[3] A. A. Sonin, “Department of Mechanical Engineering MIT Cambridge, MA 02139”.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[I was reading more about dimensional analysis this week. Enjoy.]]></summary></entry><entry><title type="html">Dimensional Analysis and Measurement</title><link href="https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement.html" rel="alternate" type="text/html" title="Dimensional Analysis and Measurement" /><published>2026-06-19T00:00:00+00:00</published><updated>2026-07-18T20:34:26+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement.html"><![CDATA[<p>A few years ago, my lab produced a paper titled “Towards Predicting Collective Performance in Multi-Robot Teams” [1]. I read the paper when I first started my PhD and was immediately impressed. The paper is fundamentally about developing metrics for analysis for multi-robot teams. I have a similar project I am trying to pursue so I figured it would be important to start from the fundamental works in measurement science. This week, I began reading P. W. Bridgman’s work on dimensional analysis [2]. Here are some concepts I have been thinking about in relation to measurements and dimensional analysis.</p>
+<p>[3] A. A. Sonin, “Department of Mechanical Engineering MIT Cambridge, MA 02139”.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[I was reading more about dimensional analysis this week. Enjoy.]]></summary></entry><entry><title type="html">Dimensional Analysis and Measurement</title><link href="https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement.html" rel="alternate" type="text/html" title="Dimensional Analysis and Measurement" /><published>2026-06-19T00:00:00+00:00</published><updated>2026-07-24T19:48:44+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement.html"><![CDATA[<p>A few years ago, my lab produced a paper titled “Towards Predicting Collective Performance in Multi-Robot Teams” [1]. I read the paper when I first started my PhD and was immediately impressed. The paper is fundamentally about developing metrics for analysis for multi-robot teams. I have a similar project I am trying to pursue so I figured it would be important to start from the fundamental works in measurement science. This week, I began reading P. W. Bridgman’s work on dimensional analysis [2]. Here are some concepts I have been thinking about in relation to measurements and dimensional analysis.</p>
 
 <h2 id="arbitrary-dimensions">Arbitrary Dimensions</h2>
 <p>Assume I want to compare the weights between myself and my wife. We could go to scales and measure ourselves to find the numerical quantity associated with our weight in a particular unit system. For example, I weigh 180 pounds while my wife weighs 120. The actual number here is somewhat arbitrary. If we chose instead to measure in metric units, we would instead say that I weigh 81 kilograms while my wife weighs 54 kilograms. The important idea here is not the numerical quantity, but rather the relationship between the quantities. We can choose whatever reference point we desire as a unit of weight. But no matter what reference point is chosen, I will still weigh 1.5x my wife’s weight. That ratio between our weights is the reality that will exist in any measurement system.</p>
@@ -673,7 +925,7 @@ $$h &gt; 0$$</p>
 
 <p>[1] P. Xin, Z. Xie, and P. Dames, “Towards Predicting Collective Performance in Multi-Robot Teams,” IEEE Trans. Robot., vol. 41, pp. 5229–5245, 2025, doi: 10.1109/TRO.2025.3600164.</p>
 
-<p>[2] P. W. Bridgman, Dimensional Analysis. Yale University Press, 1922.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[A few years ago, my lab produced a paper titled “Towards Predicting Collective Performance in Multi-Robot Teams” [1]. I read the paper when I first started my PhD and was immediately impressed. The paper is fundamentally about developing metrics for analysis for multi-robot teams. I have a similar project I am trying to pursue so I figured it would be important to start from the fundamental works in measurement science. This week, I began reading P. W. Bridgman’s work on dimensional analysis [2]. Here are some concepts I have been thinking about in relation to measurements and dimensional analysis.]]></summary></entry><entry><title type="html">Bees, ants, and more general swarms</title><link href="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html" rel="alternate" type="text/html" title="Bees, ants, and more general swarms" /><published>2026-06-12T00:00:00+00:00</published><updated>2026-07-18T20:34:26+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html"><![CDATA[<p>I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by
+<p>[2] P. W. Bridgman, Dimensional Analysis. Yale University Press, 1922.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[A few years ago, my lab produced a paper titled “Towards Predicting Collective Performance in Multi-Robot Teams” [1]. I read the paper when I first started my PhD and was immediately impressed. The paper is fundamentally about developing metrics for analysis for multi-robot teams. I have a similar project I am trying to pursue so I figured it would be important to start from the fundamental works in measurement science. This week, I began reading P. W. Bridgman’s work on dimensional analysis [2]. Here are some concepts I have been thinking about in relation to measurements and dimensional analysis.]]></summary></entry><entry><title type="html">Bees, ants, and more general swarms</title><link href="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html" rel="alternate" type="text/html" title="Bees, ants, and more general swarms" /><published>2026-06-12T00:00:00+00:00</published><updated>2026-07-24T19:48:44+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/12/bees-ants-and-more-general-swarms.html"><![CDATA[<p>I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by
 <a href="https://jasonfantl.com/posts/Bee-Swarm/">Jason Fantl</a> where talks about bio-inspired swarming algorithms that could roughly emulate the behavior of bee hive reproduction.</p>
 
 <h2 id="bee-hive-distributed-behaviors">Bee Hive Distributed Behaviors</h2>
@@ -733,7 +985,7 @@ $$h &gt; 0$$</p>
 
 <p>[5] N. F. Britton, N. R. Franks, S. C. Pratt, and T. D. Seeley, “Deciding on a new home: how do honeybees agree?,” Proc. R. Soc. Lond. B, vol. 269, no. 1498, pp. 1383–1388, Jul. 2002, doi: 10.1098/rspb.2002.2001.</p>
 
-<p>[6] B. Prabhakar, K. N. Dektar, and D. M. Gordon, “The Regulation of Ant Colony Foraging Activity without Spatial Information,” PLOS Computational Biology, vol. 8, no. 8, p. e1002670, Aug. 2012, doi: 10.1371/journal.pcbi.1002670.</p>]]></content><author><name></name></author><category term="Multi-Robot-Systems" /><category term="Swarms" /><category term="Bio-inspiration" /><summary type="html"><![CDATA[I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by Jason Fantl where talks about bio-inspired swarming algorithms that could roughly emulate the behavior of bee hive reproduction.]]></summary></entry><entry><title type="html">So what’s the point of this blog anyway?</title><link href="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html" rel="alternate" type="text/html" title="So what’s the point of this blog anyway?" /><published>2026-06-09T00:00:00+00:00</published><updated>2026-07-18T20:34:26+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/09/blog-objective</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html"><![CDATA[<p>I am currently a PhD student. Now that I am done with my requisite classes, my time is largely unstructured. I choose when to work, what to work on, how long to work. Most people would consider that a blessing, which I do in certain ways, but I also recognize that I require some level of structure in my week. Without it, I find myself fluctuating between two extremes. Either I want to be hyper productive all the time, ultimately leading to burning myself out, or I find myself wanting to scroll Youtube or (lately) play Slay the Spire 2 for longer than I probably should. With that said, the objective of this blog is to accomplish a few goals:</p>
+<p>[6] B. Prabhakar, K. N. Dektar, and D. M. Gordon, “The Regulation of Ant Colony Foraging Activity without Spatial Information,” PLOS Computational Biology, vol. 8, no. 8, p. e1002670, Aug. 2012, doi: 10.1371/journal.pcbi.1002670.</p>]]></content><author><name></name></author><category term="Multi-Robot-Systems" /><category term="Swarms" /><category term="Bio-inspiration" /><summary type="html"><![CDATA[I spent a good bit of this week reading about swarms. This was in part sparked by a good blog post I read by Jason Fantl where talks about bio-inspired swarming algorithms that could roughly emulate the behavior of bee hive reproduction.]]></summary></entry><entry><title type="html">So what’s the point of this blog anyway?</title><link href="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html" rel="alternate" type="text/html" title="So what’s the point of this blog anyway?" /><published>2026-06-09T00:00:00+00:00</published><updated>2026-07-24T19:48:44+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/09/blog-objective</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/09/blog-objective.html"><![CDATA[<p>I am currently a PhD student. Now that I am done with my requisite classes, my time is largely unstructured. I choose when to work, what to work on, how long to work. Most people would consider that a blessing, which I do in certain ways, but I also recognize that I require some level of structure in my week. Without it, I find myself fluctuating between two extremes. Either I want to be hyper productive all the time, ultimately leading to burning myself out, or I find myself wanting to scroll Youtube or (lately) play Slay the Spire 2 for longer than I probably should. With that said, the objective of this blog is to accomplish a few goals:</p>
 
 <ol>
   <li>Create structure in my weekly schedule</li>

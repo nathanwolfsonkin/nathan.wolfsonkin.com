@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en" data-dark="false">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!--
+  put your analytics (e.g. Google Analytics) tracking code here
+-->
+
+  <!--
+  put your search engine verification (e.g. Google Search Console) tag here
+-->
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Basics of Graph Theory | Nathan Wolf-Sonkin</title>
+
+<link rel="icon" href="/images/icon.png">
+
+<meta name="title" content="Basics of Graph Theory">
+<meta name="description" content="">
+
+<meta property="og:title" content="Basics of Graph Theory">
+<meta property="og:site_title" content="Nathan Wolf-Sonkin">
+<meta property="og:description" content="">
+<meta property="og:url" content="https://nathan.wolfsonkin.com">
+<meta property="og:image" content="/images/share.jpg">
+<meta property="og:locale" content="en_US">
+
+<meta property="twitter:title" content="Basics of Graph Theory">
+<meta property="twitter:description" content="">
+<meta property="twitter:url" content="https://nathan.wolfsonkin.com">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:image" content="/images/share.jpg">
+
+
+  <meta property="og:type" content="website">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "WebSite",
+    
+    "name": "Basics of Graph Theory",
+    "description": "",
+    "headline": "Basics of Graph Theory",
+    "publisher": {
+      "@type": "Organization",
+      "logo": { "@type": "ImageObject", "url": "/images/icon.png" }
+    },
+    "url": "https://nathan.wolfsonkin.com"
+  }
+</script>
+
+<link rel="alternate" type="application/rss+xml" href="https://nathan.wolfsonkin.com/feed.xml">
+
+  <!-- Google Fonts -->
+<!-- automatically get url from fonts used in theme file -->
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?display=swap&&family=Barlow:ital,wght@0,200;0,400;0,500;0,600;1,200;1,400;1,500;1,600&amp;family=Roboto+Mono:ital,wght@0,200;0,400;0,500;0,600;1,200;1,400;1,500;1,600" rel="stylesheet">
+
+<!-- Font Awesome icons (load asynchronously due to size) -->
+
+<link href="https://use.fontawesome.com/releases/v6.7.0/css/all.css" rel="stylesheet" media="none" onload="this.removeAttribute('media'); this.onload = null;">
+<noscript>
+  <link href="https://use.fontawesome.com/releases/v6.7.0/css/all.css" rel="stylesheet">
+</noscript>
+
+  <!-- third party styles -->
+<!-- https://stylishthemes.github.io/Syntax-Themes/pygments/ -->
+<link href="https://cdn.jsdelivr.net/gh/StylishThemes/Syntax-Themes/pygments/css-github/pygments-tomorrow-night-eighties.css" rel="stylesheet">
+
+<!-- include all sass in styles folder -->
+
+
+  
+    <link href="/_styles/-theme.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/alert.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/all.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/anchor.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/background.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/body.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/bold.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/button.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/card.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/checkbox.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/citation.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/code.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/cols.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/dark-toggle.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/details.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/feature.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/figure.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/float.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/font.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/footer.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/form.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/grid.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/header.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/heading.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/highlight.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/icon.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/image.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/link.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/list.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/main.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/paragraph.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/portrait.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/post-excerpt.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/post-info.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/post-nav.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/quote.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/rule.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/search-box.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/search-info.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/section.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/table.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/tags.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/textbox.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/tooltip.css" rel="stylesheet">
+  
+
+  
+    <link href="/_styles/util.css" rel="stylesheet">
+  
+
+
+<!-- include all css in styles folder -->
+
+
+
+  <!-- third party scripts -->
+<script src="https://unpkg.com/@popperjs/core@2" defer></script>
+<script src="https://unpkg.com/tippy.js@6" defer></script>
+<script src="https://unpkg.com/mark.js@8" defer></script>
+
+<!-- include all js in scripts folder -->
+
+
+  <script src="/_scripts/anchors.js"></script>
+
+  <script src="/_scripts/dark-mode.js"></script>
+
+  <script src="/_scripts/fetch-tags.js"></script>
+
+  <script src="/_scripts/search.js"></script>
+
+  <script src="/_scripts/site-search.js"></script>
+
+  <script src="/_scripts/table-wrap.js"></script>
+
+  <script src="/_scripts/tooltip.js"></script>
+
+
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+  <body>
+    
+
+
+
+
+
+
+
+<header class="background" style="--image: url('/images/background.jpg')" data-dark="true">
+  <a href="/" class="home">
+    
+      <span class="logo">
+        
+          <img src="/images/logo.png" alt="logo">
+        
+      </span>
+    
+    
+      <span class="title-text">
+        
+          <span class="title">Nathan Wolf-Sonkin</span>
+        
+        
+      </span>
+    
+  </a>
+
+  <input class="nav-toggle" type="checkbox" aria-label="show/hide nav">
+
+  <nav>
+    
+
+    
+        
+      
+
+      <!-- Normal page nav item -->
+      <a href="/research/" data-tooltip="">
+        Research
+      </a>
+
+    
+        
+      
+
+      <!-- Normal page nav item -->
+      <a href="/projects/" data-tooltip="">
+        Projects
+      </a>
+
+    
+        
+      
+
+      <!-- Normal page nav item -->
+      <a href="/blog/" data-tooltip="">
+        Blog
+      </a>
+
+    
+        
+          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+            Resume
+          </a>
+        
+      
+
+      <!-- Normal page nav item -->
+      <a href="/contact/" data-tooltip="">
+        Contact
+      </a>
+
+    
+      
+    
+  </nav>
+</header>
+
+    <main>
+      <!--
+  modify main content of page:
+  - add section breaks
+  - attach section properties
+  - filter out blank sections
+-->
+
+
+
+
+
+
+  
+  
+  
+
+  <section class="background" data-size="1">
+    <!--
+  <background></background>
+  <dark></dark>
+  <size>1</size>
+-->
+
+
+<h1 class="center">Basics of Graph Theory</h1>
+
+<div class="post-info">
+  
+
+  
+  
+
+  
+    <span data-tooltip="">
+      <i class="icon fa-regular fa-calendar"></i>
+      <span>July 24, 2026</span>
+    </span>
+  
+  
+  
+</div>
+
+
+  
+
+
+  <div class="tags">
+    
+      <a class="tag">
+        graph-theory
+      </a>
+    
+  </div>
+  </section>
+
+  
+  
+  
+
+  <section class="background" data-size="page">
+    <!--
+  <background></background>
+  <dark></dark>
+  <size></size>
+-->
+
+
+<p>Currently, I hold two degrees. A bachelor’s degree in mechanical engineering from New York Institute of Technology and a master’s degree in mechanical engineering from The Cooper Union. Now I am pursuing my PhD in mechanical engineering at Temple University. I am not sure if this is common among other people who hold degrees solely in mechanical engineering, but I somehow never formally learned any graph theory. I am familiar with lots of other disciplines in math: linear algebra, differential equations, probability, etc. I have used graphs to a certain extent, but never formally studied the basics.</p>
+
+<p>Currently I am pursuing a project relating to metric development for modular robotics and I believe that the right level of abstraction for analysis of the set of modular robotic teams may be using a graph representation. To further my goal of unifying the modular robotics field with metrology, I have decided to learn the fundamentals of graph theory so I may be better equipped to tackle this problem. This post is just a review of basic graph theory as I understand it right now. All images and references are attributed to Robert J. Wilson’s Introduction to Graph Theory [1].</p>
+
+<h2 id="graph-theory">Graph Theory</h2>
+
+<p>Graph theory is a field of mathematics centering around points, called vertices, connected to each other via lines, called edges. This general formulation of vertices connected by edges can represent lots of things including, but not limited to, electrical networks, roads, and molecules. Importantly, it is also a very intuitive representation for teams of modular robots. Each robot and connection between robots can be represented as vertices and edges respectively.</p>
+
+<h2 id="basics">Basics</h2>
+
+<p>Graphs are fundamentally defined by two sets: the vertex-set $V(G)$ and the edge-set $E(G)$. $V(G)$ contains all of the vertices of $G$. $E(G)$ contains all of the edges connecting those vertices. The figure below shows a simple graph and a general graph. A simple graph is defined as a graph which contains no loops or multiple edges. A loop is an edge which connects a vertex to itself. Multiple edges are edges which connect the same vertices in the same graph.</p>
+
+<div class="cols" style="--cols: 2; align-items: center;">
+  
+    
+    <div>
+<figure class="figure">
+  <a class="figure-image" aria-label="A simple graph">
+    <img src="/images/blog/2026-07-24/simple-graph.png" style="
+        width: 100%;
+        max-height: unset;
+      " alt="A simple graph" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+  </a>
+  
+    <figcaption class="figure-caption">
+      A simple graph
+
+    </figcaption>
+  
+</figure>
+
+</div>
+  
+    
+    <div>
+<figure class="figure">
+  <a class="figure-image" aria-label="A general graph">
+    <img src="/images/blog/2026-07-24/general-graph.png" style="
+        width: 100%;
+        max-height: unset;
+      " alt="A general graph" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+  </a>
+  
+    <figcaption class="figure-caption">
+      A general graph
+
+    </figcaption>
+  
+</figure>
+
+</div>
+  
+</div>
+
+<h3 id="isomorphism">Isomorphism</h3>
+
+<p>While graphs are commonly expressed as points connected by lines on a 2D plane, this is a representation of convenience. Unless explicitly stated, vertices have no position, nor relation to any other vertices besides the connection via an edge. For this reason multiple graphs can be said to be isomorphic if they could represent the same graph. The figure below shows two seemingly different graphs. The vertices of these graphs could be labeled such that all of the edges connect the same vertices, therefore the graphs are isomorphic.</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="Isomorphic graphs">
+    <img src="/images/blog/2026-07-24/isomorphic.png" style="
+        width: 100%;
+        max-height: unset;
+      " alt="Isomorphic graphs" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+  </a>
+  
+    <figcaption class="figure-caption">
+      Isomorphic graphs
+
+    </figcaption>
+  
+</figure>
+
+<h3 id="adjacency-and-degrees">Adjacency and Degrees</h3>
+
+<p>The degree of a vertex, $\delta(V)$, is the number of edges incident with $V$. Two vertices are said to be adjacent if they are connected by an edge. Two edges are said to be adjacent if they are incident with the same vertex.</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="figure link">
+    <img src="/images/blog/2026-07-24/adjacent.png" style="
+        width: 50%;
+        max-height: unset;
+      " alt="figure image" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+  </a>
+  
+    <figcaption class="figure-caption">
+      
+
+    </figcaption>
+  
+</figure>
+
+<h3 id="matrix-representations">Matrix Representations</h3>
+
+<p>It is sometimes convenient to be able to represent a graph as a matrix. The adjacency matrix and the incidence matrix are two examples of such. Assume a graph has $n$ labeled vertices and $m$ labeled edges.</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="figure link">
+    <img src="/images/blog/2026-07-24/matrix-rep.png" style="
+        width: 30%;
+        max-height: unset;
+      " alt="figure image" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+  </a>
+  
+    <figcaption class="figure-caption">
+      
+
+    </figcaption>
+  
+</figure>
+
+<p>The adjacency matrix, $A$, is an $n \times n$ matrix where the $ijth$ column represents the number of connections between vertices $i$ and $j$. The adjacency matrix for the example matrix above is expressed as:</p>
+
+<p>$$A = \begin{bmatrix}0 &amp; 1 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 1 &amp; 2 \\ 0 &amp; 1 &amp; 0 &amp; 1 \\ 1 &amp; 2 &amp; 1 &amp; 0 \end{bmatrix}$$</p>
+
+<p>The incidence matrix, $M$, is an $n \times m$ matrix  where the $ijth$ entry is a binary entry expressing if edge $m$ is connected to vertex $i$ or not. Each column, $j$, of $M$ represents an edge. The rows in an individual column represent the vertices that the edge is connecting. The incidence matrix for the example matrix above is expressed as:</p>
+
+<p>$$M = \begin{bmatrix}1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\ 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \end{bmatrix}$$</p>
+
+<h2 id="connectivity">Connectivity</h2>
+
+<p>One of the big questions in modular robotics that I am interested in tackling is defining reconfigurability. I think it is possible that the connectivity of the representative graph may be critical for creating this definition. There are a few different types of connectivity most of which are based on the idea of a walk.</p>
+
+<h3 id="types-of-walks">Types of Walks</h3>
+
+<p>A walk is a sequence of edges where any two consecutive edges are adjacent or identical. One particular walk for the graph below can be denoted as such:</p>
+
+<p>$$v \rightarrow w \rightarrow x \rightarrow y \rightarrow z \rightarrow z \rightarrow y \rightarrow w $$</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="Example graph">
+    <img src="/images/blog/2026-07-24/walk.png" style="
+        width: 50%;
+        max-height: unset;
+      " alt="Example graph" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+  </a>
+  
+    <figcaption class="figure-caption">
+      Example graph
+
+    </figcaption>
+  
+</figure>
+
+<p>There are many different classes of walks based on if edges can be repeated, if vertices can be repeated, and if the starting and ending vertices are the same. The table below outlines these classifications</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Required to be closed? (Final vertex = initial vertex)</th>
+      <th>Allows repeated edges?</th>
+      <th>Allows repeated vertices? (excluding first and last)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Walk</td>
+      <td>$\times$</td>
+      <td>$\checkmark$</td>
+      <td>$\checkmark$</td>
+    </tr>
+    <tr>
+      <td>Trail</td>
+      <td>$\times$</td>
+      <td>$\times$</td>
+      <td>$\checkmark$</td>
+    </tr>
+    <tr>
+      <td>Path</td>
+      <td>$\times$</td>
+      <td>$\times$</td>
+      <td>$\times$</td>
+    </tr>
+    <tr>
+      <td>Cycle</td>
+      <td>$\checkmark$</td>
+      <td>$\times$</td>
+      <td>$\times$</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="length">Length</h3>
+
+<p>The length of a walk is the magnitude associated with the walk. If the graph is weighted, each edge adds the value of its weight. In the case of an unweighted graph, the walk length is equal to the number of edges.</p>
+
+<h3 id="connectivity-1">Connectivity</h3>
+
+<p>The “connectedness” of a graph can be measured by the number of edges required to be removed to disconnect the graph. Any set of edges that disconnects a graph is called a disconnecting set. A minimal disconnecting set that contains no proper subset that is also a disconnecting set is a cutset. Take the example graph below:</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="figure link">
+    <img src="/images/blog/2026-07-24/disconnecting-set.png" style="
+        width: 50%;
+        max-height: unset;
+      " alt="figure image" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+  </a>
+  
+    <figcaption class="figure-caption">
+      
+
+    </figcaption>
+  
+</figure>
+
+<p>Some disconnecting sets of this graph include:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>$ { e_1, e_2 } $</td>
+      <td>Cutset</td>
+    </tr>
+    <tr>
+      <td>$ { e_3,e_6,e_7,e_8 } $</td>
+      <td>Cutset</td>
+    </tr>
+    <tr>
+      <td>$ { e_1,e_2,e_5 } $</td>
+      <td>Disconnecting Set</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Similarly we can define a separating set as a set of vertices whose removal disconnects the graph. Some examples of separating sets in this graph include:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>$ { w, x } $</td>
+      <td>Separating Set</td>
+    </tr>
+    <tr>
+      <td>$ { w, x, y } $</td>
+      <td>Separating Set</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="connectivity-2">Connectivity</h3>
+
+<p>The edge connectivity of a graph, $\lambda(G)$, is defined as the size of the smallest cutset. The edge connectivity of the example graph above is $\lambda(G)=2$. It can also be said that G is 2-edge-connected.</p>
+
+<p>Similarly, vertex connectivity, $\kappa(G)$, is defined as the smallest separating set. The vertex connectivity of the example graph above is $\kappa(G)=2$. It can also be said to be 2-vertex-connected.</p>
+
+<p>For any connected graph:</p>
+
+<p>$$\kappa(G) \leq \lambda(G) \leq \delta(G) $$</p>
+
+<h2 id="citations">Citations</h2>
+
+<p>[1] R. J. Wilson, Introduction to graph theory. 5th Edition</p>
+
+
+<div class="post-nav">
+  <span>
+    
+      <i class="icon fa-solid fa-angle-left"></i> Previous post<br>
+      <a href="/2026/07/17/modular-robotics-and-metrics.html">
+        Modular Robotics and Metrics
+      </a>
+    
+  </span>
+  <span>
+    
+  </span>
+</div>
+  </section>
+
+
+    </main>
+    
+
+
+<footer class="background" style="--image: url('/images/background.jpg')" data-dark="true" data-size="wide">
+  <!--
+    <div>
+      Extra details like contact info or address
+    </div>
+  -->
+
+  <div>
+    
+      
+      
+      
+
+
+
+  <div class="button-wrapper">
+    <a class="button" href="mailto:nathanwolfsonkin@gmail.com" target="_blank" rel="noopener noreferrer" data-tooltip="Email" data-style="bare" aria-label="Email">
+      <i class="icon fa-solid fa-envelope"></i>
+      
+    </a>
+  </div>
+
+
+    
+      
+      
+      
+
+
+
+  <div class="button-wrapper">
+    <a class="button" href="https://www.linkedin.com/in/nathan-wolf-sonkin" target="_blank" rel="noopener noreferrer" data-tooltip="LinkedIn" data-style="bare" aria-label="LinkedIn">
+      <i class="icon fa-brands fa-linkedin"></i>
+      
+    </a>
+  </div>
+
+
+    
+      
+      
+      
+
+
+
+  <div class="button-wrapper">
+    <a class="button" href="https://scholar.google.com/citations?user=XIwHqR8AAAAJ" target="_blank" rel="noopener noreferrer" data-tooltip="Google Scholar" data-style="bare" aria-label="Google Scholar">
+      <i class="icon fa-brands fa-google"></i>
+      
+    </a>
+  </div>
+
+
+    
+  </div>
+
+  <!-- <input
+    type="checkbox"
+    class="dark-toggle"
+    data-tooltip="Dark mode"
+    aria-label="toggle dark mode"
+    oninput="onDarkToggleChange(event)"
+  > -->
+</footer>
+
+  </body>
+</html>
