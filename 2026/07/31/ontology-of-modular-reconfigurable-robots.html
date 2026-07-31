@@ -43,21 +43,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Basics of Graph Theory | Nathan Wolf-Sonkin</title>
+<title>Ontology of Modular Reconfigurable Robots and Representations as Graphs | Nathan Wolf-Sonkin</title>
 
 <link rel="icon" href="/images/icon.png">
 
-<meta name="title" content="Basics of Graph Theory">
+<meta name="title" content="Ontology of Modular Reconfigurable Robots and Representations as Graphs">
 <meta name="description" content="">
 
-<meta property="og:title" content="Basics of Graph Theory">
+<meta property="og:title" content="Ontology of Modular Reconfigurable Robots and Representations as Graphs">
 <meta property="og:site_title" content="Nathan Wolf-Sonkin">
 <meta property="og:description" content="">
 <meta property="og:url" content="https://nathan.wolfsonkin.com">
 <meta property="og:image" content="/images/share.jpg">
 <meta property="og:locale" content="en_US">
 
-<meta property="twitter:title" content="Basics of Graph Theory">
+<meta property="twitter:title" content="Ontology of Modular Reconfigurable Robots and Representations as Graphs">
 <meta property="twitter:description" content="">
 <meta property="twitter:url" content="https://nathan.wolfsonkin.com">
 <meta property="twitter:card" content="summary_large_image">
@@ -73,9 +73,9 @@
     
       "@type": "WebSite",
     
-    "name": "Basics of Graph Theory",
+    "name": "Ontology of Modular Reconfigurable Robots and Representations as Graphs",
     "description": "",
-    "headline": "Basics of Graph Theory",
+    "headline": "Ontology of Modular Reconfigurable Robots and Representations as Graphs",
     "publisher": {
       "@type": "Organization",
       "logo": { "@type": "ImageObject", "url": "/images/icon.png" }
@@ -421,7 +421,7 @@
 -->
 
 
-<h1 class="center">Basics of Graph Theory</h1>
+<h1 class="center">Ontology of Modular Reconfigurable Robots and Representations as Graphs</h1>
 
 <div class="post-info">
   
@@ -432,7 +432,7 @@
   
     <span data-tooltip="">
       <i class="icon fa-regular fa-calendar"></i>
-      <span>July 24, 2026</span>
+      <span>July 31, 2026</span>
     </span>
   
   
@@ -444,6 +444,14 @@
 
 
   <div class="tags">
+    
+      <a class="tag">
+        modular-robotics
+      </a>
+    
+      <a class="tag">
+        metrology
+      </a>
     
       <a class="tag">
         graph-theory
@@ -464,17 +472,64 @@
 -->
 
 
-<p>Currently, I hold two degrees. A bachelor’s degree in mechanical engineering from New York Institute of Technology and a master’s degree in mechanical engineering from The Cooper Union. Now I am pursuing my PhD in mechanical engineering at Temple University. I am not sure if this is common among other people who hold degrees solely in mechanical engineering, but I somehow never formally learned any graph theory. I am familiar with lots of other disciplines in math: linear algebra, differential equations, probability, etc. I have used graphs to a certain extent, but never formally studied the basics.</p>
+<p>In my research, my current objective is to define what it means for a modular reconfigurable robot (MRR) to be reconfigurable. The whole field is built around the idea of building reconfigurable robots, but nobody has rigorously defined what that means. To that end, I am currently studying the definitions and differentiations that do exist in this space. A survey paper from 2025 [1] defines the following categories for MRRs:</p>
 
-<p>Currently I am pursuing a project relating to metric development for modular robotics and I believe that the right level of abstraction for analysis of the set of modular robotic teams may be using a graph representation. To further my goal of unifying the modular robotics field with metrology, I have decided to learn the fundamentals of graph theory so I may be better equipped to tackle this problem. This post is just a review of basic graph theory as I understand it right now. All images and references are attributed to Robert J. Wilson’s Introduction to Graph Theory [1].</p>
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Classification</td>
+      <td>The type of structures that the MRR can collectively configure into: Lattice, mobile, truss, chain, or freeform</td>
+    </tr>
+    <tr>
+      <td>Connections per connector</td>
+      <td>one-to-one (mono) or many-to-one (poly)</td>
+    </tr>
+    <tr>
+      <td>Actuator types</td>
+      <td>Joint actuators, spatial actuators, or both</td>
+    </tr>
+    <tr>
+      <td>Homogeneity</td>
+      <td>Homogenous or Heterogenous</td>
+    </tr>
+    <tr>
+      <td>Connection Technology</td>
+      <td>Technology used to connect modules: Mechanical, Magnetic, Velcro, etc.</td>
+    </tr>
+    <tr>
+      <td>Joint degrees of freedom</td>
+      <td>The number of degrees of freedom associated with the joint actuator</td>
+    </tr>
+    <tr>
+      <td>Spatial degrees of freedom</td>
+      <td>The number of degrees of freedom associated with the spatial actuation</td>
+    </tr>
+    <tr>
+      <td>Workspace</td>
+      <td>Number of spatial dimensions which the MRR team works: 2D or 3D</td>
+    </tr>
+    <tr>
+      <td>Self-reconfiguration</td>
+      <td>Can the MRR team reconfigure itself?</td>
+    </tr>
+    <tr>
+      <td>Self assembly</td>
+      <td>Can the MRR team assemble itself?</td>
+    </tr>
+  </tbody>
+</table>
 
-<h2 id="graph-theory">Graph Theory</h2>
+<p>While this is not seen in the literature, I have been thinking about further classifying these groups into two categories: structural and operational. These classifications serve to separate descriptive categories into whether they affect the space of unique graph representations that can be reached (structural) or if they affect how the MRR switches from one configuration to another (operational). The reason for this distinction is that at the graph based abstraction level of an MRR, the mechanisms are irrelevant. If one MRR uses velcro for its connection mechanism, but another uses electromagnets, the graph representing them should be structurally the same. I want to see if reconfigurability can be defined primarily based on the graph representation of MRRs. The next sections will explain the structural categories and how they relate to graphs.</p>
 
-<p>Graph theory is a field of mathematics centering around points, called vertices, connected to each other via lines, called edges. This general formulation of vertices connected by edges can represent lots of things including, but not limited to, electrical networks, roads, and molecules. Importantly, it is also a very intuitive representation for teams of modular robots. Each robot and connection between robots can be represented as vertices and edges respectively.</p>
+<h3 id="graph-representation">Graph Representation</h3>
 
-<h2 id="basics">Basics</h2>
-
-<p>Graphs are fundamentally defined by two sets: the vertex-set $V(G)$ and the edge-set $E(G)$. $V(G)$ contains all of the vertices of $G$. $E(G)$ contains all of the edges connecting those vertices. The figure below shows a simple graph and a general graph. A simple graph is defined as a graph which contains no loops or multiple edges. A loop is an edge which connects a vertex to itself. Multiple edges are edges which connect the same vertices in the same graph.</p>
+<p>It is common to represent MRRs as graphs. In graph representation, each node represents a module and each edge represents a connection between modules. In this sense, most graph representations of MRRs are simple graphs because no two modules should need to have multiple independent connections (multiple edges) and there should be no connection between a module and itself (loops).</p>
 
 <div class="cols" style="--cols: 2; align-items: center;">
   
@@ -482,8 +537,8 @@
     <div>
 <figure class="figure">
   <a class="figure-image" aria-label="A simple graph">
-    <img src="/images/blog/2026-07-24/simple-graph.png" style="
-        width: 100%;
+    <img src="/images/blog/2026-07-31/simple-graph.png" style="
+        width: 80%;
         max-height: unset;
       " alt="A simple graph" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
   </a>
@@ -501,8 +556,8 @@
     <div>
 <figure class="figure">
   <a class="figure-image" aria-label="A general graph">
-    <img src="/images/blog/2026-07-24/general-graph.png" style="
-        width: 100%;
+    <img src="/images/blog/2026-07-31/general-graph.png" style="
+        width: 80%;
         max-height: unset;
       " alt="A general graph" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
   </a>
@@ -518,222 +573,132 @@
   
 </div>
 
-<h3 id="isomorphism">Isomorphism</h3>
+<h3 id="classification">Classification</h3>
 
-<p>While graphs are commonly expressed as points connected by lines on a 2D plane, this is a representation of convenience. Unless explicitly stated, vertices have no position, nor relation to any other vertices besides the connection via an edge. For this reason multiple graphs can be said to be isomorphic if they could represent the same graph. The figure below shows two seemingly different graphs. The vertices of these graphs could be labeled such that all of the edges connect the same vertices, therefore the graphs are isomorphic.</p>
-
-<figure class="figure">
-  <a class="figure-image" aria-label="Isomorphic graphs">
-    <img src="/images/blog/2026-07-24/isomorphic.png" style="
-        width: 100%;
-        max-height: unset;
-      " alt="Isomorphic graphs" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-  </a>
-  
-    <figcaption class="figure-caption">
-      Isomorphic graphs
-
-    </figcaption>
-  
-</figure>
-
-<h3 id="adjacency-and-degrees">Adjacency and Degrees</h3>
-
-<p>The degree of a vertex, $\delta(V)$, is the number of edges incident with $V$. Two vertices are said to be adjacent if they are connected by an edge. Two edges are said to be adjacent if they are incident with the same vertex.</p>
-
-<figure class="figure">
-  <a class="figure-image" aria-label="figure link">
-    <img src="/images/blog/2026-07-24/adjacent.png" style="
-        width: 50%;
-        max-height: unset;
-      " alt="figure image" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-  </a>
-  
-    <figcaption class="figure-caption">
-      
-
-    </figcaption>
-  
-</figure>
-
-<h3 id="matrix-representations">Matrix Representations</h3>
-
-<p>It is sometimes convenient to be able to represent a graph as a matrix. The adjacency matrix and the incidence matrix are two examples of such. Assume a graph has $n$ labeled vertices and $m$ labeled edges.</p>
-
-<figure class="figure">
-  <a class="figure-image" aria-label="figure link">
-    <img src="/images/blog/2026-07-24/matrix-rep.png" style="
-        width: 30%;
-        max-height: unset;
-      " alt="figure image" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-  </a>
-  
-    <figcaption class="figure-caption">
-      
-
-    </figcaption>
-  
-</figure>
-
-<p>The adjacency matrix, $A$, is an $n \times n$ matrix where the $ijth$ column represents the number of connections between vertices $i$ and $j$. The adjacency matrix for the example matrix above is expressed as:</p>
-
-<p>$$A = \begin{bmatrix}0 &amp; 1 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 1 &amp; 2 \\ 0 &amp; 1 &amp; 0 &amp; 1 \\ 1 &amp; 2 &amp; 1 &amp; 0 \end{bmatrix}$$</p>
-
-<p>The incidence matrix, $M$, is an $n \times m$ matrix  where the $ijth$ entry is a binary entry expressing if edge $m$ is connected to vertex $i$ or not. Each column, $j$, of $M$ represents an edge. The rows in an individual column represent the vertices that the edge is connecting. The incidence matrix for the example matrix above is expressed as:</p>
-
-<p>$$M = \begin{bmatrix}1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\ 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \end{bmatrix}$$</p>
-
-<h2 id="connectivity">Connectivity</h2>
-
-<p>One of the big questions in modular robotics that I am interested in tackling is defining reconfigurability. I think it is possible that the connectivity of the representative graph may be critical for creating this definition. There are a few different types of connectivity most of which are based on the idea of a walk.</p>
-
-<h3 id="types-of-walks">Types of Walks</h3>
-
-<p>A walk is a sequence of edges where any two consecutive edges are adjacent or identical. One particular walk for the graph below can be denoted as such:</p>
-
-<p>$$v \rightarrow w \rightarrow x \rightarrow y \rightarrow z \rightarrow z \rightarrow y \rightarrow w $$</p>
-
-<figure class="figure">
-  <a class="figure-image" aria-label="Example graph">
-    <img src="/images/blog/2026-07-24/walk.png" style="
-        width: 50%;
-        max-height: unset;
-      " alt="Example graph" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-  </a>
-  
-    <figcaption class="figure-caption">
-      Example graph
-
-    </figcaption>
-  
-</figure>
-
-<p>There are many different classes of walks based on if edges can be repeated, if vertices can be repeated, and if the starting and ending vertices are the same. The table below outlines these classifications</p>
+<p>This is likely the most interesting category. The idea here is that MRRs can largely fit into one or more of the following categories: lattice, chain, mobile, truss, or freeform. The table below shows the relative amount of each robots that exist in each class:</p>
 
 <table>
   <thead>
     <tr>
-      <th>Classification</th>
-      <th>Required to be closed? (Final vertex = initial vertex)</th>
-      <th>Allows repeated edges?</th>
-      <th>Allows repeated vertices? (excluding first and last)</th>
+      <th>Class</th>
+      <th>% of total systems from 1985-2023 [1]</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Walk</td>
-      <td>$\times$</td>
-      <td>$\checkmark$</td>
-      <td>$\checkmark$</td>
+      <td>Lattice</td>
+      <td>$66.67 \%$</td>
     </tr>
     <tr>
-      <td>Trail</td>
-      <td>$\times$</td>
-      <td>$\times$</td>
-      <td>$\checkmark$</td>
+      <td>Chain</td>
+      <td>$55.56 \%$</td>
     </tr>
     <tr>
-      <td>Path</td>
-      <td>$\times$</td>
-      <td>$\times$</td>
-      <td>$\times$</td>
+      <td>Mobile</td>
+      <td>$48.15\%$</td>
     </tr>
     <tr>
-      <td>Cycle</td>
-      <td>$\checkmark$</td>
-      <td>$\times$</td>
-      <td>$\times$</td>
+      <td>Freeform</td>
+      <td>$12.35\%$</td>
+    </tr>
+    <tr>
+      <td>Truss</td>
+      <td>$6.17\%$</td>
     </tr>
   </tbody>
 </table>
 
-<h3 id="length">Length</h3>
-
-<p>The length of a walk is the magnitude associated with the walk. If the graph is weighted, each edge adds the value of its weight. In the case of an unweighted graph, the walk length is equal to the number of edges.</p>
-
-<h3 id="connectivity-1">Connectivity</h3>
-
-<p>The “connectedness” of a graph can be measured by the number of edges required to be removed to disconnect the graph. Any set of edges that disconnects a graph is called a disconnecting set. A minimal disconnecting set that contains no proper subset that is also a disconnecting set is a cutset. Take the example graph below:</p>
+<p><strong>Lattice</strong></p>
+<ul>
+  <li>Lattice-type MRRs are defined by the modules being organized into regular, repeating grids.</li>
+  <li>In graph representation, they can be represented by a lattice graph.</li>
+</ul>
 
 <figure class="figure">
-  <a class="figure-image" aria-label="figure link">
-    <img src="/images/blog/2026-07-24/disconnecting-set.png" style="
-        width: 50%;
+  <a class="figure-image" aria-label="A square lattice graph 2">
+    <img src="/images/blog/2026-07-31/lattice-graph.webp" style="
+        width: 20%;
         max-height: unset;
-      " alt="figure image" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+      " alt="A square lattice graph 2" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
   </a>
   
     <figcaption class="figure-caption">
-      
+      A square lattice graph [2]
 
     </figcaption>
   
 </figure>
 
-<p>Some disconnecting sets of this graph include:</p>
+<p><strong>Chain</strong></p>
+<ul>
+  <li>Chain-type MRRs are systems where modules are connected serially to form a chain or branching morphology.</li>
+  <li>In graph representation, chain-type MRRs are represented as trees.</li>
+</ul>
 
-<table>
-  <tbody>
-    <tr>
-      <td>$ { e_1, e_2 } $</td>
-      <td>Cutset</td>
-    </tr>
-    <tr>
-      <td>$ { e_3,e_6,e_7,e_8 } $</td>
-      <td>Cutset</td>
-    </tr>
-    <tr>
-      <td>$ { e_1,e_2,e_5 } $</td>
-      <td>Disconnecting Set</td>
-    </tr>
-  </tbody>
-</table>
+<figure class="figure">
+  <a class="figure-image" aria-label="A labeled tree graph 3">
+    <img src="/images/blog/2026-07-31/tree-graph.webp" style="
+        width: 20%;
+        max-height: unset;
+      " alt="A labeled tree graph 3" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+  </a>
+  
+    <figcaption class="figure-caption">
+      A labeled tree graph [3]
 
-<p>Similarly we can define a separating set as a set of vertices whose removal disconnects the graph. Some examples of separating sets in this graph include:</p>
+    </figcaption>
+  
+</figure>
 
-<table>
-  <tbody>
-    <tr>
-      <td>$ { w, x } $</td>
-      <td>Separating Set</td>
-    </tr>
-    <tr>
-      <td>$ { w, x, y } $</td>
-      <td>Separating Set</td>
-    </tr>
-  </tbody>
-</table>
+<p><strong>Mobile</strong></p>
+<ul>
+  <li>Mobile-type MRR systems differentiate themselves by having the ability of each module to independently move.</li>
+  <li>In graph representation, a mobile-type MRR system would be represented as the union of multiple graphs, oftentimes including the $N_1$ null graphs during reconfiguration since modules would move independently.</li>
+</ul>
 
-<h3 id="connectivity-2">Connectivity</h3>
+<p><strong>Truss</strong></p>
+<ul>
+  <li>“Truss-type MRR systems consist of interconnectable beams, nodes, or struts, forming a morphology that resembles a truss.” [1]</li>
+  <li>I am not sure that the graph representation for the general truss-type MRR can be easily categorized like the others.</li>
+</ul>
 
-<p>The edge connectivity of a graph, $\lambda(G)$, is defined as the size of the smallest cutset. The edge connectivity of the example graph above is $\lambda(G)=2$. It can also be said that G is 2-edge-connected.</p>
+<p><strong>Freeform</strong></p>
+<ul>
+  <li>“Freeform-type MRR systems focus on the connecting capabilities, enabling connections between modules to be established from all positions and orientations. Circular and spherical mechanisms are often employed to achieve this unlimited range of connection  characteristics.” [1]</li>
+  <li>Similar to truss-type MRRs, it is not clear that freeform-type MRRs have any sort of inherent graph structure that is common to the set of all MRRs.</li>
+</ul>
 
-<p>Similarly, vertex connectivity, $\kappa(G)$, is defined as the smallest separating set. The vertex connectivity of the example graph above is $\kappa(G)=2$. It can also be said to be 2-vertex-connected.</p>
+<h3 id="connectivity">Connectivity</h3>
 
-<p>For any connected graph:</p>
+<p>Connectivity is defined as monogamous or polygamous. A monogamous connector connects one module to a single other module. A polygamous connector connects one module to one or more different modules. I am not quite sure how to represent this in graph theory terms yet. An edge by definition connects a single node to a single other node. Perhaps a polygamous connector can be represented as a different type of node which is adjacent to each of the modules it connects.</p>
 
-<p>$$\kappa(G) \leq \lambda(G) \leq \delta(G) $$</p>
+<h3 id="homogeneity">Homogeneity</h3>
+
+<p>Homogenous MRRs are MRRs that have all identical modules. The advantage here is that in theory, these can be mass manufactured at low prices. Heterogenous MRRs use multiple different types of modules. In graph representation this might be represented as different types of nodes. For example in graph based SLAM algorithms, robot poses are represented by one type of node and landmark poses are represented by another. This could use a similar system.</p>
+
+<h3 id="workspace">Workspace</h3>
+
+<p>Workspace for MRRs is either 2D or 3D. In graph representations, 2D workspace MRRs would be representable as planar graphs. I am unclear on if this would yield any tangible benefit at the moment.</p>
 
 <h2 id="citations">Citations</h2>
 
-<p>[1] R. J. Wilson, Introduction to graph theory. 5th Edition</p>
+<p>[1] G. Liang, D. Wu, Y. Tu, and L. Tin Lun, “Decoding Modular Reconfigurable Robots - A Survey on Mechanisms and Design,” The International Journal of Robotics Research, vol. 44(5) 740–767, 2025, doi: 10.1177/02783649241283847.</p>
+
+<p>[2] https://en.wikipedia.org/wiki/Lattice_graph</p>
+
+<p>[3] https://en.wikipedia.org/wiki/Tree_(graph_theory)</p>
 
 
 <div class="post-nav">
   <span>
     
       <i class="icon fa-solid fa-angle-left"></i> Previous post<br>
-      <a href="/2026/07/17/modular-robotics-and-metrics.html">
-        Modular Robotics and Metrics
+      <a href="/2026/07/24/basics-of-graph-theory.html">
+        Basics of Graph Theory
       </a>
     
   </span>
   <span>
-    
-      Next post <i class="icon fa-solid fa-angle-right"></i><br>
-      <a href="/2026/07/31/ontology-of-modular-reconfigurable-robots.html">
-        Ontology of Modular Reconfigurable Robots and Representations as Graphs
-      </a>
     
   </span>
 </div>
