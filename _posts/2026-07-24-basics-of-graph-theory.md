@@ -2,6 +2,7 @@
 title: Basics of Graph Theory
 tags:
     - graph theory
+image: /images/blog/2026-07-24/simple-graph.png
 ---
 
 Currently, I hold two degrees. A bachelor's degree in mechanical engineering from New York Institute of Technology and a master's degree in mechanical engineering from The Cooper Union. Now I am pursuing my PhD in mechanical engineering at Temple University. I am not sure if this is common among other people who hold degrees solely in mechanical engineering, but I somehow never formally learned any graph theory. I am familiar with lots of other disciplines in math: linear algebra, differential equations, probability, etc. I have used graphs to a certain extent, but never formally studied the basics.

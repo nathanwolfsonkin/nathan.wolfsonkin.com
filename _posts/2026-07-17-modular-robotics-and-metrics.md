@@ -4,6 +4,7 @@ tags:
  - Multi-Robot Systems
  - Dimensional Analysis
  - Modular Robotics
+image: /images/blog/2026-07-17/taxonomy.png
 ---
 
 Modular robotics is a exciting field. The idea is that instead of having a single robot built for a single purpose, we can instead use a team of modular robots. These modular robots would be able to work together, connecting and building off of each other to achieve unparalleled adaptability. This is actually a common approach in biology. Cells can be thought of as modular biological entities which form together to perform actions beyond the capability of any individual cell. 

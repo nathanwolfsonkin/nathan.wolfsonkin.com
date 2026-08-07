@@ -2,6 +2,7 @@
 title: Dimensionless Analysis for Sports Analytics
 tags:
  - dimensional analysis
+image: /images/blog/2026-07-10/goals-vs-field-length.png
 ---
 
 The world cup is going on right here in Philadelphia. I figured it would be fun to see how some of the ideas in dimensional analysis that I have been learning about recently are applied in the world of sports analytics. This post is more or less a review of a paper in that space.
