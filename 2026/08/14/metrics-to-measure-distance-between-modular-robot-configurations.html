@@ -43,21 +43,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Blog | Nathan Wolf-Sonkin</title>
+<title>Metrics to Measure Distance Between Modular Robot Configurations | Nathan Wolf-Sonkin</title>
 
 <link rel="icon" href="/images/icon.png">
 
-<meta name="title" content="Blog">
+<meta name="title" content="Metrics to Measure Distance Between Modular Robot Configurations">
 <meta name="description" content="">
 
-<meta property="og:title" content="Blog">
+<meta property="og:title" content="Metrics to Measure Distance Between Modular Robot Configurations">
 <meta property="og:site_title" content="Nathan Wolf-Sonkin">
 <meta property="og:description" content="">
 <meta property="og:url" content="https://nathan.wolfsonkin.com">
 <meta property="og:image" content="/images/share.jpg">
 <meta property="og:locale" content="en_US">
 
-<meta property="twitter:title" content="Blog">
+<meta property="twitter:title" content="Metrics to Measure Distance Between Modular Robot Configurations">
 <meta property="twitter:description" content="">
 <meta property="twitter:url" content="https://nathan.wolfsonkin.com">
 <meta property="twitter:card" content="summary_large_image">
@@ -73,9 +73,9 @@
     
       "@type": "WebSite",
     
-    "name": "Blog",
+    "name": "Metrics to Measure Distance Between Modular Robot Configurations",
     "description": "",
-    "headline": "Blog",
+    "headline": "Metrics to Measure Distance Between Modular Robot Configurations",
     "publisher": {
       "@type": "Organization",
       "logo": { "@type": "ImageObject", "url": "/images/icon.png" }
@@ -286,60 +286,6 @@
     <link href="/_styles/util.css" rel="stylesheet">
   
 
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
 
 <!-- include all css in styles folder -->
 
@@ -368,6 +314,7 @@
   <script src="/_scripts/tooltip.js"></script>
 
 
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
   <body>
@@ -466,25 +413,17 @@
   
   
 
-  <section class="background" data-size="page">
-    <h1 id="blog">Blog</h1>
+  <section class="background" data-size="1">
+    <!--
+  <background></background>
+  <dark></dark>
+  <size>1</size>
+-->
 
-<p class="center">This is where I write about topics and ideas that I think are interesting. Some are technical and related to my research. Others are just thoughts and ideas I want to develop by writing them down. The intent is that these posts help me organize my thoughts. These are rough, low-polish posts so some information might not be entirely accurate. Updates weekly on Friday.</p>
 
-<div class="search-info"></div>
+<h1 class="center">Metrics to Measure Distance Between Modular Robot Configurations</h1>
 
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/08/14/metrics-to-measure-distance-between-modular-robot-configurations.html">Metrics to Measure Distance Between Modular Robot Configurations</a>
-
-      <div class="post-info">
+<div class="post-info">
   
 
   
@@ -519,494 +458,65 @@
       </a>
     
   </div>
+  </section>
+
+  
+  
+  
+
+  <section class="background" data-size="page">
+    <!--
+  <background></background>
+  <dark></dark>
+  <size></size>
+-->
 
 
+<p>A bit of a shorter post this week since I’ve been a bit busy with non-academic work this week.</p>
+
+<p>In the pursuit of defining reconfigurability of modular robots, it may be desirable to measure how different two configurations are. In that spirit, I have spent this week reading about metrics to measure the configuration space distance between modular robots. First it’s important to define what properties a distance function must have. A distance function is defined by the following properties [1]:</p>
+
+<p>$$d(A,B) \geq 0 ~~ \text{and} ~~ d(A,B) = 0 \iff A = B$$</p>
+
+<p>$$d(A,B) = d(B,A)$$</p>
+
+<p>$$d(A,B) + d(B,C) \geq d(A,C)$$</p>
+
+<p>The simplest possible distance function which has these properties is the discrete metric</p>
+
+<p>$$\delta^{(0)} = \begin{cases} 1 &amp; A \neq B \\ 0 &amp; A=B \end{cases}$$</p>
+
+<p>[1] defined a number of metrics based on distances in configuration space for planar hexagonal MRRs. A metric which defines module overlap was defined based on the following:</p>
+
+<p>$$\delta^{(1)}(A,B)=n- \left| A \cap B \right|$$</p>
+
+<p>In a planar environment it is quite clear how an overlap is measured. This makes me curious if graph overlap is a well studied idea. Measuring how much two unlabeled graphs overlap could be an important tool for transferring these planar, hexagonal ideas to a more generic graph based approach.</p>
+
+<p>Another metric counts the minimal number of valid reconfiguration moves required to reconfigure from one configuration to another. This is similar to the reconfiguration example from last week’s post.</p>
+
+<p>$$\delta^{(2)}(A,B)=M_{min}(A,B)$$</p>
+
+<p>Separately I have been reading about non-isomorphic graph enumerations. I figured that if the number of non-isomorphic graphs could be enumerated under a given set of constraints, that would make the total number of possible configurations in configuration space much more easily measurable. The problem is that [2] only enumerates the number of isomorphic trees that can be generated. This can still be useful, but if we want to find all possible chain configurations.</p>
+
+<h2 id="citations">Citations</h2>
+
+<p>[1] A. Pamecha, I. Ebert-Uphoff, and G. S. Chirikjian, “Useful metrics for modular robot motion planning,” IEEE Trans. Robot. Automat., vol. 13, no. 4, pp. 531–545, Aug. 1997, doi: 10.1109/70.611311.</p>
+
+<p>[2] “Enumerating the Non-Isomorphic Assembly Configurations of Modular Robotic Systems”.</p>
 
 
-
-      
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
+<div class="post-nav">
+  <span>
     
-    
-    
-
-    
-      <a href="/2026/08/07/hierarchical-graph-representations-for-configuration-space-in-modular-reconfigurable-robots.html" class="post-excerpt-image" aria-label="Hierarchical Graph Representations for Configuration Space in Modular Reconfigurable Robots">
-        <img src="/images/blog/2026-08-07/configuration-space-graph.png" alt="Hierarchical Graph Representations for Configuration Space in Modular Reconfigurable Robots" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+      <i class="icon fa-solid fa-angle-left"></i> Previous post<br>
+      <a href="/2026/08/07/hierarchical-graph-representations-for-configuration-space-in-modular-reconfigurable-robots.html">
+        Hierarchical Graph Representations for Configuration Space in Modular Reconfigurable Robots
       </a>
     
-
-    <div class="post-excerpt-text">
-      <a href="/2026/08/07/hierarchical-graph-representations-for-configuration-space-in-modular-reconfigurable-robots.html">Hierarchical Graph Representations for Configuration Space in Modular Reconfigurable Robots</a>
-
-      <div class="post-info">
-  
-
-  
-  
-
-  
-    <span data-tooltip="">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>August 07, 2026</span>
-    </span>
-  
-  
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
+  </span>
+  <span>
     
-      <a class="tag">
-        modular-robotics
-      </a>
-    
-      <a class="tag">
-        metrology
-      </a>
-    
-      <a class="tag">
-        graph-theory
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/07/31/ontology-of-modular-reconfigurable-robots.html">Ontology of Modular Reconfigurable Robots and Representations as Graphs</a>
-
-      <div class="post-info">
-  
-
-  
-  
-
-  
-    <span data-tooltip="">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>July 31, 2026</span>
-    </span>
-  
-  
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a class="tag">
-        modular-robotics
-      </a>
-    
-      <a class="tag">
-        metrology
-      </a>
-    
-      <a class="tag">
-        graph-theory
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-      <a href="/2026/07/24/basics-of-graph-theory.html" class="post-excerpt-image" aria-label="Basics of Graph Theory">
-        <img src="/images/blog/2026-07-24/simple-graph.png" alt="Basics of Graph Theory" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-      </a>
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/07/24/basics-of-graph-theory.html">Basics of Graph Theory</a>
-
-      <div class="post-info">
-  
-
-  
-  
-
-  
-    <span data-tooltip="">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>July 24, 2026</span>
-    </span>
-  
-  
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a class="tag">
-        graph-theory
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-      <a href="/2026/07/17/modular-robotics-and-metrics.html" class="post-excerpt-image" aria-label="Modular Robotics and Metrics">
-        <img src="/images/blog/2026-07-17/taxonomy.png" alt="Modular Robotics and Metrics" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-      </a>
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/07/17/modular-robotics-and-metrics.html">Modular Robotics and Metrics</a>
-
-      <div class="post-info">
-  
-
-  
-  
-
-  
-    <span data-tooltip="">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>July 17, 2026</span>
-    </span>
-  
-  
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a class="tag">
-        multi-robot-systems
-      </a>
-    
-      <a class="tag">
-        dimensional-analysis
-      </a>
-    
-      <a class="tag">
-        modular-robotics
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-      <a href="/2026/07/10/dimensionless-analysis-for-sports-analytics.html" class="post-excerpt-image" aria-label="Dimensionless Analysis for Sports Analytics">
-        <img src="/images/blog/2026-07-10/goals-vs-field-length.png" alt="Dimensionless Analysis for Sports Analytics" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-      </a>
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/07/10/dimensionless-analysis-for-sports-analytics.html">Dimensionless Analysis for Sports Analytics</a>
-
-      <div class="post-info">
-  
-
-  
-  
-
-  
-    <span data-tooltip="">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>July 10, 2026</span>
-    </span>
-  
-  
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a class="tag">
-        dimensional-analysis
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/26/dimensionless-variable-discovery.html">Dimensionless Variable Discovery</a>
-
-      <div class="post-info">
-  
-
-  
-  
-
-  
-    <span data-tooltip="">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>June 26, 2026</span>
-    </span>
-  
-  
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a class="tag">
-        dimensional-analysis
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/19/dimensional-analysis-and-measurement.html">Dimensional Analysis and Measurement</a>
-
-      <div class="post-info">
-  
-
-  
-  
-
-  
-    <span data-tooltip="">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>June 19, 2026</span>
-    </span>
-  
-  
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a class="tag">
-        dimensional-analysis
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/12/bees-ants-and-more-general-swarms.html">Bees, ants, and more general swarms</a>
-
-      <div class="post-info">
-  
-
-  
-  
-
-  
-    <span data-tooltip="">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>June 12, 2026</span>
-    </span>
-  
-  
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a class="tag">
-        multi-robot-systems
-      </a>
-    
-      <a class="tag">
-        swarms
-      </a>
-    
-      <a class="tag">
-        bio-inspiration
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-    </div>
-  </div>
-</div>
-
-<div class="post-excerpt-container">
-  <div class="post-excerpt">
-    
-    
-    
-
-    
-
-    <div class="post-excerpt-text">
-      <a href="/2026/06/09/blog-objective.html">So what's the point of this blog anyway?</a>
-
-      <div class="post-info">
-  
-
-  
-  
-
-  
-    <span data-tooltip="">
-      <i class="icon fa-regular fa-calendar"></i>
-      <span>June 09, 2026</span>
-    </span>
-  
-  
-  
-</div>
-
-
-  
-
-
-  <div class="tags">
-    
-      <a class="tag">
-        self-improvement
-      </a>
-    
-  </div>
-
-
-
-
-
-      
-    </div>
-  </div>
+  </span>
 </div>
   </section>
 
