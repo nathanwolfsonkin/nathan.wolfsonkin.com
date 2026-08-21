@@ -43,21 +43,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Metrics to Measure Distance Between Modular Robot Configurations | Nathan Wolf-Sonkin</title>
+<title>Matrix Representations of Modular Robots | Nathan Wolf-Sonkin</title>
 
 <link rel="icon" href="/images/icon.png">
 
-<meta name="title" content="Metrics to Measure Distance Between Modular Robot Configurations">
+<meta name="title" content="Matrix Representations of Modular Robots">
 <meta name="description" content="">
 
-<meta property="og:title" content="Metrics to Measure Distance Between Modular Robot Configurations">
+<meta property="og:title" content="Matrix Representations of Modular Robots">
 <meta property="og:site_title" content="Nathan Wolf-Sonkin">
 <meta property="og:description" content="">
 <meta property="og:url" content="https://nathan.wolfsonkin.com">
 <meta property="og:image" content="/images/share.jpg">
 <meta property="og:locale" content="en_US">
 
-<meta property="twitter:title" content="Metrics to Measure Distance Between Modular Robot Configurations">
+<meta property="twitter:title" content="Matrix Representations of Modular Robots">
 <meta property="twitter:description" content="">
 <meta property="twitter:url" content="https://nathan.wolfsonkin.com">
 <meta property="twitter:card" content="summary_large_image">
@@ -73,9 +73,9 @@
     
       "@type": "WebSite",
     
-    "name": "Metrics to Measure Distance Between Modular Robot Configurations",
+    "name": "Matrix Representations of Modular Robots",
     "description": "",
-    "headline": "Metrics to Measure Distance Between Modular Robot Configurations",
+    "headline": "Matrix Representations of Modular Robots",
     "publisher": {
       "@type": "Organization",
       "logo": { "@type": "ImageObject", "url": "/images/icon.png" }
@@ -421,7 +421,7 @@
 -->
 
 
-<h1 class="center">Metrics to Measure Distance Between Modular Robot Configurations</h1>
+<h1 class="center">Matrix Representations of Modular Robots</h1>
 
 <div class="post-info">
   
@@ -432,7 +432,7 @@
   
     <span data-tooltip="">
       <i class="icon fa-regular fa-calendar"></i>
-      <span>August 14, 2026</span>
+      <span>August 21, 2026</span>
     </span>
   
   
@@ -447,10 +447,6 @@
     
       <a class="tag">
         modular-robotics
-      </a>
-    
-      <a class="tag">
-        metrology
       </a>
     
       <a class="tag">
@@ -472,54 +468,79 @@
 -->
 
 
-<p>A bit of a shorter post this week since I’ve been a bit busy with non-academic work this week.</p>
+<h2 id="incidence-matricies">Incidence Matricies</h2>
 
-<p>In the pursuit of defining reconfigurability of modular robots, it may be desirable to measure how different two configurations are. In that spirit, I have spent this week reading about metrics to measure the configuration space distance between modular robots. First it’s important to define what properties a distance function must have. A distance function is defined by the following properties [1]:</p>
+<p>It is common to represent teams of modular robots as graphs. In this representation, a vertex is a single module and edge represents a connection between modules. A commonly used matrix representation for a graph is the incidence matrix. The incidence matrix, $M$, is an $n \times m$ matrix  where the $ijth$ entry is a binary entry expressing if edge $m$ is connected to vertex $i$ or not. Each column, $j$, of $M$ represents an edge. The rows in an individual column represent the vertices that the edge is connecting. Given an example modular robot with its accompanying graph:</p>
 
-<p>$$d(A,B) \geq 0 ~~ \text{and} ~~ d(A,B) = 0 \iff A = B$$</p>
+<figure class="figure">
+  <a class="figure-image" aria-label="Sample homogenous modular robot and accompanying graph">
+    <img src="/images/blog/2026-08-21/sample-bot-and-graph.png" style="
+        width: 80%;
+        max-height: unset;
+      " alt="Sample homogenous modular robot and accompanying graph" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+  </a>
+  
+    <figcaption class="figure-caption">
+      Sample homogenous modular robot and accompanying graph
 
-<p>$$d(A,B) = d(B,A)$$</p>
+    </figcaption>
+  
+</figure>
 
-<p>$$d(A,B) + d(B,C) \geq d(A,C)$$</p>
+<p>The incidence matrix for this modular robot is expressed as</p>
 
-<p>The simplest possible distance function which has these properties is the discrete metric</p>
+<p>$$M = \begin{bmatrix}1 &amp; 1 &amp; 1 \\ 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix}$$</p>
 
-<p>$$\delta^{(0)} = \begin{cases} 1 &amp; A \neq B \\ 0 &amp; A=B \end{cases}$$</p>
+<p>When dealing with modular robots, it is not enough to simply know which modules are connected to which other modules. Sometimes a robot team will have multiple different types of modules as well as different ways to connect those modules. It is for this case that Chen and Burdick propose the extended incidence matrix, which augments the incidence matrix by adding one additional column and row [1].</p>
 
-<p>[1] defined a number of metrics based on distances in configuration space for planar hexagonal MRRs. A metric which defines module overlap was defined based on the following:</p>
+<figure class="figure">
+  <a class="figure-image" aria-label="Sample homogenous modular robot and accompanying graph">
+    <img src="/images/blog/2026-08-21/nonhomogenous-sample-bot-and-graph.png" style="
+        width: 80%;
+        max-height: unset;
+      " alt="Sample homogenous modular robot and accompanying graph" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+  </a>
+  
+    <figcaption class="figure-caption">
+      Sample homogenous modular robot and accompanying graph
 
-<p>$$\delta^{(1)}(A,B)=n- \left| A \cap B \right|$$</p>
+    </figcaption>
+  
+</figure>
 
-<p>In a planar environment it is quite clear how an overlap is measured. This makes me curious if graph overlap is a well studied idea. Measuring how much two unlabeled graphs overlap could be an important tool for transferring these planar, hexagonal ideas to a more generic graph based approach.</p>
+<p>For the above nonhomogenous sample modular robot, the extended incidence matrix is denoted as:</p>
 
-<p>Another metric counts the minimal number of valid reconfiguration moves required to reconfigure from one configuration to another. This is similar to the reconfiguration example from last week’s post.</p>
+<p>$$M = \begin{bmatrix}1 &amp; 1 &amp; 1 &amp; L \\ 0 &amp; 1 &amp; 0 &amp; B \\ 1 &amp; 0 &amp; 0 &amp; L \\ 0 &amp; 0 &amp; 1 &amp; B \\ C &amp; C &amp; R &amp; 0 \end{bmatrix}$$</p>
 
-<p>$$\delta^{(2)}(A,B)=M_{min}(A,B)$$</p>
+<p>Here, the end of each row denotes the type of module that the vertex represents; in this case $L$ or $B$. The bottom of each column represents the type of connection between the modules. This representation allows for a much more rich description of the modular robotic team beyond homogenous robots.</p>
 
-<p>Separately I have been reading about non-isomorphic graph enumerations. I figured that if the number of non-isomorphic graphs could be enumerated under a given set of constraints, that would make the total number of possible configurations in configuration space much more easily measurable. The problem is that [2] only enumerates the number of isomorphic trees that can be generated. This can still be useful, but if we want to find all possible chain configurations.</p>
+<h2 id="assembly-incidence-matrices">Assembly Incidence Matrices</h2>
+
+<p>Oftentimes, modules have a fixed number of connection ports. Knowing which connection ports are occupied may be important for finding valid reconfiguration paths through the configuration space. Chen and Burdick tackle this problem by introducing the assembly incidence matrix. This matrix is the same as the incidence matrix except instead of using $1$ to denote that there exists a connection and $0$ to denote that there is not a connection, the assembly incidence matrix uses a port number to denote that there is a connection at a particular port number. The nonhomogeneous modular robot example from before has an assembly incidence matrix of:</p>
+
+<p>$$M = \begin{bmatrix}10 &amp; 5 &amp; 1 \\ 0 &amp; 2 &amp; 0 \\ 9 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 4 \end{bmatrix}$$</p>
+
+<p>This is useful because if we know apriori the number of ports a robot has, we can know which ports are available for new connections. Similar to the incidence matrix, the assembly incidence matrix can be extended to represent the nonhomogenous module and connection information by augmenting it into the extended assembly incidence matrix, represented as:</p>
+
+<p>$$M = \begin{bmatrix}10 &amp; 5 &amp; 1 &amp; L \\ 0 &amp; 2 &amp; 0 &amp; B \\ 9 &amp; 0 &amp; 0 &amp; L \\ 0 &amp; 0 &amp; 4 &amp; B \\ C &amp; C &amp; R &amp; 0 \end{bmatrix}$$</p>
+
+<p>These representations increase the amount of information that can be stored in matrix representations of modular robots. Later in the paper, the authors leverage this encoding as well as other algorithms to create an algorithm for enumeration of all non-isomorphic tree graphs. In the world of modular robotics, this is analogous to finding all possible chain type configurations.</p>
 
 <h2 id="citations">Citations</h2>
 
-<p>[1] A. Pamecha, I. Ebert-Uphoff, and G. S. Chirikjian, “Useful metrics for modular robot motion planning,” IEEE Trans. Robot. Automat., vol. 13, no. 4, pp. 531–545, Aug. 1997, doi: 10.1109/70.611311.</p>
-
-<p>[2] “Enumerating the Non-Isomorphic Assembly Configurations of Modular Robotic Systems”.</p>
+<p>[1] I.-M. Chen and J. W. Burdick, “Enumerating the nonisomorphic assembly configurations of modular robotic systems,” in Proceedings of 1993 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS ’93), Jul. 1993, pp. 1985–1992 vol.3. doi: 10.1109/IROS.1993.583905.</p>
 
 
 <div class="post-nav">
   <span>
     
       <i class="icon fa-solid fa-angle-left"></i> Previous post<br>
-      <a href="/2026/08/07/hierarchical-graph-representations-for-configuration-space-in-modular-reconfigurable-robots.html">
-        Hierarchical Graph Representations for Configuration Space in Modular Reconfigurable Robots
+      <a href="/2026/08/14/metrics-to-measure-distance-between-modular-robot-configurations.html">
+        Metrics to Measure Distance Between Modular Robot Configurations
       </a>
     
   </span>
   <span>
-    
-      Next post <i class="icon fa-solid fa-angle-right"></i><br>
-      <a href="/2026/08/21/matrix-representations-of-modular-robots.html">
-        Matrix Representations of Modular Robots
-      </a>
     
   </span>
 </div>
