@@ -43,21 +43,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Matrix Representations of Modular Robots | Nathan Wolf-Sonkin</title>
+<title>More Matrix Representations for Modular Robots | Nathan Wolf-Sonkin</title>
 
 <link rel="icon" href="/images/icon.png">
 
-<meta name="title" content="Matrix Representations of Modular Robots">
+<meta name="title" content="More Matrix Representations for Modular Robots">
 <meta name="description" content="">
 
-<meta property="og:title" content="Matrix Representations of Modular Robots">
+<meta property="og:title" content="More Matrix Representations for Modular Robots">
 <meta property="og:site_title" content="Nathan Wolf-Sonkin">
 <meta property="og:description" content="">
 <meta property="og:url" content="https://nathan.wolfsonkin.com">
 <meta property="og:image" content="/images/share.jpg">
 <meta property="og:locale" content="en_US">
 
-<meta property="twitter:title" content="Matrix Representations of Modular Robots">
+<meta property="twitter:title" content="More Matrix Representations for Modular Robots">
 <meta property="twitter:description" content="">
 <meta property="twitter:url" content="https://nathan.wolfsonkin.com">
 <meta property="twitter:card" content="summary_large_image">
@@ -73,9 +73,9 @@
     
       "@type": "WebSite",
     
-    "name": "Matrix Representations of Modular Robots",
+    "name": "More Matrix Representations for Modular Robots",
     "description": "",
-    "headline": "Matrix Representations of Modular Robots",
+    "headline": "More Matrix Representations for Modular Robots",
     "publisher": {
       "@type": "Organization",
       "logo": { "@type": "ImageObject", "url": "/images/icon.png" }
@@ -421,7 +421,7 @@
 -->
 
 
-<h1 class="center">Matrix Representations of Modular Robots</h1>
+<h1 class="center">More Matrix Representations for Modular Robots</h1>
 
 <div class="post-info">
   
@@ -432,7 +432,7 @@
   
     <span data-tooltip="">
       <i class="icon fa-regular fa-calendar"></i>
-      <span>August 21, 2026</span>
+      <span>August 26, 2026</span>
     </span>
   
   
@@ -468,84 +468,164 @@
 -->
 
 
-<h2 id="incidence-matricies">Incidence Matricies</h2>
-
-<p>It is common to represent teams of modular robots as graphs. In this representation, a vertex is a single module and edge represents a connection between modules. A commonly used matrix representation for a graph is the incidence matrix. The incidence matrix, $M$, is an $n \times m$ matrix  where the $ijth$ entry is a binary entry expressing if edge $m$ is connected to vertex $i$ or not. Each column, $j$, of $M$ represents an edge. The rows in an individual column represent the vertices that the edge is connecting. Given an example modular robot with its accompanying graph:</p>
+<p>Modular robots are commonly expressed as graphs with vertices representing modules and edges representing their connections. This is a good start, but there are more features that need to be included to fully describe the state of a modular robotic team. Oftentimes a module will have a set number of labeled ports. It is important to describe which ports are being utilized. Last week, I discussed how Chen and Burdick solved this problem with the assembly incidence matrix (AIM) [1]. Baarir et al. solved this problem using the port adjacency matrix. The basic idea is that it is similar to a normal adjacency matrix, but encodes port numbers into the matrix. This can be done because of the assumption that all graph representations for MRRs must be simple graphs. Consider the following MRR and graph below:</p>
 
 <figure class="figure">
-  <a class="figure-image" aria-label="Sample homogenous modular robot and accompanying graph">
-    <img src="/images/blog/2026-08-21/sample-bot-and-graph.png" style="
+  <a class="figure-image" aria-label="Sample homogenous modular robot and accompanying graph 1">
+    <img src="/images/blog/2026-08-28/sample-bot-and-graph.png" style="
         width: 80%;
         max-height: unset;
-      " alt="Sample homogenous modular robot and accompanying graph" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+      " alt="Sample homogenous modular robot and accompanying graph 1" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
   </a>
   
     <figcaption class="figure-caption">
-      Sample homogenous modular robot and accompanying graph
+      Sample homogenous modular robot and accompanying graph [1]
 
     </figcaption>
   
 </figure>
 
-<p>The incidence matrix for this modular robot is expressed as</p>
+<p>The adjacency matrix is:</p>
 
-<p>$$M = \begin{bmatrix}1 &amp; 1 &amp; 1 \\ 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix}$$</p>
+<p>$$A = \begin{bmatrix} 0 &amp; 1 &amp; 1 &amp; 1 \\ 1 &amp; 0 &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; 0 &amp; 0 \end{bmatrix}$$</p>
 
-<p>When dealing with modular robots, it is not enough to simply know which modules are connected to which other modules. Sometimes a robot team will have multiple different types of modules as well as different ways to connect those modules. It is for this case that Chen and Burdick propose the extended incidence matrix, which augments the incidence matrix by adding one additional column and row [1].</p>
+<p>If we assume that all MRR graph representations will be simple graphs there will be no multiple connections, this means that the entries in this matrix will always be binary. Since the entries are binary, we can replace all of the $1$s with the port numbers that are occupied without losing any information about the connections.</p>
+
+<p>The port adjacency matrix is:</p>
+
+<p>$$A_P = \begin{bmatrix} 0 &amp; 1 &amp; 2 &amp; 3 \\ 3 &amp; 0 &amp; 0 &amp; 0 \\ 2 &amp; 0 &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; 0 &amp; 0 \end{bmatrix}$$</p>
+
+<p>Note that the port numbers are not described in the graph, these numbers were chosen as an example to showcase that the port adjacency matrix does not retain the symmetric property that the adjacency matrix has.</p>
+
+<p>Now it is also important to recognize that this representation is not very compact. This means that the size of the configuration space will scale exponentially with increasing $N$. To tackle this problem, Baarir et al. proposes a compact encoding of the state [2]. Here a single module of an MRR is represented by a vector containing the state of its ports and the state of its degrees of freedom.</p>
+
+<p>$$\begin{bmatrix} p_1 &amp; p_2 &amp; … &amp; p_{final} &amp; DoF_1 &amp; DoF_2 &amp; … &amp; DoF_{final}  \end{bmatrix}$$</p>
+
+<p>The entire team can be represented by stacking these vectors into a matrix called the ports-connectivity matrix. For a homogenous MRR team with seven ports, one DoF, and five modules, the ports-connectivity matrix might look like this:</p>
 
 <figure class="figure">
-  <a class="figure-image" aria-label="Sample homogenous modular robot and accompanying graph">
-    <img src="/images/blog/2026-08-21/nonhomogenous-sample-bot-and-graph.png" style="
+  <a class="figure-image" aria-label="Ports connectivity matrix and associated MRR configuration 2">
+    <img src="/images/blog/2026-08-28/ports-connectivity-matrix.png" style="
         width: 80%;
         max-height: unset;
-      " alt="Sample homogenous modular robot and accompanying graph" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+      " alt="Ports connectivity matrix and associated MRR configuration 2" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
   </a>
   
     <figcaption class="figure-caption">
-      Sample homogenous modular robot and accompanying graph
+      Ports connectivity matrix and associated MRR configuration [2]
 
     </figcaption>
   
 </figure>
 
-<p>For the above nonhomogenous sample modular robot, the extended incidence matrix is denoted as:</p>
+<p>The $\alpha$ column notes the state of the single degree of freedom. The first row can be read as follows:</p>
 
-<p>$$M = \begin{bmatrix}1 &amp; 1 &amp; 1 &amp; L \\ 0 &amp; 1 &amp; 0 &amp; B \\ 1 &amp; 0 &amp; 0 &amp; L \\ 0 &amp; 0 &amp; 1 &amp; B \\ C &amp; C &amp; R &amp; 0 \end{bmatrix}$$</p>
+<blockquote>
+  <p>Module 1 is connected to module 2 via port 4. Its actuator is at a position corresponding to 90.</p>
+</blockquote>
 
-<p>Here, the end of each row denotes the type of module that the vertex represents; in this case $L$ or $B$. The bottom of each column represents the type of connection between the modules. This representation allows for a much more rich description of the modular robotic team beyond homogenous robots.</p>
+<blockquote>
+  <p>Module 2 is connected to modules 3, 1, and 4 via ports 4, 6, and 7 respectively. Its actuator is at a position corresponding to 90.</p>
+</blockquote>
 
-<h2 id="assembly-incidence-matrices">Assembly Incidence Matrices</h2>
+<p>This encoding of MRR structure is powerful partly because it is compact, but also because it can be used to reveal isomorphic configurations. This requires a few steps:</p>
 
-<p>Oftentimes, modules have a fixed number of connection ports. Knowing which connection ports are occupied may be important for finding valid reconfiguration paths through the configuration space. Chen and Burdick tackle this problem by introducing the assembly incidence matrix. This matrix is the same as the incidence matrix except instead of using $1$ to denote that there exists a connection and $0$ to denote that there is not a connection, the assembly incidence matrix uses a port number to denote that there is a connection at a particular port number. The nonhomogeneous modular robot example from before has an assembly incidence matrix of:</p>
+<ol>
+  <li>Define an encoding alphabet which makes every local configuration unique</li>
+  <li>Encode the ports-connectivity matrix using this alphabet</li>
+  <li>Sort the rows of the symbolic ports-connectivity matrix</li>
+</ol>
 
-<p>$$M = \begin{bmatrix}10 &amp; 5 &amp; 1 \\ 0 &amp; 2 &amp; 0 \\ 9 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 4 \end{bmatrix}$$</p>
+<h3 id="alphabet-definition">Alphabet Definition</h3>
 
-<p>This is useful because if we know apriori the number of ports a robot has, we can know which ports are available for new connections. Similar to the incidence matrix, the assembly incidence matrix can be extended to represent the nonhomogenous module and connection information by augmenting it into the extended assembly incidence matrix, represented as:</p>
+<p>The first step is to define an alphabet which describes the local connectivity state of the module. This will, in general, require an additional bit for each port.</p>
 
-<p>$$M = \begin{bmatrix}10 &amp; 5 &amp; 1 &amp; L \\ 0 &amp; 2 &amp; 0 &amp; B \\ 9 &amp; 0 &amp; 0 &amp; L \\ 0 &amp; 0 &amp; 4 &amp; B \\ C &amp; C &amp; R &amp; 0 \end{bmatrix}$$</p>
+<figure class="figure">
+  <a class="figure-image" aria-label="Sample alphabet for a module with 3 ports 2">
+    <img src="/images/blog/2026-08-28/alphabet.png" style="
+        width: 80%;
+        max-height: unset;
+      " alt="Sample alphabet for a module with 3 ports 2" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+  </a>
+  
+    <figcaption class="figure-caption">
+      Sample alphabet for a module with 3 ports [2]
 
-<p>These representations increase the amount of information that can be stored in matrix representations of modular robots. Later in the paper, the authors leverage this encoding as well as other algorithms to create an algorithm for enumeration of all non-isomorphic tree graphs. In the world of modular robotics, this is analogous to finding all possible chain type configurations.</p>
+    </figcaption>
+  
+</figure>
+
+<h3 id="symbolic-encoding">Symbolic Encoding</h3>
+
+<p>Next, the local information is encoded into the ports-connectivity matrix. Entry is replaced with the symbol describing its local state.</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="Sample configuration left , ports-connectivity matrix center , symbolic ports-connectivity matrix right">
+    <img src="/images/blog/2026-08-28/symbolic-encoding.png" style="
+        width: 80%;
+        max-height: unset;
+      " alt="Sample configuration left , ports-connectivity matrix center , symbolic ports-connectivity matrix right" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+  </a>
+  
+    <figcaption class="figure-caption">
+      Sample configuration (left), ports-connectivity matrix (center), symbolic ports-connectivity matrix (right)
+
+    </figcaption>
+  
+</figure>
+
+<p>The value of the symbolic encoding is that it decouples some of the data from its position in the matrix. Before, the matrix read:</p>
+
+<blockquote>
+  <p>Module 1 is connected to module 3 via port 7.
+Module 3 is connected to modules 1, 4, 2, and 5 via ports 1, 4, 6 and 7 respectively.</p>
+</blockquote>
+
+<p>With the symbolic encoding it instead reads:</p>
+
+<blockquote>
+  <p>Module 1 is utilizing port 7.
+Module 3 is utilizing ports 1, 4, 6, and 7.</p>
+</blockquote>
+
+<p>The information conveyed by each symbol removes non-local information.</p>
+
+<h3 id="canonization">Canonization</h3>
+
+<p>The idea here is that any matrix with the same structure should represent an isomorphic configuration. So if we perform row permutation to sort the matrix, then all isomorphic configurations should look the same.</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="Canonization of the ports-connectivity symbolic matrix">
+    <img src="/images/blog/2026-08-28/canonization.png" style="
+        width: 80%;
+        max-height: unset;
+      " alt="Canonization of the ports-connectivity symbolic matrix" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+  </a>
+  
+    <figcaption class="figure-caption">
+      Canonization of the ports-connectivity symbolic matrix
+
+    </figcaption>
+  
+</figure>
 
 <h2 id="citations">Citations</h2>
 
 <p>[1] I.-M. Chen and J. W. Burdick, “Enumerating the nonisomorphic assembly configurations of modular robotic systems,” in Proceedings of 1993 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS ’93), Jul. 1993, pp. 1985–1992 vol.3. doi: 10.1109/IROS.1993.583905.</p>
+
+<p>[2] S. Baarir, L. Hillah, F. Kordon, and E. Renault, “Self-reconfigurable Modular Robots and Their Symbolic Configuration Space,” vol. 6662, 2010, pp. 103–121. doi: 10.1007/978-3-642-21292-5_6.</p>
 
 
 <div class="post-nav">
   <span>
     
       <i class="icon fa-solid fa-angle-left"></i> Previous post<br>
-      <a href="/2026/08/14/metrics-to-measure-distance-between-modular-robot-configurations.html">
-        Metrics to Measure Distance Between Modular Robot Configurations
+      <a href="/2026/08/21/matrix-representations-of-modular-robots.html">
+        Matrix Representations of Modular Robots
       </a>
     
   </span>
   <span>
-    
-      Next post <i class="icon fa-solid fa-angle-right"></i><br>
-      <a href="/2026/08/26/more-matrix-representations-of-modular-robots.html">
-        More Matrix Representations for Modular Robots
-      </a>
     
   </span>
 </div>
