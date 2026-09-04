@@ -43,21 +43,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>More Matrix Representations for Modular Robots | Nathan Wolf-Sonkin</title>
+<title>Back to Basics | Nathan Wolf-Sonkin</title>
 
 <link rel="icon" href="/images/icon.png">
 
-<meta name="title" content="More Matrix Representations for Modular Robots">
+<meta name="title" content="Back to Basics">
 <meta name="description" content="">
 
-<meta property="og:title" content="More Matrix Representations for Modular Robots">
+<meta property="og:title" content="Back to Basics">
 <meta property="og:site_title" content="Nathan Wolf-Sonkin">
 <meta property="og:description" content="">
 <meta property="og:url" content="https://nathan.wolfsonkin.com">
 <meta property="og:image" content="/images/share.jpg">
 <meta property="og:locale" content="en_US">
 
-<meta property="twitter:title" content="More Matrix Representations for Modular Robots">
+<meta property="twitter:title" content="Back to Basics">
 <meta property="twitter:description" content="">
 <meta property="twitter:url" content="https://nathan.wolfsonkin.com">
 <meta property="twitter:card" content="summary_large_image">
@@ -73,9 +73,9 @@
     
       "@type": "WebSite",
     
-    "name": "More Matrix Representations for Modular Robots",
+    "name": "Back to Basics",
     "description": "",
-    "headline": "More Matrix Representations for Modular Robots",
+    "headline": "Back to Basics",
     "publisher": {
       "@type": "Organization",
       "logo": { "@type": "ImageObject", "url": "/images/icon.png" }
@@ -421,7 +421,7 @@
 -->
 
 
-<h1 class="center">More Matrix Representations for Modular Robots</h1>
+<h1 class="center">Back to Basics</h1>
 
 <div class="post-info">
   
@@ -432,7 +432,7 @@
   
     <span data-tooltip="">
       <i class="icon fa-regular fa-calendar"></i>
-      <span>August 28, 2026</span>
+      <span>September 04, 2026</span>
     </span>
   
   
@@ -447,10 +447,6 @@
     
       <a class="tag">
         modular-robotics
-      </a>
-    
-      <a class="tag">
-        graph-theory
       </a>
     
   </div>
@@ -468,169 +464,85 @@
 -->
 
 
-<p>Modular robots are commonly expressed as graphs with vertices representing modules and edges representing their connections. This is a good start, but there are more features that need to be included to fully describe the state of a modular robotic team. Oftentimes a module will have a set number of labeled ports. It is important to describe which ports are being utilized. Last week, I discussed how Chen and Burdick solved this problem with the assembly incidence matrix (AIM) [1]. Baarir et al. solved this problem using the port adjacency matrix. The basic idea is that it is similar to a normal adjacency matrix, but encodes port numbers into the matrix. This can be done because of the assumption that all graph representations for MRRs must be simple graphs. Consider the following MRR and graph below:</p>
+<p>Research tends to be a long and meandering process. Oftentimes I will start with a heavily directed idea. This idea will lead me to look into another topic, which leads to the next topic, and before I know it, I end up looking into things that are seemingly unrelated to what I was originally trying to investigate. It is for this reason that I like to occasionally retrace my thinking to straighten out my meandering thoughts.</p>
+
+<h2 id="the-basic-idea">The Basic Idea</h2>
+
+<p>This project started with a simple problem: modular reconfigurable robotic systems (MRRs) lack a standardized way to compare systems. Modern survey papers compare systems qualitatively [1, 2] rather than quantitatively. Qualitative measures are used because quantitative measures do not exist. One might assume that in a field dedicated to creating <strong>modular</strong> <strong>reconfigurable</strong> robots, someone might have figured out how to measure modularity or reconfigurability, but that doesn’t appear to be the case.</p>
+
+<p>Part of the reason for this lack of quantitative measure is that it is difficult to compare dissimilar systems. Someone asking the question “which system is more reconfigurable, Polypod or SMORES?” may as well be asking “which is greater, three meters or five newtons?” The question is unanswerable because in order to make comparisons, the comparators must be expressed in similar terms. Therefore the first step towards metric generation for MRRs must be to find the proper level of abstraction such that any two MRRs can be expressed in similar terms.</p>
+
+<h3 id="a-unified-representation">A Unified Representation</h3>
+
+<p>A common representation for MRR configurations in the literature is the graph [3-8]. In this representation it is common for modules and their connections to be represented as vertices and edges respectively. To the best of my knowledge all MRRs can be expressed in this manner or some variation of it. While this is certainly an intuitive representation for a robot configuration, it only contains information about a single configuration. This idea can be extended to represent the entire space of possible configurations as a hierarchical graph. In this representation, a configuration represents a vertex and an edge represents a valid reconfiguration action to move from one configuration to another.</p>
 
 <figure class="figure">
-  <a class="figure-image" aria-label="Sample homogenous modular robot and accompanying graph 1">
-    <img src="/images/blog/2026-08-28/sample-bot-and-graph.png" style="
+  <a class="figure-image" aria-label="Configuration space heirarchical graph">
+    <img src="/images/blog/2026-09-04/configuration-space-graph.png" style="
         width: 80%;
         max-height: unset;
-      " alt="Sample homogenous modular robot and accompanying graph 1" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+      " alt="Configuration space heirarchical graph" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
   </a>
   
     <figcaption class="figure-caption">
-      Sample homogenous modular robot and accompanying graph [1]
+      Configuration space heirarchical graph
 
     </figcaption>
   
 </figure>
 
-<p>The adjacency matrix is:</p>
+<p>This representation has some nice properties. First, graph invariants have interpretable meaning on the configuration space graph. Graph distances can be used to represent how far apart two configurations are. Graph diameter represents the maximum number of required moves to switch between any two configurations. This means there is an upper bound on the number of reconfiguration actions that can ever be required for a desired reconfiguration. These are just a few of the intuitive measures that come from expressing configuration space as a hierarchical graph.</p>
 
-<p>$$A = \begin{bmatrix} 0 &amp; 1 &amp; 1 &amp; 1 \\ 1 &amp; 0 &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; 0 &amp; 0 \end{bmatrix}$$</p>
+<h3 id="what-to-measure">What to Measure?</h3>
 
-<p>If we assume that all MRR graph representations will be simple graphs there will be no multiple connections, this means that the entries in this matrix will always be binary. Since the entries are binary, we can replace all of the $1$s with the port numbers that are occupied without losing any information about the connections.</p>
+<p>If we want to develop a set of metrics to compare MRRs, these metrics should be applicable to the set of <strong>all</strong> MRRs. MMRs come in a wide variety of shapes and sizes. Notably, because of their adaptive nature, there is no single task that all MMRs are designed to perform. It is for this reason that I want to find an appropriate metric (or set of metrics) to define reconfigurability itself. All MRRs reconfigure. It is the trait that defines them. This makes reconfigurability one of the few measures that could apply to all possible MRRs regardless of design goal.</p>
 
-<p>The port adjacency matrix is:</p>
+<h3 id="what-is-reconfigurability">What is Reconfigurability?</h3>
 
-<p>$$A_P = \begin{bmatrix} 0 &amp; 1 &amp; 2 &amp; 3 \\ 3 &amp; 0 &amp; 0 &amp; 0 \\ 2 &amp; 0 &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; 0 &amp; 0 \end{bmatrix}$$</p>
+<p>This is a really hard question. While many researchers may have an intuitive idea of what reconfigurability means, there does not seem to be a measurable definition. There is no <em>reconfigurometer</em> that can be used to measure the reconfigurability of an MRR. In fact, a single “reconfigurability number” may not be appropriate, even if it were defined. This is because there are many potential concepts we may be trying to numerically capture when we talk about reconfigurability. This means that we may require a set of different metrics. For example, take the following potential metric:</p>
 
-<p>Note that the port numbers are not described in the graph, these numbers were chosen as an example to showcase that the port adjacency matrix does not retain the symmetric property that the adjacency matrix has.</p>
+<p>$$\frac{\text{# of unique, reachable configurations}}{\text{# of modules}}$$</p>
 
-<p>Now it is also important to recognize that this representation is not very compact. This means that the size of the configuration space will scale exponentially with increasing $N$. To tackle this problem, Baarir et al. proposes a compact encoding of the state [2]. Here a single module of an MRR is represented by a vector containing the state of its ports and the state of its degrees of freedom.</p>
+<p>Maybe this metric gives some information about how <em>reconfigurable</em> a system is in the sense that a system that can reach more configurations with less modules should have a higher reconfigurability. Consider a second potential metric:</p>
 
-<p>$$\begin{bmatrix} p_1 &amp; p_2 &amp; … &amp; p_{final} &amp; DoF_1 &amp; DoF_2 &amp; … &amp; DoF_{final}  \end{bmatrix}$$</p>
+<p>$$\frac{\text{configuration graph diameter}}{\text{# of modules}}$$</p>
 
-<p>The entire team can be represented by stacking these vectors into a matrix called the ports-connectivity matrix. For a homogenous MRR team with seven ports, one DoF, and five modules, the ports-connectivity matrix might look like this:</p>
+<p>This metric would give information about how far apart the different configurations are in configuration space. If a system has a relatively smaller graph diameter with a relatively larger number of modules, perhaps it is more reconfigurable in the sense that it can reach more configurations with less reconfiguration actions.</p>
 
-<figure class="figure">
-  <a class="figure-image" aria-label="Ports connectivity matrix and associated MRR configuration 2">
-    <img src="/images/blog/2026-08-28/ports-connectivity-matrix.png" style="
-        width: 80%;
-        max-height: unset;
-      " alt="Ports connectivity matrix and associated MRR configuration 2" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-  </a>
-  
-    <figcaption class="figure-caption">
-      Ports connectivity matrix and associated MRR configuration [2]
+<p>Reconfigurability might also be related to time requirements. If two systems are identical except that one completes all reconfiguration actions twice as fast, is the faster system more reconfigurable?</p>
 
-    </figcaption>
-  
-</figure>
-
-<p>The $\alpha$ column notes the state of the single degree of freedom. The first row can be read as follows:</p>
-
-<blockquote>
-  <p>Module 1 is connected to module 2 via port 4. Its actuator is at a position corresponding to 90.</p>
-</blockquote>
-
-<blockquote>
-  <p>Module 2 is connected to modules 3, 1, and 4 via ports 4, 6, and 7 respectively. Its actuator is at a position corresponding to 90.</p>
-</blockquote>
-
-<p>This encoding of MRR structure is powerful partly because it is compact, but also because it can be used to reveal isomorphic configurations. This requires a few steps:</p>
-
-<ol>
-  <li>Define an encoding alphabet which makes every local configuration unique</li>
-  <li>Encode the ports-connectivity matrix using this alphabet</li>
-  <li>Sort the rows of the symbolic ports-connectivity matrix</li>
-</ol>
-
-<h3 id="alphabet-definition">Alphabet Definition</h3>
-
-<p>The first step is to define an alphabet which describes the local connectivity state of the module. This will, in general, require an additional bit for each port.</p>
-
-<figure class="figure">
-  <a class="figure-image" aria-label="Sample alphabet for a module with 3 ports 2">
-    <img src="/images/blog/2026-08-28/alphabet.png" style="
-        width: 80%;
-        max-height: unset;
-      " alt="Sample alphabet for a module with 3 ports 2" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-  </a>
-  
-    <figcaption class="figure-caption">
-      Sample alphabet for a module with 3 ports [2]
-
-    </figcaption>
-  
-</figure>
-
-<h3 id="symbolic-encoding">Symbolic Encoding</h3>
-
-<p>Next, the local information is encoded into the ports-connectivity matrix. Entry is replaced with the symbol describing its local state.</p>
-
-<figure class="figure">
-  <a class="figure-image" aria-label="Sample configuration left , ports-connectivity matrix center , symbolic ports-connectivity matrix right">
-    <img src="/images/blog/2026-08-28/symbolic-encoding.png" style="
-        width: 80%;
-        max-height: unset;
-      " alt="Sample configuration left , ports-connectivity matrix center , symbolic ports-connectivity matrix right" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-  </a>
-  
-    <figcaption class="figure-caption">
-      Sample configuration (left), ports-connectivity matrix (center), symbolic ports-connectivity matrix (right)
-
-    </figcaption>
-  
-</figure>
-
-<p>The value of the symbolic encoding is that it decouples some of the data from its position in the matrix. Before, the matrix read:</p>
-
-<blockquote>
-  <p>Module 1 is connected to module 3 via port 7.
-Module 3 is connected to modules 1, 4, 2, and 5 via ports 1, 4, 6 and 7 respectively.</p>
-</blockquote>
-
-<p>With the symbolic encoding it instead reads:</p>
-
-<blockquote>
-  <p>Module 1 is utilizing port 7.
-Module 3 is utilizing ports 1, 4, 6, and 7.</p>
-</blockquote>
-
-<p>The information conveyed by each symbol removes non-local information.</p>
-
-<h3 id="canonization">Canonization</h3>
-
-<p>The idea here is that any matrix with the same structure should represent an isomorphic configuration. So if we perform row permutation to sort the matrix, then all isomorphic configurations should look the same.</p>
-
-<figure class="figure">
-  <a class="figure-image" aria-label="Canonization of the ports-connectivity symbolic matrix">
-    <img src="/images/blog/2026-08-28/canonization.png" style="
-        width: 80%;
-        max-height: unset;
-      " alt="Canonization of the ports-connectivity symbolic matrix" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
-  </a>
-  
-    <figcaption class="figure-caption">
-      Canonization of the ports-connectivity symbolic matrix
-
-    </figcaption>
-  
-</figure>
+<p>The next step in this project should be to generate a set of potential metrics and measure if they capture the phenomenon we are trying to capture.</p>
 
 <h2 id="citations">Citations</h2>
 
-<p>[1] I.-M. Chen and J. W. Burdick, “Enumerating the nonisomorphic assembly configurations of modular robotic systems,” in Proceedings of 1993 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS ’93), Jul. 1993, pp. 1985–1992 vol.3. doi: 10.1109/IROS.1993.583905.</p>
+<p>[1] L. A. T. Vu, Z. Bi, D. Mueller, and N. Younis, “Modular Self-Configurable Robots—The State of the Art,” Actuators, vol. 12, no. 9, p. 361, Sep. 2023, doi: 10.3390/act12090361.</p>
 
-<p>[2] S. Baarir, L. Hillah, F. Kordon, and E. Renault, “Self-reconfigurable Modular Robots and Their Symbolic Configuration Space,” vol. 6662, 2010, pp. 103–121. doi: 10.1007/978-3-642-21292-5_6.</p>
+<p>[2] J. Liu, X. Zhang, and G. Hao, “Survey on research and development of reconfigurable modular robots,” Advances in Mechanical Engineering, vol. 8, no. 8, p. 1687814016659597, Aug. 2016, doi: 10.1177/1687814016659597.</p>
+
+<p>[3] H. Y. K. Lau, A. W. Y. Ko, and T. L. Lau, “The design of a representation and analysis method for modular self-reconfigurable robots,” Robotics and Computer-Integrated Manufacturing, vol. 24, no. 2, pp. 258–269, Apr. 2008, doi: 10.1016/j.rcim.2006.11.003.</p>
+
+<p>[4] I.-M. Chen, S. H. Yeo, G. Chen, and G. Yang, “Kernel for Modular Robot Applications: Automatic Modeling Techniques,” The International Journal of Robotics Research, vol. 18, no. 2, pp. 225–242, Feb. 1999, doi: 10.1177/027836499901800207.</p>
+
+<p>[5] P. Bhat, J. Kuffner, S. Goldstein, and S. Srinivasa, “Hierarchical Motion Planning for Self-reconfigurable Modular Robots,” in 2006 IEEE/RSJ International Conference on Intelligent Robots and Systems, Beijing, China: IEEE, Oct. 2006, pp. 886–891. doi: 10.1109/IROS.2006.281742.</p>
+
+<p>[6] F. Hou and W.-M. Shen, “Graph-based optimal reconfiguration planning for self-reconfigurable robots,” Robotics and Autonomous Systems, vol. 62, no. 7, pp. 1047–1059, Jul. 2014, doi: 10.1016/j.robot.2013.06.014.</p>
+
+<p>[7] A. Dutta, P. Dasgupta, and C. Nelson, “Distributed configuration formation with modular robots using (sub)graph isomorphism-based approach,” Auton Robot, vol. 43, no. 4, pp. 837–857, Apr. 2019, doi: 10.1007/s10514-018-9759-9.</p>
+
+<p>[8] M. Park, S. Chitta, A. Teichman, and M. Yim, “Automatic Configuration Recognition Methods in Modular Robots,” The International Journal of Robotics Research, vol. 27, no. 3–4, pp. 403–421, Mar. 2008, doi: 10.1177/0278364907089350.</p>
+
 
 
 <div class="post-nav">
   <span>
     
       <i class="icon fa-solid fa-angle-left"></i> Previous post<br>
-      <a href="/2026/08/21/matrix-representations-of-modular-robots.html">
-        Matrix Representations of Modular Robots
+      <a href="/2026/08/28/more-matrix-representations-of-modular-robots.html">
+        More Matrix Representations for Modular Robots
       </a>
     
   </span>
   <span>
-    
-      Next post <i class="icon fa-solid fa-angle-right"></i><br>
-      <a href="/2026/09/04/back-to-basics.html">
-        Back to Basics
-      </a>
     
   </span>
 </div>

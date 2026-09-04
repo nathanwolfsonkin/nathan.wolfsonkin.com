@@ -1,4 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://nathan.wolfsonkin.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nathan.wolfsonkin.com/" rel="alternate" type="text/html" /><updated>2026-08-30T21:18:06+00:00</updated><id>https://nathan.wolfsonkin.com/feed.xml</id><title type="html">Nathan Wolf-Sonkin</title><entry><title type="html">More Matrix Representations for Modular Robots</title><link href="https://nathan.wolfsonkin.com/2026/08/28/more-matrix-representations-of-modular-robots.html" rel="alternate" type="text/html" title="More Matrix Representations for Modular Robots" /><published>2026-08-28T00:00:00+00:00</published><updated>2026-08-30T21:17:22+00:00</updated><id>https://nathan.wolfsonkin.com/2026/08/28/more-matrix-representations-of-modular-robots</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/08/28/more-matrix-representations-of-modular-robots.html"><![CDATA[<p>Modular robots are commonly expressed as graphs with vertices representing modules and edges representing their connections. This is a good start, but there are more features that need to be included to fully describe the state of a modular robotic team. Oftentimes a module will have a set number of labeled ports. It is important to describe which ports are being utilized. Last week, I discussed how Chen and Burdick solved this problem with the assembly incidence matrix (AIM) [1]. Baarir et al. solved this problem using the port adjacency matrix. The basic idea is that it is similar to a normal adjacency matrix, but encodes port numbers into the matrix. This can be done because of the assumption that all graph representations for MRRs must be simple graphs. Consider the following MRR and graph below:</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://nathan.wolfsonkin.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nathan.wolfsonkin.com/" rel="alternate" type="text/html" /><updated>2026-09-04T16:59:38+00:00</updated><id>https://nathan.wolfsonkin.com/feed.xml</id><title type="html">Nathan Wolf-Sonkin</title><entry><title type="html">Back to Basics</title><link href="https://nathan.wolfsonkin.com/2026/09/04/back-to-basics.html" rel="alternate" type="text/html" title="Back to Basics" /><published>2026-09-04T00:00:00+00:00</published><updated>2026-09-04T16:58:58+00:00</updated><id>https://nathan.wolfsonkin.com/2026/09/04/back-to-basics</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/09/04/back-to-basics.html"><![CDATA[<p>Research tends to be a long and meandering process. Oftentimes I will start with a heavily directed idea. This idea will lead me to look into another topic, which leads to the next topic, and before I know it, I end up looking into things that are seemingly unrelated to what I was originally trying to investigate. It is for this reason that I like to occasionally retrace my thinking to straighten out my meandering thoughts.</p>
+
+<h2 id="the-basic-idea">The Basic Idea</h2>
+
+<p>This project started with a simple problem: modular reconfigurable robotic systems (MRRs) lack a standardized way to compare systems. Modern survey papers compare systems qualitatively [1, 2] rather than quantitatively. Qualitative measures are used because quantitative measures do not exist. One might assume that in a field dedicated to creating <strong>modular</strong> <strong>reconfigurable</strong> robots, someone might have figured out how to measure modularity or reconfigurability, but that doesn’t appear to be the case.</p>
+
+<p>Part of the reason for this lack of quantitative measure is that it is difficult to compare dissimilar systems. Someone asking the question “which system is more reconfigurable, Polypod or SMORES?” may as well be asking “which is greater, three meters or five newtons?” The question is unanswerable because in order to make comparisons, the comparators must be expressed in similar terms. Therefore the first step towards metric generation for MRRs must be to find the proper level of abstraction such that any two MRRs can be expressed in similar terms.</p>
+
+<h3 id="a-unified-representation">A Unified Representation</h3>
+
+<p>A common representation for MRR configurations in the literature is the graph [3-8]. In this representation it is common for modules and their connections to be represented as vertices and edges respectively. To the best of my knowledge all MRRs can be expressed in this manner or some variation of it. While this is certainly an intuitive representation for a robot configuration, it only contains information about a single configuration. This idea can be extended to represent the entire space of possible configurations as a hierarchical graph. In this representation, a configuration represents a vertex and an edge represents a valid reconfiguration action to move from one configuration to another.</p>
+
+<figure class="figure">
+  <a class="figure-image" aria-label="Configuration space heirarchical graph">
+    <img src="/images/blog/2026-09-04/configuration-space-graph.png" style="
+        width: 80%;
+        max-height: unset;
+      " alt="Configuration space heirarchical graph" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;" />
+  </a>
+  
+    <figcaption class="figure-caption">
+      Configuration space heirarchical graph
+
+    </figcaption>
+  
+</figure>
+
+<p>This representation has some nice properties. First, graph invariants have interpretable meaning on the configuration space graph. Graph distances can be used to represent how far apart two configurations are. Graph diameter represents the maximum number of required moves to switch between any two configurations. This means there is an upper bound on the number of reconfiguration actions that can ever be required for a desired reconfiguration. These are just a few of the intuitive measures that come from expressing configuration space as a hierarchical graph.</p>
+
+<h3 id="what-to-measure">What to Measure?</h3>
+
+<p>If we want to develop a set of metrics to compare MRRs, these metrics should be applicable to the set of <strong>all</strong> MRRs. MMRs come in a wide variety of shapes and sizes. Notably, because of their adaptive nature, there is no single task that all MMRs are designed to perform. It is for this reason that I want to find an appropriate metric (or set of metrics) to define reconfigurability itself. All MRRs reconfigure. It is the trait that defines them. This makes reconfigurability one of the few measures that could apply to all possible MRRs regardless of design goal.</p>
+
+<h3 id="what-is-reconfigurability">What is Reconfigurability?</h3>
+
+<p>This is a really hard question. While many researchers may have an intuitive idea of what reconfigurability means, there does not seem to be a measurable definition. There is no <em>reconfigurometer</em> that can be used to measure the reconfigurability of an MRR. In fact, a single “reconfigurability number” may not be appropriate, even if it were defined. This is because there are many potential concepts we may be trying to numerically capture when we talk about reconfigurability. This means that we may require a set of different metrics. For example, take the following potential metric:</p>
+
+<p>$$\frac{\text{# of unique, reachable configurations}}{\text{# of modules}}$$</p>
+
+<p>Maybe this metric gives some information about how <em>reconfigurable</em> a system is in the sense that a system that can reach more configurations with less modules should have a higher reconfigurability. Consider a second potential metric:</p>
+
+<p>$$\frac{\text{configuration graph diameter}}{\text{# of modules}}$$</p>
+
+<p>This metric would give information about how far apart the different configurations are in configuration space. If a system has a relatively smaller graph diameter with a relatively larger number of modules, perhaps it is more reconfigurable in the sense that it can reach more configurations with less reconfiguration actions.</p>
+
+<p>Reconfigurability might also be related to time requirements. If two systems are identical except that one completes all reconfiguration actions twice as fast, is the faster system more reconfigurable?</p>
+
+<p>The next step in this project should be to generate a set of potential metrics and measure if they capture the phenomenon we are trying to capture.</p>
+
+<h2 id="citations">Citations</h2>
+
+<p>[1] L. A. T. Vu, Z. Bi, D. Mueller, and N. Younis, “Modular Self-Configurable Robots—The State of the Art,” Actuators, vol. 12, no. 9, p. 361, Sep. 2023, doi: 10.3390/act12090361.</p>
+
+<p>[2] J. Liu, X. Zhang, and G. Hao, “Survey on research and development of reconfigurable modular robots,” Advances in Mechanical Engineering, vol. 8, no. 8, p. 1687814016659597, Aug. 2016, doi: 10.1177/1687814016659597.</p>
+
+<p>[3] H. Y. K. Lau, A. W. Y. Ko, and T. L. Lau, “The design of a representation and analysis method for modular self-reconfigurable robots,” Robotics and Computer-Integrated Manufacturing, vol. 24, no. 2, pp. 258–269, Apr. 2008, doi: 10.1016/j.rcim.2006.11.003.</p>
+
+<p>[4] I.-M. Chen, S. H. Yeo, G. Chen, and G. Yang, “Kernel for Modular Robot Applications: Automatic Modeling Techniques,” The International Journal of Robotics Research, vol. 18, no. 2, pp. 225–242, Feb. 1999, doi: 10.1177/027836499901800207.</p>
+
+<p>[5] P. Bhat, J. Kuffner, S. Goldstein, and S. Srinivasa, “Hierarchical Motion Planning for Self-reconfigurable Modular Robots,” in 2006 IEEE/RSJ International Conference on Intelligent Robots and Systems, Beijing, China: IEEE, Oct. 2006, pp. 886–891. doi: 10.1109/IROS.2006.281742.</p>
+
+<p>[6] F. Hou and W.-M. Shen, “Graph-based optimal reconfiguration planning for self-reconfigurable robots,” Robotics and Autonomous Systems, vol. 62, no. 7, pp. 1047–1059, Jul. 2014, doi: 10.1016/j.robot.2013.06.014.</p>
+
+<p>[7] A. Dutta, P. Dasgupta, and C. Nelson, “Distributed configuration formation with modular robots using (sub)graph isomorphism-based approach,” Auton Robot, vol. 43, no. 4, pp. 837–857, Apr. 2019, doi: 10.1007/s10514-018-9759-9.</p>
+
+<p>[8] M. Park, S. Chitta, A. Teichman, and M. Yim, “Automatic Configuration Recognition Methods in Modular Robots,” The International Journal of Robotics Research, vol. 27, no. 3–4, pp. 403–421, Mar. 2008, doi: 10.1177/0278364907089350.</p>]]></content><author><name></name></author><category term="modular-robotics" /><summary type="html"><![CDATA[Research tends to be a long and meandering process. Oftentimes I will start with a heavily directed idea. This idea will lead me to look into another topic, which leads to the next topic, and before I know it, I end up looking into things that are seemingly unrelated to what I was originally trying to investigate. It is for this reason that I like to occasionally retrace my thinking to straighten out my meandering thoughts.]]></summary></entry><entry><title type="html">More Matrix Representations for Modular Robots</title><link href="https://nathan.wolfsonkin.com/2026/08/28/more-matrix-representations-of-modular-robots.html" rel="alternate" type="text/html" title="More Matrix Representations for Modular Robots" /><published>2026-08-28T00:00:00+00:00</published><updated>2026-09-04T16:58:58+00:00</updated><id>https://nathan.wolfsonkin.com/2026/08/28/more-matrix-representations-of-modular-robots</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/08/28/more-matrix-representations-of-modular-robots.html"><![CDATA[<p>Modular robots are commonly expressed as graphs with vertices representing modules and edges representing their connections. This is a good start, but there are more features that need to be included to fully describe the state of a modular robotic team. Oftentimes a module will have a set number of labeled ports. It is important to describe which ports are being utilized. Last week, I discussed how Chen and Burdick solved this problem with the assembly incidence matrix (AIM) [1]. Baarir et al. solved this problem using the port adjacency matrix. The basic idea is that it is similar to a normal adjacency matrix, but encodes port numbers into the matrix. This can be done because of the assumption that all graph representations for MRRs must be simple graphs. Consider the following MRR and graph below:</p>
 
 <figure class="figure">
   <a class="figure-image" aria-label="Sample homogenous modular robot and accompanying graph 1">
@@ -143,7 +208,7 @@ Module 3 is utilizing ports 1, 4, 6, and 7.</p>
 
 <p>[1] I.-M. Chen and J. W. Burdick, “Enumerating the nonisomorphic assembly configurations of modular robotic systems,” in Proceedings of 1993 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS ’93), Jul. 1993, pp. 1985–1992 vol.3. doi: 10.1109/IROS.1993.583905.</p>
 
-<p>[2] S. Baarir, L. Hillah, F. Kordon, and E. Renault, “Self-reconfigurable Modular Robots and Their Symbolic Configuration Space,” vol. 6662, 2010, pp. 103–121. doi: 10.1007/978-3-642-21292-5_6.</p>]]></content><author><name></name></author><category term="modular-robotics" /><category term="graph-theory" /><summary type="html"><![CDATA[Modular robots are commonly expressed as graphs with vertices representing modules and edges representing their connections. This is a good start, but there are more features that need to be included to fully describe the state of a modular robotic team. Oftentimes a module will have a set number of labeled ports. It is important to describe which ports are being utilized. Last week, I discussed how Chen and Burdick solved this problem with the assembly incidence matrix (AIM) [1]. Baarir et al. solved this problem using the port adjacency matrix. The basic idea is that it is similar to a normal adjacency matrix, but encodes port numbers into the matrix. This can be done because of the assumption that all graph representations for MRRs must be simple graphs. Consider the following MRR and graph below:]]></summary></entry><entry><title type="html">Matrix Representations of Modular Robots</title><link href="https://nathan.wolfsonkin.com/2026/08/21/matrix-representations-of-modular-robots.html" rel="alternate" type="text/html" title="Matrix Representations of Modular Robots" /><published>2026-08-21T00:00:00+00:00</published><updated>2026-08-30T21:17:22+00:00</updated><id>https://nathan.wolfsonkin.com/2026/08/21/matrix-representations-of-modular-robots</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/08/21/matrix-representations-of-modular-robots.html"><![CDATA[<h2 id="incidence-matricies">Incidence Matricies</h2>
+<p>[2] S. Baarir, L. Hillah, F. Kordon, and E. Renault, “Self-reconfigurable Modular Robots and Their Symbolic Configuration Space,” vol. 6662, 2010, pp. 103–121. doi: 10.1007/978-3-642-21292-5_6.</p>]]></content><author><name></name></author><category term="modular-robotics" /><category term="graph-theory" /><summary type="html"><![CDATA[Modular robots are commonly expressed as graphs with vertices representing modules and edges representing their connections. This is a good start, but there are more features that need to be included to fully describe the state of a modular robotic team. Oftentimes a module will have a set number of labeled ports. It is important to describe which ports are being utilized. Last week, I discussed how Chen and Burdick solved this problem with the assembly incidence matrix (AIM) [1]. Baarir et al. solved this problem using the port adjacency matrix. The basic idea is that it is similar to a normal adjacency matrix, but encodes port numbers into the matrix. This can be done because of the assumption that all graph representations for MRRs must be simple graphs. Consider the following MRR and graph below:]]></summary></entry><entry><title type="html">Matrix Representations of Modular Robots</title><link href="https://nathan.wolfsonkin.com/2026/08/21/matrix-representations-of-modular-robots.html" rel="alternate" type="text/html" title="Matrix Representations of Modular Robots" /><published>2026-08-21T00:00:00+00:00</published><updated>2026-09-04T16:58:58+00:00</updated><id>https://nathan.wolfsonkin.com/2026/08/21/matrix-representations-of-modular-robots</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/08/21/matrix-representations-of-modular-robots.html"><![CDATA[<h2 id="incidence-matricies">Incidence Matricies</h2>
 
 <p>It is common to represent teams of modular robots as graphs. In this representation, a vertex is a single module and edge represents a connection between modules. A commonly used matrix representation for a graph is the incidence matrix. The incidence matrix, $M$, is an $n \times m$ matrix  where the $ijth$ entry is a binary entry expressing if edge $m$ is connected to vertex $i$ or not. Each column, $j$, of $M$ represents an edge. The rows in an individual column represent the vertices that the edge is connecting. Given an example modular robot with its accompanying graph:</p>
 
@@ -203,7 +268,7 @@ Module 3 is utilizing ports 1, 4, 6, and 7.</p>
 
 <h2 id="citations">Citations</h2>
 
-<p>[1] I.-M. Chen and J. W. Burdick, “Enumerating the nonisomorphic assembly configurations of modular robotic systems,” in Proceedings of 1993 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS ’93), Jul. 1993, pp. 1985–1992 vol.3. doi: 10.1109/IROS.1993.583905.</p>]]></content><author><name></name></author><category term="modular-robotics" /><category term="graph-theory" /><summary type="html"><![CDATA[Incidence Matricies]]></summary></entry><entry><title type="html">Metrics to Measure Distance Between Modular Robot Configurations</title><link href="https://nathan.wolfsonkin.com/2026/08/14/metrics-to-measure-distance-between-modular-robot-configurations.html" rel="alternate" type="text/html" title="Metrics to Measure Distance Between Modular Robot Configurations" /><published>2026-08-14T00:00:00+00:00</published><updated>2026-08-30T21:17:22+00:00</updated><id>https://nathan.wolfsonkin.com/2026/08/14/metrics-to-measure-distance-between-modular-robot-configurations</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/08/14/metrics-to-measure-distance-between-modular-robot-configurations.html"><![CDATA[<p>A bit of a shorter post this week since I’ve been a bit busy with non-academic work this week.</p>
+<p>[1] I.-M. Chen and J. W. Burdick, “Enumerating the nonisomorphic assembly configurations of modular robotic systems,” in Proceedings of 1993 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS ’93), Jul. 1993, pp. 1985–1992 vol.3. doi: 10.1109/IROS.1993.583905.</p>]]></content><author><name></name></author><category term="modular-robotics" /><category term="graph-theory" /><summary type="html"><![CDATA[Incidence Matricies]]></summary></entry><entry><title type="html">Metrics to Measure Distance Between Modular Robot Configurations</title><link href="https://nathan.wolfsonkin.com/2026/08/14/metrics-to-measure-distance-between-modular-robot-configurations.html" rel="alternate" type="text/html" title="Metrics to Measure Distance Between Modular Robot Configurations" /><published>2026-08-14T00:00:00+00:00</published><updated>2026-09-04T16:58:58+00:00</updated><id>https://nathan.wolfsonkin.com/2026/08/14/metrics-to-measure-distance-between-modular-robot-configurations</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/08/14/metrics-to-measure-distance-between-modular-robot-configurations.html"><![CDATA[<p>A bit of a shorter post this week since I’ve been a bit busy with non-academic work this week.</p>
 
 <p>In the pursuit of defining reconfigurability of modular robots, it may be desirable to measure how different two configurations are. In that spirit, I have spent this week reading about metrics to measure the configuration space distance between modular robots. First it’s important to define what properties a distance function must have. A distance function is defined by the following properties [1]:</p>
 
@@ -233,7 +298,7 @@ Module 3 is utilizing ports 1, 4, 6, and 7.</p>
 
 <p>[1] A. Pamecha, I. Ebert-Uphoff, and G. S. Chirikjian, “Useful metrics for modular robot motion planning,” IEEE Trans. Robot. Automat., vol. 13, no. 4, pp. 531–545, Aug. 1997, doi: 10.1109/70.611311.</p>
 
-<p>[2] “Enumerating the Non-Isomorphic Assembly Configurations of Modular Robotic Systems”.</p>]]></content><author><name></name></author><category term="modular-robotics" /><category term="metrology" /><category term="graph-theory" /><summary type="html"><![CDATA[A bit of a shorter post this week since I’ve been a bit busy with non-academic work this week.]]></summary></entry><entry><title type="html">Hierarchical Graph Representations for Configuration Space in Modular Reconfigurable Robots</title><link href="https://nathan.wolfsonkin.com/2026/08/07/hierarchical-graph-representations-for-configuration-space-in-modular-reconfigurable-robots.html" rel="alternate" type="text/html" title="Hierarchical Graph Representations for Configuration Space in Modular Reconfigurable Robots" /><published>2026-08-07T00:00:00+00:00</published><updated>2026-08-30T21:17:22+00:00</updated><id>https://nathan.wolfsonkin.com/2026/08/07/hierarchical-graph-representations%20for-configuration-space-in-modular-reconfigurable-robots</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/08/07/hierarchical-graph-representations-for-configuration-space-in-modular-reconfigurable-robots.html"><![CDATA[<h3 id="defining-the-configuration-space">Defining the Configuration Space</h3>
+<p>[2] “Enumerating the Non-Isomorphic Assembly Configurations of Modular Robotic Systems”.</p>]]></content><author><name></name></author><category term="modular-robotics" /><category term="metrology" /><category term="graph-theory" /><summary type="html"><![CDATA[A bit of a shorter post this week since I’ve been a bit busy with non-academic work this week.]]></summary></entry><entry><title type="html">Hierarchical Graph Representations for Configuration Space in Modular Reconfigurable Robots</title><link href="https://nathan.wolfsonkin.com/2026/08/07/hierarchical-graph-representations-for-configuration-space-in-modular-reconfigurable-robots.html" rel="alternate" type="text/html" title="Hierarchical Graph Representations for Configuration Space in Modular Reconfigurable Robots" /><published>2026-08-07T00:00:00+00:00</published><updated>2026-09-04T16:58:58+00:00</updated><id>https://nathan.wolfsonkin.com/2026/08/07/hierarchical-graph-representations%20for-configuration-space-in-modular-reconfigurable-robots</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/08/07/hierarchical-graph-representations-for-configuration-space-in-modular-reconfigurable-robots.html"><![CDATA[<h3 id="defining-the-configuration-space">Defining the Configuration Space</h3>
 
 <p>There is a quote by Linus Torvalds, creator of Linux, Git, and other fundamental pieces of software, that says “Bad programmers worry about the code. Good programmers worry about data structures and their relationships.” I think that a similar idea might hold in metric development. If a good data structure for representing configurations of MRRs is established, the measures we wish to find for reconfigurability may present themselves.</p>
 
@@ -339,7 +404,7 @@ Module 3 is utilizing ports 1, 4, 6, and 7.</p>
 
 <p>[3] A. Pamecha, I. Ebert-Uphoff, and G. S. Chirikjian, “Useful metrics for modular robot motion planning,” IEEE Trans. Robot. Automat., vol. 13, no. 4, pp. 531–545, Aug. 1997, doi: 10.1109/70.611311.</p>
 
-<p>[4] W. Ellens and R. E. Kooij, “Graph measures and network robustness,” Nov. 07, 2013, arXiv: arXiv:1311.5064. doi: 10.48550/arXiv.1311.5064.</p>]]></content><author><name></name></author><category term="modular-robotics" /><category term="metrology" /><category term="graph-theory" /><summary type="html"><![CDATA[Defining the Configuration Space]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://nathan.wolfsonkin.com/images/blog/2026-08-07/configuration-space-graph.png" /><media:content medium="image" url="https://nathan.wolfsonkin.com/images/blog/2026-08-07/configuration-space-graph.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Ontology of Modular Reconfigurable Robots and Representations as Graphs</title><link href="https://nathan.wolfsonkin.com/2026/07/31/ontology-of-modular-reconfigurable-robots.html" rel="alternate" type="text/html" title="Ontology of Modular Reconfigurable Robots and Representations as Graphs" /><published>2026-07-31T00:00:00+00:00</published><updated>2026-08-30T21:17:22+00:00</updated><id>https://nathan.wolfsonkin.com/2026/07/31/ontology-of-modular-reconfigurable-robots</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/07/31/ontology-of-modular-reconfigurable-robots.html"><![CDATA[<p>In my research, my current objective is to define what it means for a modular reconfigurable robot (MRR) to be reconfigurable. The whole field is built around the idea of building reconfigurable robots, but nobody has rigorously defined what that means. To that end, I am currently studying the definitions and differentiations that do exist in this space. A survey paper from 2025 [1] defines the following categories for MRRs:</p>
+<p>[4] W. Ellens and R. E. Kooij, “Graph measures and network robustness,” Nov. 07, 2013, arXiv: arXiv:1311.5064. doi: 10.48550/arXiv.1311.5064.</p>]]></content><author><name></name></author><category term="modular-robotics" /><category term="metrology" /><category term="graph-theory" /><summary type="html"><![CDATA[Defining the Configuration Space]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://nathan.wolfsonkin.com/images/blog/2026-08-07/configuration-space-graph.png" /><media:content medium="image" url="https://nathan.wolfsonkin.com/images/blog/2026-08-07/configuration-space-graph.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Ontology of Modular Reconfigurable Robots and Representations as Graphs</title><link href="https://nathan.wolfsonkin.com/2026/07/31/ontology-of-modular-reconfigurable-robots.html" rel="alternate" type="text/html" title="Ontology of Modular Reconfigurable Robots and Representations as Graphs" /><published>2026-07-31T00:00:00+00:00</published><updated>2026-09-04T16:58:58+00:00</updated><id>https://nathan.wolfsonkin.com/2026/07/31/ontology-of-modular-reconfigurable-robots</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/07/31/ontology-of-modular-reconfigurable-robots.html"><![CDATA[<p>In my research, my current objective is to define what it means for a modular reconfigurable robot (MRR) to be reconfigurable. The whole field is built around the idea of building reconfigurable robots, but nobody has rigorously defined what that means. To that end, I am currently studying the definitions and differentiations that do exist in this space. A survey paper from 2025 [1] defines the following categories for MRRs:</p>
 
 <table>
   <thead>
@@ -553,7 +618,7 @@ Module 3 is utilizing ports 1, 4, 6, and 7.</p>
 
 <p>[2] https://en.wikipedia.org/wiki/Lattice_graph</p>
 
-<p>[3] https://en.wikipedia.org/wiki/Tree_(graph_theory)</p>]]></content><author><name></name></author><category term="modular-robotics" /><category term="metrology" /><category term="graph-theory" /><summary type="html"><![CDATA[In my research, my current objective is to define what it means for a modular reconfigurable robot (MRR) to be reconfigurable. The whole field is built around the idea of building reconfigurable robots, but nobody has rigorously defined what that means. To that end, I am currently studying the definitions and differentiations that do exist in this space. A survey paper from 2025 [1] defines the following categories for MRRs:]]></summary></entry><entry><title type="html">Basics of Graph Theory</title><link href="https://nathan.wolfsonkin.com/2026/07/24/basics-of-graph-theory.html" rel="alternate" type="text/html" title="Basics of Graph Theory" /><published>2026-07-24T00:00:00+00:00</published><updated>2026-08-30T21:17:22+00:00</updated><id>https://nathan.wolfsonkin.com/2026/07/24/basics-of-graph-theory</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/07/24/basics-of-graph-theory.html"><![CDATA[<p>Currently, I hold two degrees. A bachelor’s degree in mechanical engineering from New York Institute of Technology and a master’s degree in mechanical engineering from The Cooper Union. Now I am pursuing my PhD in mechanical engineering at Temple University. I am not sure if this is common among other people who hold degrees solely in mechanical engineering, but I somehow never formally learned any graph theory. I am familiar with lots of other disciplines in math: linear algebra, differential equations, probability, etc. I have used graphs to a certain extent, but never formally studied the basics.</p>
+<p>[3] https://en.wikipedia.org/wiki/Tree_(graph_theory)</p>]]></content><author><name></name></author><category term="modular-robotics" /><category term="metrology" /><category term="graph-theory" /><summary type="html"><![CDATA[In my research, my current objective is to define what it means for a modular reconfigurable robot (MRR) to be reconfigurable. The whole field is built around the idea of building reconfigurable robots, but nobody has rigorously defined what that means. To that end, I am currently studying the definitions and differentiations that do exist in this space. A survey paper from 2025 [1] defines the following categories for MRRs:]]></summary></entry><entry><title type="html">Basics of Graph Theory</title><link href="https://nathan.wolfsonkin.com/2026/07/24/basics-of-graph-theory.html" rel="alternate" type="text/html" title="Basics of Graph Theory" /><published>2026-07-24T00:00:00+00:00</published><updated>2026-09-04T16:58:58+00:00</updated><id>https://nathan.wolfsonkin.com/2026/07/24/basics-of-graph-theory</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/07/24/basics-of-graph-theory.html"><![CDATA[<p>Currently, I hold two degrees. A bachelor’s degree in mechanical engineering from New York Institute of Technology and a master’s degree in mechanical engineering from The Cooper Union. Now I am pursuing my PhD in mechanical engineering at Temple University. I am not sure if this is common among other people who hold degrees solely in mechanical engineering, but I somehow never formally learned any graph theory. I am familiar with lots of other disciplines in math: linear algebra, differential equations, probability, etc. I have used graphs to a certain extent, but never formally studied the basics.</p>
 
 <p>Currently I am pursuing a project relating to metric development for modular robotics and I believe that the right level of abstraction for analysis of the set of modular robotic teams may be using a graph representation. To further my goal of unifying the modular robotics field with metrology, I have decided to learn the fundamentals of graph theory so I may be better equipped to tackle this problem. This post is just a review of basic graph theory as I understand it right now. All images and references are attributed to Robert J. Wilson’s Introduction to Graph Theory [1].</p>
 
@@ -805,7 +870,7 @@ Module 3 is utilizing ports 1, 4, 6, and 7.</p>
 
 <h2 id="citations">Citations</h2>
 
-<p>[1] R. J. Wilson, Introduction to graph theory. 5th Edition</p>]]></content><author><name></name></author><category term="graph theory" /><summary type="html"><![CDATA[Currently, I hold two degrees. A bachelor’s degree in mechanical engineering from New York Institute of Technology and a master’s degree in mechanical engineering from The Cooper Union. Now I am pursuing my PhD in mechanical engineering at Temple University. I am not sure if this is common among other people who hold degrees solely in mechanical engineering, but I somehow never formally learned any graph theory. I am familiar with lots of other disciplines in math: linear algebra, differential equations, probability, etc. I have used graphs to a certain extent, but never formally studied the basics.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://nathan.wolfsonkin.com/images/blog/2026-07-24/simple-graph.png" /><media:content medium="image" url="https://nathan.wolfsonkin.com/images/blog/2026-07-24/simple-graph.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Modular Robotics and Metrics</title><link href="https://nathan.wolfsonkin.com/2026/07/17/modular-robotics-and-metrics.html" rel="alternate" type="text/html" title="Modular Robotics and Metrics" /><published>2026-07-17T00:00:00+00:00</published><updated>2026-08-30T21:17:22+00:00</updated><id>https://nathan.wolfsonkin.com/2026/07/17/modular-robotics-and-metrics</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/07/17/modular-robotics-and-metrics.html"><![CDATA[<p>Modular robotics is a exciting field. The idea is that instead of having a single robot built for a single purpose, we can instead use a team of modular robots. These modular robots would be able to work together, connecting and building off of each other to achieve unparalleled adaptability. This is actually a common approach in biology. Cells can be thought of as modular biological entities which form together to perform actions beyond the capability of any individual cell.</p>
+<p>[1] R. J. Wilson, Introduction to graph theory. 5th Edition</p>]]></content><author><name></name></author><category term="graph theory" /><summary type="html"><![CDATA[Currently, I hold two degrees. A bachelor’s degree in mechanical engineering from New York Institute of Technology and a master’s degree in mechanical engineering from The Cooper Union. Now I am pursuing my PhD in mechanical engineering at Temple University. I am not sure if this is common among other people who hold degrees solely in mechanical engineering, but I somehow never formally learned any graph theory. I am familiar with lots of other disciplines in math: linear algebra, differential equations, probability, etc. I have used graphs to a certain extent, but never formally studied the basics.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://nathan.wolfsonkin.com/images/blog/2026-07-24/simple-graph.png" /><media:content medium="image" url="https://nathan.wolfsonkin.com/images/blog/2026-07-24/simple-graph.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Modular Robotics and Metrics</title><link href="https://nathan.wolfsonkin.com/2026/07/17/modular-robotics-and-metrics.html" rel="alternate" type="text/html" title="Modular Robotics and Metrics" /><published>2026-07-17T00:00:00+00:00</published><updated>2026-09-04T16:58:58+00:00</updated><id>https://nathan.wolfsonkin.com/2026/07/17/modular-robotics-and-metrics</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/07/17/modular-robotics-and-metrics.html"><![CDATA[<p>Modular robotics is a exciting field. The idea is that instead of having a single robot built for a single purpose, we can instead use a team of modular robots. These modular robots would be able to work together, connecting and building off of each other to achieve unparalleled adaptability. This is actually a common approach in biology. Cells can be thought of as modular biological entities which form together to perform actions beyond the capability of any individual cell.</p>
 
 <p>A particular part of modular robotics that I have found interesting as of late is the self-reconfiguring modular robot. The idea here is that a team of modular robots could change and adapt to accomplish whatever task they are currently pursuing. This is a concept that is not new in science fiction. While I am sure there are older examples, my favorite is from the Pixar movie Big Hero 6. Here, modular robots called microbots are invented. These microbots can work together to form massive structures.</p>
 
@@ -988,7 +1053,7 @@ Module 3 is utilizing ports 1, 4, 6, and 7.</p>
 
 <p>[5] L. A. T. Vu, Z. Bi, D. Mueller, and N. Younis, “Modular Self-Configurable Robots—The State of the Art,” Actuators, vol. 12, no. 9, p. 361, Sep. 2023, doi: 10.3390/act12090361.</p>
 
-<p>[6] J. Liu, X. Zhang, and G. Hao, “Survey on research and development of reconfigurable modular robots,” Advances in Mechanical Engineering, vol. 8, no. 8, p. 1687814016659597, Aug. 2016, doi: 10.1177/1687814016659597.</p>]]></content><author><name></name></author><category term="Multi-Robot Systems" /><category term="Dimensional Analysis" /><category term="Modular Robotics" /><summary type="html"><![CDATA[Modular robotics is a exciting field. The idea is that instead of having a single robot built for a single purpose, we can instead use a team of modular robots. These modular robots would be able to work together, connecting and building off of each other to achieve unparalleled adaptability. This is actually a common approach in biology. Cells can be thought of as modular biological entities which form together to perform actions beyond the capability of any individual cell.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://nathan.wolfsonkin.com/images/blog/2026-07-17/taxonomy.png" /><media:content medium="image" url="https://nathan.wolfsonkin.com/images/blog/2026-07-17/taxonomy.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Dimensionless Analysis for Sports Analytics</title><link href="https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics.html" rel="alternate" type="text/html" title="Dimensionless Analysis for Sports Analytics" /><published>2026-07-10T00:00:00+00:00</published><updated>2026-08-30T21:17:22+00:00</updated><id>https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics.html"><![CDATA[<p>The world cup is going on right here in Philadelphia. I figured it would be fun to see how some of the ideas in dimensional analysis that I have been learning about recently are applied in the world of sports analytics. This post is more or less a review of a paper in that space.</p>
+<p>[6] J. Liu, X. Zhang, and G. Hao, “Survey on research and development of reconfigurable modular robots,” Advances in Mechanical Engineering, vol. 8, no. 8, p. 1687814016659597, Aug. 2016, doi: 10.1177/1687814016659597.</p>]]></content><author><name></name></author><category term="Multi-Robot Systems" /><category term="Dimensional Analysis" /><category term="Modular Robotics" /><summary type="html"><![CDATA[Modular robotics is a exciting field. The idea is that instead of having a single robot built for a single purpose, we can instead use a team of modular robots. These modular robots would be able to work together, connecting and building off of each other to achieve unparalleled adaptability. This is actually a common approach in biology. Cells can be thought of as modular biological entities which form together to perform actions beyond the capability of any individual cell.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://nathan.wolfsonkin.com/images/blog/2026-07-17/taxonomy.png" /><media:content medium="image" url="https://nathan.wolfsonkin.com/images/blog/2026-07-17/taxonomy.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Dimensionless Analysis for Sports Analytics</title><link href="https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics.html" rel="alternate" type="text/html" title="Dimensionless Analysis for Sports Analytics" /><published>2026-07-10T00:00:00+00:00</published><updated>2026-09-04T16:58:58+00:00</updated><id>https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/07/10/dimensionless-analysis-for-sports-analytics.html"><![CDATA[<p>The world cup is going on right here in Philadelphia. I figured it would be fun to see how some of the ideas in dimensional analysis that I have been learning about recently are applied in the world of sports analytics. This post is more or less a review of a paper in that space.</p>
 
 <p>Julien Blondeau’s work [1] attempts to identify how number of scored goals in field and goal based sports such as soccer and hockey correlate with various parameters of interest. He identifies them as follows:</p>
 
@@ -1197,7 +1262,7 @@ Module 3 is utilizing ports 1, 4, 6, and 7.</p>
 </figure>
 
 <h2 id="citations">Citations</h2>
-<p>[1] J. Blondeau, “The influence of field size, goal size and number of players on the average number of goals scored per game in variants of football and hockey: the Pi-theorem applied to team sports,” Journal of Quantitative Analysis in Sports, vol. 17, no. 2, pp. 145–154, Jun. 2021, doi: 10.1515/jqas-2020-0009.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[The world cup is going on right here in Philadelphia. I figured it would be fun to see how some of the ideas in dimensional analysis that I have been learning about recently are applied in the world of sports analytics. This post is more or less a review of a paper in that space.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://nathan.wolfsonkin.com/images/blog/2026-07-10/goals-vs-field-length.png" /><media:content medium="image" url="https://nathan.wolfsonkin.com/images/blog/2026-07-10/goals-vs-field-length.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Dimensionless Variable Discovery</title><link href="https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery.html" rel="alternate" type="text/html" title="Dimensionless Variable Discovery" /><published>2026-06-26T00:00:00+00:00</published><updated>2026-08-30T21:17:22+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery.html"><![CDATA[<p>I was reading more about dimensional analysis this week. Enjoy.</p>
+<p>[1] J. Blondeau, “The influence of field size, goal size and number of players on the average number of goals scored per game in variants of football and hockey: the Pi-theorem applied to team sports,” Journal of Quantitative Analysis in Sports, vol. 17, no. 2, pp. 145–154, Jun. 2021, doi: 10.1515/jqas-2020-0009.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[The world cup is going on right here in Philadelphia. I figured it would be fun to see how some of the ideas in dimensional analysis that I have been learning about recently are applied in the world of sports analytics. This post is more or less a review of a paper in that space.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://nathan.wolfsonkin.com/images/blog/2026-07-10/goals-vs-field-length.png" /><media:content medium="image" url="https://nathan.wolfsonkin.com/images/blog/2026-07-10/goals-vs-field-length.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Dimensionless Variable Discovery</title><link href="https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery.html" rel="alternate" type="text/html" title="Dimensionless Variable Discovery" /><published>2026-06-26T00:00:00+00:00</published><updated>2026-09-04T16:58:58+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/26/dimensionless-variable-discovery.html"><![CDATA[<p>I was reading more about dimensional analysis this week. Enjoy.</p>
 
 <h2 id="buckingham-pi-theorem">Buckingham-Pi Theorem</h2>
 
@@ -1330,154 +1395,4 @@ Module 3 is utilizing ports 1, 4, 6, and 7.</p>
 
 <p>[2] P. W. Bridgman, Dimensional Analysis. Yale University Press, 1922.</p>
 
-<p>[3] A. A. Sonin, “Department of Mechanical Engineering MIT Cambridge, MA 02139”.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[I was reading more about dimensional analysis this week. Enjoy.]]></summary></entry><entry><title type="html">Dimensional Analysis and Measurement</title><link href="https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement.html" rel="alternate" type="text/html" title="Dimensional Analysis and Measurement" /><published>2026-06-19T00:00:00+00:00</published><updated>2026-08-30T21:17:22+00:00</updated><id>https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement</id><content type="html" xml:base="https://nathan.wolfsonkin.com/2026/06/19/dimensional-analysis-and-measurement.html"><![CDATA[<p>A few years ago, my lab produced a paper titled “Towards Predicting Collective Performance in Multi-Robot Teams” [1]. I read the paper when I first started my PhD and was immediately impressed. The paper is fundamentally about developing metrics for analysis for multi-robot teams. I have a similar project I am trying to pursue so I figured it would be important to start from the fundamental works in measurement science. This week, I began reading P. W. Bridgman’s work on dimensional analysis [2]. Here are some concepts I have been thinking about in relation to measurements and dimensional analysis.</p>
-
-<h2 id="arbitrary-dimensions">Arbitrary Dimensions</h2>
-<p>Assume I want to compare the weights between myself and my wife. We could go to scales and measure ourselves to find the numerical quantity associated with our weight in a particular unit system. For example, I weigh 180 pounds while my wife weighs 120. The actual number here is somewhat arbitrary. If we chose instead to measure in metric units, we would instead say that I weigh 81 kilograms while my wife weighs 54 kilograms. The important idea here is not the numerical quantity, but rather the relationship between the quantities. We can choose whatever reference point we desire as a unit of weight. But no matter what reference point is chosen, I will still weigh 1.5x my wife’s weight. That ratio between our weights is the reality that will exist in any measurement system.</p>
-
-<h2 id="primary-and-secondary-units">Primary and Secondary Units</h2>
-<p>P.W. Bridgman outlines in [2] that physical units exist in two distinct categories, namely primary and secondary dimensions. Primary dimensions are those who are defined with reference to themselves. They are axiomatic in a sense. In total the national institute of standards and technology recognizes seven primary units:</p>
-<ul>
-  <li>Time</li>
-  <li>Length</li>
-  <li>Mass</li>
-  <li>Electrical Current</li>
-  <li>Thermodynamic Temperature</li>
-  <li>Amount of Substance</li>
-  <li>Luminous Intensity</li>
-</ul>
-
-<p>From these seven primary units, all other units can be derived as secondary units. P.W. Bridgman argues that these are somewhat arbitrary. If we decided, for example, to use a different set of primary dimensions, that is perfectly acceptable provided that the selected units are also measurable in terms of themselves. Meaning that the relationship between different quantities of a unit can be measured with reference to other measurable quantities of that unit. For example, I can define my own weight in terms of my wife’s weight and these are directly measurable quantities.</p>
-
-<p>Imagine that we used force as defined in newtons as a primary dimension. We know from empirical measurements and Euler’s first law that:
-$$F=ma$$</p>
-
-<p>The usual system of dimensions defines that one newton is equal to one kilogram-meter per second squared:
-$$1 N = 1 \frac{Kg*m}{s^2}$$</p>
-
-<p>But if we redefined which dimensions are considered primary, we could come up with a different system. Perhaps in our new unit system, mass is considered a secondary dimension, defined based on $m=\frac{F}{a}$. In this context, we would instead say that the secondary unit known as the kilogram is defined as such:</p>
-
-<p>$$1 Kg = 1 \frac{N*s^2}{m}$$</p>
-
-<p>We can define this because in our new system of measurement, time, distance, and force are considered primary dimensions while mass is considered secondary. The same logic can be applied to, for example, velocity but not viscosity. This is because “it is not at once obvious whether a physical procedure could be set up by which two viscosities could be compared directly with each other without measuring other kinds of quantity.” [Bridgman, 1922, p. 20].</p>
-
-<h2 id="metric-generation">Metric Generation</h2>
-<p>One of the tasks of measurement science is to generate metrics. To understand the utility of this endeavor, let’s look at an example. Imagine a school locker. If a student claims they want the “best” locker, what does that mean? Well, what is the purpose of a locker? One possible answer is “to effectively store items.” We will define the effectiveness of a locker at storing items as the locker’s quality and denote it as $Q$. How do we measure locker quality? A naive solution might be to maximize the internal volume.</p>
-
-<p>$$Q := whd$$</p>
-
-<p>Here, $w$ is the width, $d$ is the depth, and $h$ is the height. The problem here is that this metric only tells us how much space exists within the locker and not the effectiveness of that space for holding items. Take the lockers in the image below:</p>
-
-<figure class="figure">
-  <a class="figure-image" aria-label="source: reddit.com u Ceaseless watcher224">
-    <img src="/images/blog/2026-06-19/locker.jpeg" style="
-        width: 30%;
-        max-height: unset;
-      " alt="source: reddit.com u Ceaseless watcher224" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;" />
-  </a>
-  
-    <figcaption class="figure-caption">
-      source: reddit.com/u/Ceaseless_watcher224
-
-    </figcaption>
-  
-</figure>
-
-<p>It might be possible that the tall locker has a greater total volume than the shorter ones, but it likely doesn’t store items as effectively due to its limited width. To develop a suitable metric for locker quality, we need to define some properties. To simplify the problem, let us assume a depth that is reasonable for item storage, $d \gg 0$. We want quality to decrease when height or width approach zero, since that limits a locker’s ability to effectively store items. More formally we can write:</p>
-
-<p>$$\lim_{w \rightarrow 0}Q = - \infty$$
-$$\lim_{h \rightarrow 0}Q = - \infty$$</p>
-
-<p>If we had an infinitely large locker, we could store infinite items. Therefore locker quality should approach infinity as the width or height approach infinity. More formally:</p>
-
-<p>$$\lim_{w \rightarrow \infty}Q = \infty$$
-$$\lim_{h \rightarrow \infty}Q = \infty$$</p>
-
-<p>We should also place some physical constraints on our system. Neither width nor height can be negative. In realistic cases, both of these values will be greater than zero:</p>
-
-<p>$$w &gt; 0$$
-$$h &gt; 0$$</p>
-
-<p>Under these constraints, a suitable metric might look like this:</p>
-
-<p>$$Q := log(wh)$$</p>
-
-<p>Now $Q$ satisfies all of our constraints.</p>
-
-<p>This is a somewhat silly example, but it highlights an important concept in measurement science. There exists a disconnect between what we want to know (how well a locker stores items) and what we can physically measure (width, height, etc.). Part of the job of measurement science is to develop the metrics which bridge that gap.</p>
-
-<h2 id="dimensional-analysis-sample-problem">Dimensional Analysis Sample Problem</h2>
-
-<p>There is a lot of information that can be revealed by knowing about units. P. W. Bridgman goes through some simple examples of dimensional analysis in [2] and it is really enlightening to see just how much information can be attained knowing only the dimensions of the involved quantities. For example assume we want to determine the period of swing of a simple pendulum. The quantities involved are listed as follows:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name of Quantity</th>
-      <th>Symbol</th>
-      <th>Dimensions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Time of swing (period)</td>
-      <td>$t$</td>
-      <td>$T$</td>
-    </tr>
-    <tr>
-      <td>Length of pendulum</td>
-      <td>$l$</td>
-      <td>$L$</td>
-    </tr>
-    <tr>
-      <td>Mass of pendulum</td>
-      <td>$m$</td>
-      <td>$M$</td>
-    </tr>
-    <tr>
-      <td>Acceleration due to gravity</td>
-      <td>$g$</td>
-      <td>$LT^{-2}$</td>
-    </tr>
-    <tr>
-      <td>Angular amplitude of swing</td>
-      <td>$\theta$</td>
-      <td>No dimensions</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>The objective is to find some function $f$ which computes the swing time using the other quantities. More formally we want to find:</p>
-
-<p>$$t = f(l, m, g, \theta)$$</p>
-
-<p>There are two pieces of fundamental intuition here:</p>
-
-<ol>
-  <li>We know that the output numerical values must be independent of the units that we use to measure. Meaning that if we were to measure in inches and feet instead of meters, the numerical value that we compute for time should not change. The same applies to all other units. If we decided to use slugs instead of kilograms for measuring mass, the computed number for time should not change, provided that time is still measured in seconds.</li>
-  <li>The output of $f$ must be in units of time</li>
-</ol>
-
-<p>Using the second rule we can deduce that $f$ must be independent of mass since its units are unique and cannot cancel out with any other quantities. Therefore:</p>
-
-<p>$$t=f(l,g,\theta)$$</p>
-
-<p>Similarly, $l$ and $g$ must enter the function together such that the dimensions cancel. A solution to this is to divide $l$ and $g$ such that the output units are in time.</p>
-
-<p>$$t=f\left(\frac{l}{g},\theta\right)$$</p>
-
-<p>Of course this results in units of $T^2$ so the function must use a square root to ensure the output is in units of $T$. The result is that using only knowledge of dimensions and input parameters we can get as close as</p>
-
-<p>$$t = \phi(\theta) \sqrt{\frac{l}{g}}$$</p>
-
-<p>Where $\phi$ is some function which operates on $\theta$ and outputs a dimensionless value. We can compare this to the solution which can be attained from first principles:</p>
-
-<p>$$t = \frac{1}{2\pi}\sqrt{\frac{l}{g}}$$</p>
-
-<p>The result is that using only knowledge of the involved parameters and their dimensions, we can determine almost the entire structure of the resultant relationship. <strong>The real problem here is determining which parameters should be included to compute this relationship.</strong> For certain simple problems, this is somewhat trivial. P.W. Bridgman explains that for more complex settings, such as fluid or thermal relationships, it is not so simple to deduce.</p>
-
-<h2 id="citations">Citations</h2>
-
-<p>[1] P. Xin, Z. Xie, and P. Dames, “Towards Predicting Collective Performance in Multi-Robot Teams,” IEEE Trans. Robot., vol. 41, pp. 5229–5245, 2025, doi: 10.1109/TRO.2025.3600164.</p>
-
-<p>[2] P. W. Bridgman, Dimensional Analysis. Yale University Press, 1922.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[A few years ago, my lab produced a paper titled “Towards Predicting Collective Performance in Multi-Robot Teams” [1]. I read the paper when I first started my PhD and was immediately impressed. The paper is fundamentally about developing metrics for analysis for multi-robot teams. I have a similar project I am trying to pursue so I figured it would be important to start from the fundamental works in measurement science. This week, I began reading P. W. Bridgman’s work on dimensional analysis [2]. Here are some concepts I have been thinking about in relation to measurements and dimensional analysis.]]></summary></entry></feed>
+<p>[3] A. A. Sonin, “Department of Mechanical Engineering MIT Cambridge, MA 02139”.</p>]]></content><author><name></name></author><category term="dimensional analysis" /><summary type="html"><![CDATA[I was reading more about dimensional analysis this week. Enjoy.]]></summary></entry></feed>
